@@ -34,11 +34,12 @@
 
         \item 
         To treat $R_2$ and $R_{load}$ as a single resistor, combine the two resistors which are in parallel to find that the combined (equivalent) resistance is $5\k\Ohm$. Now, we have a simple voltage divider with a $10\k\Ohm$ resistor in series with the $5\k\Ohm$ equivalent resistor. The output voltage is across this equivalent resistance. The output voltage is given by 
-        \[V_{out} = V_{in} \frac{5\k\Ohm}{10\k\Ohm + 5\k\Ohm} = \frac{30\V}{3} = 10\V \]
+        \[V_{out} = V_{in} \frac{5\k\Ohm}{10\k\Ohm + 5\k\Ohm} = \frac{30\V}{3} = \mans{10\V} \]
 
         \item 
-        We can redraw the voltage divider circuit to make the ``port'' clearer.
-        \begin{circuit}
+        We can redraw the voltage divider circuit to make the ``port'' clearer. 
+        \begin{circuit}{fig:1.10.1}{Voltage divider with port shown.}
+            % \label{1.10fig1}
             (0,2) to[V=$V_{\in}$] (0,0)
             to[short] (2,0)
             to[R=$R_2$] (2,2)
@@ -50,15 +51,26 @@
 
         We can find $V_{\Th}$ by leaving the ports open (open circuit) and measuring $V_\out$, the voltage across $R_2$. This comes out to be half the input voltage when $R_1 = R_2$, so $V_\out = 15\V$. Thus $V_{\Th} = 15\V$.
         
-        To find the Th\'evinen resistance, we need to find the short circuit current, $I_{SC}$.
+        To find the Th\'evinen resistance, we need to find the short circuit current, $I_{SC}$. We short circuit the port and measure the current flowing through it.
+        \begin{circuit}{fig:1.10.2}{Voltage divider with short circuit on the output.}
+            (0,2) to[V=$V_{\in}$] (0,0) 
+            to[short] (2,0)
+            to[R=$R_2$] (2,2)
+            to[R=$R_1$](0,2)
+            (2,0) to[short] (3,0)
+            (2,2) to[short] (3,2)
+            (3,0) to[short, i_<=$I_{SC}$] (3,2) 
+        \end{circuit}
         
-        \todo{finish}
+        In this circuit, no current flows through $R_2$, flowing through the short instead. Thus we have $I_{SC} = \dfrac{V_\in }{R_1}$. From this, we can find $R_\Th$ from $R_\Th = \dfrac{V_\Th}{I_{SC}}$. This gives us $R_\Th = \dfrac{15\V \cdot R_1}{V_\in} = \mans{\dfrac{150\k}{V_\in}\Ohm}$.
 
-        \begin{circuit}
+        The Th\'evenin equivalent circuit takes the form shown below.
+        \begin{circuit}{fig:1.10.3}{Th\'evenin equivalent circuit.}
             (0,2) to[V=$V_{\Th}$] (0,0)
             to[short, -o] (3,0)
             (0,2) to[R=$R_{\Th}$, -o] (3,2)
-            ;
+            (3,0) to[open, v_<=$V_\out$] (3,2)
         \end{circuit}
+        This circuit is equivalent to the circuit in Figure \ref{fig:1.10.1}. 
     \end{enumerate}
 \end{document}

@@ -3,6 +3,12 @@
 \usepackage{circuitikz}
 \usepackage{amsmath}
 \usepackage{enumitem}
+\usepackage{float}
+\usepackage[
+  margin=1in,
+  includefoot,
+  footskip=30pt,
+]{geometry}
 
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO: #1}}}
 \renewcommand{\title}[1]{\begin{center}\begin{Huge}#1\end{Huge}\end{center}}
@@ -22,13 +28,21 @@
 \renewcommand{\in}{\ensuremath{\text{in}}} % In (for V_{In})
 \newcommand{\out}{\ensuremath{\text{out}}}
 
-\newenvironment{circuit}
-    {\begin{center} 
-    \begin{circuitikz}[american]\draw
+\newenvironment{circuit}[2]% param1=label, param2=caption
+    {
+        \begin{figure}[H]
+        \caption{#2}
+        \label{#1}
+        
+        \begin{center} 
+        % \centering
+        \begin{circuitikz}[american]\draw
     }
-    {;
-     \end{circuitikz}
-    \end{center}
+    {
+        ;
+        \end{circuitikz}
+        \end{center}
+        \end{figure}
     }
 
 % Set first level of list to (a) format
