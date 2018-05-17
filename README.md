@@ -26,6 +26,7 @@ For each exercise, use `\ex{exerciseNum}` to create a header for that particular
 #### Solutions
 Solutions should follow each Exercise header (see above). Write these with plain text in LaTeX. Use any ordinary math environments as necessary.
 
+##### Math Macros
 Within a math environment, several macros have been defined to make formatting easier. They are outlined in the table below.
 
 | Command   | Description   |
@@ -37,7 +38,22 @@ Within a math environment, several macros have been defined to make formatting e
 | `\C`, `\H`| Displays each letter in text form within a math environment. Equivalent to `\text{letter}`.|
 |`\in`, `\out`, `\Th` | Displays each one in text form within a math environment.|
 
+##### Boxing Final Answers
 For solutions with a single, concise answer (i.e. solutions that are just a number or a single phrase of text), use `\mans{ans}` inside a math environment and `\tans{ans}` inside a text environment to indicate the final answer. (These commands stand for **m**ath-**ans**wer and **t**ext-**ans**wer.) These commands bold the answer and surround it with a box for emphasis and ease of checking. If a problem is a proof or an explanation, then this kind of emphasis does not really make sense, so do not use these commands. Just write the answer as usual.
+
+##### Questions With Parts
+TAoE uses letters to indicate parts, so we will follow that convention here. The enumerate command has already been formatted to use letters, so just use
+```
+\begin{enumerate}
+    \item
+    Solution for part (a)
+    
+    \item
+    Solution for part (b)
+    ...
+\end{enumerate}
+```
+ to create different parts in your solution.
 
 #### Drawing Circuits
 It may be helpful in your solution to provide circuit drawings. This can be accomplished using the included custom environment
@@ -58,6 +74,7 @@ For example, suppose the solutions for exercise 3.2 use six different circuit dr
 * `\todo{noteToSelf}` is a handy macro that will insert `noteToSelf` in bolded red text within the final document as a reminder of unfinished work.
 
 ## Writing Solutions
+This section is about writing solutions qualitatively. For information on formatting, see [Solutions](#solutions) under [Document Formatting](#document-formatting)
 When writing solutions, do not repeat the original problem statement so as to not violate copyrights. Assume the reader has read the problem and has access to all the same variables presented in the problem and any iamges the problem may reference.
 
 Make sure you are explaining all your steps as well as any formulas used. Do not just apply a formula without at least briefly mentioning it. (Use your best judgement; there is probably no need to explain V=IR in Chapter 5, but in Chapter 1, that might be a good thing to note when you apply it.)
