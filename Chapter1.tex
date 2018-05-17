@@ -92,17 +92,35 @@
         \begin{circuit}{fig:1.10.5}{Original voltage divider with $10\k\Ohm$ load attached.}
             (0,2) to[V, l_=$V_\in$] (0,0)
                 to[short] (3,0)
-                to[R, l_=$R_\text{load}$] (3,2)
+                to[R, l_=$R_\load$] (3,2)
                 to[short] (2,2)
                 to[R=$R_1$] (0,2)
             (2,0) to[R=$R_2$, *-*] (2,2)
         \end{circuit}
 
-        From part (d), we know that the output voltage is 10V and that this is the voltage across the load resistor. Since $P = IV = \frac{V^2}{R}$, we find that the power through $R_\text{load}$ is 
-        \[P_\text{load} = \frac{V^2}{R_\text{load}} = \frac{(10\V)^2}{10\k\Ohm} = \mans{10\m\W}\]
-        Similarly, we know that the power across $R_2$ is the same since the voltage across $R_2$ is the same as the voltage across $R_\text{load}$. Thus we have
+        From part (d), we know that the output voltage is 10V and that this is the voltage across the load resistor. Since $P = IV = \frac{V^2}{R}$, we find that the power through $R_\load$ is 
+        \[P_\load = \frac{V^2}{R_\load} = \frac{(10\V)^2}{10\k\Ohm} = \mans{10\m\W}\]
+        Similarly, we know that the power across $R_2$ is the same since the voltage across $R_2$ is the same as the voltage across $R_\load$. Thus we have
         \[P_2 = \mans{10\m\W}\]
         To find the power dissipated in $R_1$, we first have to find the voltage across it. From Kirchoff's loop rule, we know that the voltage around any closed loop in the circuit must be zero. We can choose the loop going through the voltage source, $R_1$, and $R_2$. The voltage supplied by the source is 30V. The voltage dropped across $R_2$ is 10V as discussed before. Thus the voltage dropped across $R_1$ must be $30\V - 10\V - 20\V$. Now we know the voltage across and the resistance of $R_1$. We use the same formula as before to find the power dissipated.
         \[P_1 = \frac{V^2}{R_1} = \frac{(20\V)^2}{10\k\Ohm} = \mans{40\m\W}\]
     \end{enumerate}
+
+    \ex{1.11}
+    Consider the following Th\'evenin circuit where $R_\source$ is just another name for the Th\'evenin resistance, $R_\Th$.
+    \begin{circuit}{fig:1.11.1}{Standard Th\'evenin circuit with attached load.}
+        (0,2) to[V, l_=$V_\Th$] (0,0)
+            to[short] (2,0)
+            to[R, l_=$R_\load$] (2,2)
+            to[R, l_=$R_\source$] (0,2)
+    \end{circuit}
+    We will first calculate the power dissipated in the load and then maximize it with calculus. We can find the power through a resistor using current and resistence since $P = IV = I(IR) = I^2R$. To find the total current flowing through the resistors, we find the equivalent resistance which is $R_\source + R_\load$. Thus the total current flowing is $I = \frac{V_\Th}{R_\source + R_\load}$. The power dissipated in $R_\load$ is thus 
+    \[P_\load = I^2R_\load = \frac{V_\Th^2 R_\load}{(R_\source + R_\load)^2}\]
+    To maximize this function, we take the derivative and set it equal to 0.
+    \begin{align*}
+        \frac{dP_\load}{dR_\load} &= V_\Th \frac{(R_\source + R_\load)^2 - 2R_\load(R_\source + R_\load)}{(R_\source + R_\load)^4} = 0 \\
+        &\Longrightarrow R_\source + R_\load = 2R_\load \\
+        &\Longrightarrow R_\source = R_\load
+    \end{align*}
+    
 \end{document}
