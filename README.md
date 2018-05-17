@@ -52,7 +52,7 @@ Also note that each circuit should be accompanied by a label and a caption. The 
 ```
 fig:<chapterNum>.<exerciseNum>.<figureNum>
 ```
-For example, for the fourth image/circuit in the solutions for exerise number 3.2, we will use 3.2.4 as the label. Use this notation for images as well as circuits (which are just treated internally as images).
+For example, suppose the solutions for exercise 3.2 use six different circuit drawings/images. To label the fourth image/circuit, use fig:3.2.4 as the label. Use this notation for images as well as circuits (which are just treated internally as images).
 
 #### Miscellaneous
 * `\todo{noteToSelf}` is a handy macro that will insert `noteToSelf` in bolded red text withing the final document as a reminder of unfinished work.
