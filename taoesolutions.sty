@@ -1,0 +1,38 @@
+\ProvidesPackage{taoesolutions}[2018/05/16 v1.0 Macros used to make solutions for The Art of Electronics 3rd ed.]
+
+\usepackage{circuitikz}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO: #1}}}
+\renewcommand{\title}[1]{\begin{center}\begin{Huge}#1\end{Huge}\end{center}}
+\newcommand{\ex}[1]{\section*{Exercise #1}}
+\newcommand{\mans}[1]{\boxed{\mathbf{#1}}}
+\newcommand{\tans}[1]{\framebox{\textbf{#1}}}
+
+% Make easier use of EE order of magnitude notation
+\renewcommand{\k}{\ensuremath{\text{k}}} % kilo
+\newcommand{\M}{\ensuremath{\text{M}}} % Mega
+
+\newcommand{\V}{\ensuremath{\text{V}}}
+\newcommand{\Ohm}{\ensuremath{\Omega}}
+\newcommand{\W}{\ensuremath{\text{W}}}
+
+\newcommand{\Th}{\ensuremath{\text{Th}}} % Thevenin
+\renewcommand{\in}{\ensuremath{\text{in}}} % In (for V_{In})
+\newcommand{\out}{\ensuremath{\text{out}}}
+
+\newenvironment{circuit}
+    {\begin{center} 
+    \begin{circuitikz}[american]\draw
+    }
+    {;
+     \end{circuitikz}
+    \end{center}
+    }
+
+% Set first level of list to (a) format
+\setlist[enumerate,1]{label=(\alph*)}
+
+% Be sure to use \mans{<answer>} for math answers
+% Use \tans{<answer>} for text answers

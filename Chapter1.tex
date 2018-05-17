@@ -1,41 +1,8 @@
 \documentclass{article}
-\usepackage{circuitikz}
-\usepackage{amsmath}
-\usepackage{enumitem}
-
-\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO: #1}}}
-\newcommand{\ex}[1]{\section*{Exercise #1}}
-\newcommand{\mans}[1]{\boxed{\mathbf{#1}}}
-\newcommand{\tans}[1]{\framebox{\textbf{#1}}}
-
-% Make easier use of EE order of magnitude notation
-\renewcommand{\k}{\ensuremath{\text{k}}} % kilo
-\newcommand{\M}{\ensuremath{\text{M}}} % Mega
-
-\newcommand{\V}{\ensuremath{\text{V}}}
-\newcommand{\Ohm}{\ensuremath{\Omega}}
-\newcommand{\W}{\ensuremath{\text{W}}}
-
-\newcommand{\Th}{\ensuremath{\text{Th}}} % Thevenin
-\renewcommand{\in}{\ensuremath{\text{in}}} % In (for V_{In})
-\newcommand{\out}{\ensuremath{\text{out}}}
-
-\newenvironment{circuit}
-    {\begin{center} 
-    \begin{circuitikz}[american]\draw
-    }
-    {;
-     \end{circuitikz}
-    \end{center}
-    }
-
-% Set first level of list to (a) format
-\setlist[enumerate,1]{label=(\alph*)}
-
-% Be sure to use \boxed{<ansswer>} to box the answers and maintain 
+\usepackage{taoesolutions}
 
 \begin{document}
-
+\title{Chapter 1: Foundations}
     \ex{1.1}
     \begin{enumerate}
         \item 
@@ -94,11 +61,4 @@
             ;
         \end{circuit}
     \end{enumerate}
-    % \begin{circuitikz} \draw 
-    %     (0,0) to[battery] (0,4)
-    %           to[ammeter] (4,4) 
-    %           to[american inductor] (4,0)
-    %           to[lamp] (0,0)
-    % ;
-    % \end{circuitikz}
 \end{document}
