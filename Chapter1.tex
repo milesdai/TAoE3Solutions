@@ -35,6 +35,7 @@
         \item 
         To treat $R_2$ and $R_{load}$ as a single resistor, combine the two resistors which are in parallel to find that the combined (equivalent) resistance is $5\k\Ohm$. Now, we have a simple voltage divider with a $10\k\Ohm$ resistor in series with the $5\k\Ohm$ equivalent resistor. The output voltage is across this equivalent resistance. The output voltage is given by 
         \[V_{out} = V_{in} \frac{5\k\Ohm}{10\k\Ohm + 5\k\Ohm} = \frac{30\V}{3} = \mans{10\V} \]
+        \todo{Add a diagram to make this clearer}
 
         \item 
         We can redraw the voltage divider circuit to make the ``port'' clearer. 
@@ -49,7 +50,7 @@
             (3,0) to[open, v_<=$V_\out$] (3,2)
         \end{circuit}
 
-        We can find $V_{\Th}$ by leaving the ports open (open circuit) and measuring $V_\out$, the voltage across $R_2$. This comes out to be half the input voltage when $R_1 = R_2$, so $V_\out = 15\V$. Thus $V_{\Th} = 15\V$.
+        We can find $V_{\Th}$ by leaving the ports open (open circuit) and measuring $V_\out$, the voltage across $R_2$. This comes out to be half the input voltage when $R_1 = R_2$, so $V_\out = 15\V$. Thus $V_{\Th} = \mans{15\V}$.
         
         To find the Th\'evinen resistance, we need to find the short circuit current, $I_{SC}$. We short circuit the port and measure the current flowing through it.
         \begin{circuit}{fig:1.10.2}{Voltage divider with short circuit on the output.}
@@ -62,7 +63,8 @@
             (3,0) to[short, i_<=$I_{SC}$] (3,2) 
         \end{circuit}
         
-        In this circuit, no current flows through $R_2$, flowing through the short instead. Thus we have $I_{SC} = \dfrac{V_\in }{R_1}$. From this, we can find $R_\Th$ from $R_\Th = \dfrac{V_\Th}{I_{SC}}$. This gives us $R_\Th = \dfrac{15\V \cdot R_1}{V_\in} = \mans{\dfrac{150\k}{V_\in}\Ohm}$.
+        In this circuit, no current flows through $R_2$, flowing through the short instead. Thus we have $I_{SC} = \dfrac{V_\in }{R_1}$. From this, we can find $R_\Th$ from $R_\Th = \dfrac{V_\Th}{I_{SC}}$. This gives us 
+        \[R_\Th = \frac{V_\Th}{I_{SC}} = \frac{V_\Th}{V_\in/R_1} = \frac{15\V}{30\V/10\k\Ohm} = \mans{5\k\Ohm}\]
 
         The Th\'evenin equivalent circuit takes the form shown below.
         \begin{circuit}{fig:1.10.3}{Th\'evenin equivalent circuit.}
@@ -71,6 +73,36 @@
             (0,2) to[R=$R_{\Th}$, -o] (3,2)
             (3,0) to[open, v_<=$V_\out$] (3,2)
         \end{circuit}
-        This circuit is equivalent to the circuit in Figure \ref{fig:1.10.1}. 
+        In terms of behavior at the ports, this circuit is equivalent to the circuit in Figure \ref{fig:1.10.1}. 
+
+        \item 
+        We connect the $10\k\Ohm$ load to the port of the Th\'evenin equivalent circuit in Figure \ref{fig:1.10.3} to get the following circuit.
+        \begin{circuit}{fig:1.10.4}{Th\'evenin equivalent circuit with $10\k\Ohm$ load.}
+            (0,2) to[V=$V_{\Th}$] (0,0)
+            to[short] (3,0)
+            (0,2) to[R=$R_{\Th}$] (3,2)
+            (3,0) to[R=$10\k\Ohm$, v_<=$V_\out$] (3,2)
+        \end{circuit}
+        From here, we can find $V_\out$, treating this circuit as a voltage divider.
+        \[V_\out = \frac{10\k\Ohm}{R_\Th + 10\k\Ohm} V_\Th = \frac{10\k\Ohm}{5\k\Ohm + 10\k\Ohm} \cdot 15\V = \mans{10\V}\] 
+        This is the same answer we got in part (b).
+
+        \item 
+        To find the power dissipated in each resistor, we return to the original three-resistor circuit. 
+        \begin{circuit}{fig:1.10.5}{Original voltage divider with $10\k\Ohm$ load attached.}
+            (0,2) to[V, l_=$V_\in$] (0,0)
+                to[short] (3,0)
+                to[R, l_=$R_\text{load}$] (3,2)
+                to[short] (2,2)
+                to[R=$R_1$] (0,2)
+            (2,0) to[R=$R_2$, *-*] (2,2)
+        \end{circuit}
+
+        From part (d), we know that the output voltage is 10V and that this is the voltage across the load resistor. Since $P = IV = \frac{V^2}{R}$, we find that the power through $R_\text{load}$ is 
+        \[P_\text{load} = \frac{V^2}{R_\text{load}} = \frac{(10\V)^2}{10\k\Ohm} = \mans{10\m\W}\]
+        Similarly, we know that the power across $R_2$ is the same since the voltage across $R_2$ is the same as the voltage across $R_\text{load}$. Thus we have
+        \[P_2 = \mans{10\m\W}\]
+        To find the power dissipated in $R_1$, we first have to find the voltage across it. From Kirchoff's loop rule, we know that the voltage around any closed loop in the circuit must be zero. We can choose the loop going through the voltage source, $R_1$, and $R_2$. The voltage supplied by the source is 30V. The voltage dropped across $R_2$ is 10V as discussed before. Thus the voltage dropped across $R_1$ must be $30\V - 10\V - 20\V$. Now we know the voltage across and the resistance of $R_1$. We use the same formula as before to find the power dissipated.
+        \[P_1 = \frac{V^2}{R_1} = \frac{(20\V)^2}{10\k\Ohm} = \mans{40\m\W}\]
     \end{enumerate}
 \end{document}
