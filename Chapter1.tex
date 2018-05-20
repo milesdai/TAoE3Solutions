@@ -17,6 +17,15 @@
     $P = IV = \left(\dfrac{V}{R}\right)V = \dfrac{(12\V)^2}{1\Ohm} = \mans{144\W}$
 
     \ex{1.3}
+    Consider a simple series resistor circuit.
+    \begin{circuit}{fig:1.3.1}{A basic series circuit.}
+        (0,0) to[V=$V_\in$] (4,0)
+            to (4,2)
+            to[R=$R_2$] (2,2)
+            to[R=$R_1$] (0,2)
+            to (0,0)
+    \end{circuit}
+    By 
     \todo{Solve this problem}
 
     \ex{1.4}
@@ -122,5 +131,95 @@
         &\Longrightarrow R_\source + R_\load = 2R_\load \\
         &\Longrightarrow R_\source = R_\load
     \end{align*}
+
+    \ex{1.12}
+    \begin{enumerate}
+        \item 
+        Voltage ratio: $\frac{V_2}{V_1} = 10^{db/20} = 10^{3/20} = \mans{1.413}$
+
+        Power ratio: $\frac{P_2}{P_1} = 10^{db/10} = 10^{3/10} = \mans{1.995}$
+
+        \item 
+        Voltage ratio: $\frac{V_2}{V_1} = 10^{db/20} = 10^{6/20} = \mans{1.995}$
+
+        Power ratio: $\frac{P_2}{P_1} = 10^{db/10} = 10^{6/10} = \mans{3.981}$
+        
+        \item 
+        Voltage ratio: $\frac{V_2}{V_1} = 10^{db/20} = 10^{10/20} = \mans{3.162}$
+
+        Power ratio: $\frac{P_2}{P_1} = 10^{db/10} = 10^{10/10} = \mans{10}$
+        
+        \item 
+        Voltage ratio: $\frac{V_2}{V_1} = 10^{db/20} = 10^{20/20} = \mans{10}$
+
+        Power ratio: $\frac{P_2}{P_1} = 10^{db/10} = 10^{20/10} = \mans{100}$
+    \end{enumerate}
+
+    \ex{1.13}
+    There are two important facts to notice from Exericse 1.12:
+    \begin{enumerate}[label=\arabic*.]
+        \item 
+        An increase of 3dB corresponds to doubling the power 
+        
+        \item 
+        An increase of 10dB corresponds to 10 times the power.
+    \end{enumerate}
+    Using these two facts, we can fill in the table. Start from 10dB. Fill in 7dB, 4dB, and 1dB using fact 1. Then fill in 11dB using fact 2. Then fill in 8dB, 5dB, and 2dB using fact 1 and approximating 3.125 as $\pi$.
+
+    \begin{center}
+        \begin{tabular}{c|c}
+            dB & ratio($P/P_0$) \\ \hline 
+            0 & 1\\
+            1 & \tans{1.25}\\
+            2 & $\mans{\pi/2}$\\
+            3 & 2\\
+            4 & \tans{2.5}\\
+            5 & \tans{3.125 $\approx \pi$}\\
+            6 & 4\\
+            7 & \tans{5}\\
+            8 & \tans{6.25}\\
+            9 & 8\\
+            10 & 10\\
+            11 & \tans{12.5}
+        \end{tabular}
+    \end{center}
+
+    \ex{1.14}
+    Recall the relationship between $I$, $V$, and $C$: $I = C\frac{dV}{dt}$. Now, we perform the integration:
+    \begin{align*}
+        \int dU &= \int_{t_0} ^{t_1} VIdt\\
+        U &= \int_{t_0} ^{t_1} CV\frac{dV}{dt}dt\\
+        &= C\int_0^{V_f} V dV\\
+        U &= \frac{1}{2}CV_f^2
+    \end{align*}
+
+    \ex{1.15}
+    Consider the following two capacitors in series.
+    \begin{circuit}{fig:1.15.1}{Two capacitors in series.}
+        (0,0) to[C=$C_1$] (2,0)
+            to[C=$C_2$] (4,0)
+        (-0.5,-0.5) to[open, v_>=$V_\text{total}$] (4.5,-0.5)
+    \end{circuit}
     
+    To prove the capacitance formula, we need to express the total capacitance of both of these capacitors in terms of the individual capacitances. From the definition of capacitance, we have 
+    \[C_\text{total} = \frac{Q_\text{total}}{V_\text{total}}\]
+    Notice that $V_\text{total}$ is the sum of the voltages across $C_1$ and $C_2$. We can get each of these voltages using the definition of capacitance.
+    \[V_\text{total} = V_1 + V_2 = \frac{Q_1}{C_1} + \frac{Q_2}{C_2}\]
+    The key observation now is that because the right plate of $C_1$ is connected to the left plate of $C_2$, the charge stored on both plates must be equal. \footnotemark Therefore, we have $Q_1 = Q_2$. Let us call this charge stored $Q$ (i.e. $Q = Q_1 = Q_2$). Now, we know that the total charge stored is also $Q$. \footnotemark Therefore, we know that $Q_\text{total} = Q$. Now, we have 
+    \[C_\text{total} = \frac{Q_\text{total}}{V_\text{total}} = \frac{Q}{Q_1/C_1 + Q_2/C_2} = \frac{Q}{Q/C_1 + Q/C_2} = \frac{1}{1/C_1 + 1/C_2}\]
+
+    \footnotetext{If this were not true, then there would a difference of charge between these two plates which means there would be a voltage across these two connected plates. This violates the idea that two points that are electrically connected must have the same voltage.}
+
+    \footnotetext{If you are having trouble seeing this, suppose we apply a positive voltage to the left plate of $C_1$ relative to the right plate of $C_2$. Suppose this causes the left plate of $C_1$ to charge to some charge $q$. Thus we must have the right plate of $C_1$ has a charge of $-q$ by pushing $q$ units of charge onto the left plate of $C_2$. Now the left of $C_2$ has $q$ units of charge which causes a corresponding $-q$ charge on the right side of $C_2$. Thus the overall total charge separated across these two capacitors is $q$.
+    }
+
+    \ex{1.16}
+    Equation 1.21 gives us the relationship between the time and the voltage ($V_\out$) across the capacitor while charging. To find the rise time, subtract the time it takes to reach 10\% of the final value from the time it takes to reach 90\% of the final value.
+    \begin{align*}
+        V_\out &= 0.1V_f = V_f(1-e^{-t_1/RC}) \\
+        0.1 &= 1 - e^{-t_1/RC}\\ 
+        t_1 &= -RC \ln(0.9)
+    \end{align*}
+    Similarly, we find that $t_2 = -RC \ln(0.1)$. Subtracting these two gives us 
+    \[t_2 - t_1 = -RC(\ln(0.1) - \ln(0.9)) = 2.2RC\]
 \end{document}
