@@ -222,4 +222,21 @@
     \end{align*}
     Similarly, we find that $t_2 = -RC \ln(0.1)$. Subtracting these two gives us 
     \[t_2 - t_1 = -RC(\ln(0.1) - \ln(0.9)) = 2.2RC\]
+
+    \ex{1.17}
+    The voltage divider on the left side of the circuit can be replaced with the Th\'evenin equivalent circuit found Exercise 1.10 (c). Recall that $V_\Th = \frac{1}{2} V_\in$ and $R_\Th = 5\k\Ohm$. This gives us the following circuit.
+    \begin{circuit}{fig:1.17.1}{Th\'evenin equivalent circuit to Figure 1.36 from the textbook.}
+        (0,2) to[open, v_>=$V_\Th$, o-o] (0,0) node[ground]{}
+        
+        (0,2) to[R=$R_\Th$] (3,2)
+            to[C=$C$, *-] (3,0) node[ground]{}
+        (3,2) to[short, -o] (5,2)
+        to[open, v^>=$V(t)$, o-o] (5,0) node[ground]{}
+    \end{circuit}
+
+    Now we have a simple RC circuit which we can apply Equation 1.21 to. The voltage across the capacitor is given by 
+    \[V(t) = V_\text{final}(1 - e^{-t/RC}) = V_\Th (1 - e^{-t/R_\Th C} = \frac{1}{2}V_\in (1 - e^{-t\times 10^{-3}})\]
+
+    \todo{Add graph}
+    
 \end{document}
