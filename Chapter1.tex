@@ -256,5 +256,11 @@
     \[C \ge \frac{10\m\A}{2\times 120\Hz \times 0.1\V} = \mans{417 \u\F}\]
     Now we need to find the AC input voltage. The peak voltage after rectification must be 10V (per the requirements). Since each phase of the AC signal must pass through 2 diode drops, we have to add this to find out what our AC peak-to-peak voltage must be. Thus we have
     \[V_{\in, \pp} = 10\V + 2(0.6\V) = \mans{11.2\V}\]
+
+    \ex{1.30}
+    $V_\out$ is simply the voltage at the output of an impedance voltage divider. We know that $Z_R = R$ and $Z_C = \frac{1}{j\omega C}$. Thus we have 
+    \[V_\out = \frac{Z_C}{Z_R + Z_C} V_\in = \frac{\frac{1}{j \omega C}}{R + \frac{1}{j \omega C}} V_\in = \frac{1}{1 + j \omega R C} V_\in\]
+    The magnitude of this expression can be found by multiplying by the complex conjugate and taking the square root.
+    \[sqrt{V_\out V_\out^*} = \frac{1}{\sqrt{1 + \omega^2R^2C^2}}V_\in\]
     
 \end{document}
