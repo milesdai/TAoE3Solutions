@@ -35,6 +35,22 @@
     Given that $P = \dfrac{V^2}{R}$, we know that the maximum voltage we can achieve is 15V and the smallest resistance we can have across the resistor in question is $1\k\Ohm$. Therefore, the maximum amount of power dissipated can be given by \[P = \frac{V^2}{R} = \frac{(15\V)^2}{1\k\Ohm} = \mans{0.225\W}\]
     This is less than the 1/4W power rating.
 
+    \ex{1.6}
+    \begin{enumerate}
+        \item
+        The total current required by New York City that will flow through the cable is $I = \frac{P}{V} = \frac{10^{10}\;\W}{115\;\V} = 869.6\;\M\A$. Therefore, the total power lost per foot of cable can be calculated by:
+        \[P = I^2R = (869.6 \times 10^6\;\A)^2 \times (5\times10^{-8}\;\frac{\Ohm}{\ensuremath{\text{ft}}}) = \mans{3.78\times10^{8} \frac{\W}{\ensuremath{\text{ft}}}} \] 
+        \item
+        The length of cable over which all $10^{10}\;\W$ will be lost is:
+        \[L = \frac{10^{10}\;\W}{3.78 \times 10^{8}\;\frac{\W}{\ensuremath{\text{ft}}}} = \mans{26.45\;ft}\]
+        \item
+        To calculate the heat dissipated by the cable, we can use the Stefan-Boltzmann equation $T = \sqrt[4]{\frac{P}{A\sigma}}$, with A corresponding to the cylindrical surface area of the 26.45 foot long section of 1 foot diameter cable. Note that $\sigma$ is given in cm$^2$, so we will need to use consistent units.
+        \[A = \pi DL = \pi \times 30.48\;{\ensuremath{\text{cm}}}\;\times 806.196\;{\ensuremath{\text{cm}}} = 7.72 \times 10^4\;{\ensuremath{\text{cm}}}^2\]
+        Therefore,
+        \[T = \sqrt[4]{\frac{P}{A\sigma}} = \sqrt[4]{\frac{10^{10}\;\W}{7.72 \times 10^4\;{\ensuremath{\text{cm}}}^2 \times 6 \times 10^{-12}\;\frac{\W}{\text{K}^4\text{cm}^2}}} = \mans{12,121\;K} \]
+        This is indeed a preposterous temperature, more than twice that at the surface of the Sun! The "solution" to this problem is to look at the melting point of copper, which is $\sim$1358 K at standard pressure. The copper cable will melt long before such a temperature is reached.
+    \end{enumerate}
+    
     \ex{1.10}
     \begin{enumerate}
         \item 
