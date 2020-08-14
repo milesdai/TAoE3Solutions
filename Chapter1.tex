@@ -41,8 +41,18 @@
 	\[V = \dfrac{1}{\frac{1}{R_{1}}+\frac{1}{R_{2}}}\cdot I = \frac{R_{1}R_{2}}{R_{1}+R_{2}}\cdot I = R\cdot I \]
 	where \[\mans{R = \dfrac{1}{\frac{1}{R_{1}}+\frac{1}{R_{2}}} = \frac{R_{1}R_{2}}{R_{1}+R_{2}}}\] is the resistance of $R_{1}$ and $R_{2}$ in parallel.
     \ex{1.4}
-    \todo{Solve this problem}
-
+    
+    We known that the resistance $R_{12}$\footnote{Here we have only assigned a name to the resistance in parallel between $R_{1}$ and $R_{2}$.} of two resistors $R_{1}$ and $R_{2}$ in parallel is given by \[R_{12} = \dfrac{1}{\frac{1}{R_{1}}+\frac{1}{R_{2}}}\]
+    
+    Now, the resistance $R_{123}$ of three resistors $R_{1}$, $R_{2}$ and $R_{3}$ in parallel is equal to the resistance of two resistors $R_{12}$ (the resistance between $R_{1}$ and $R_{2}$ in parallel) and $R_{3}$ in parallel, then \[R_{123} = \frac{1}{\frac{1}{R_{12}}+\frac{1}{R_{3}}} = \frac{1}{\frac{1}{R_{1}}+\frac{1}{R_{2}}+\frac{1}{R_{3}}}\]
+    
+    We will prove by induction that the resistance $R_{1\cdots n}$ of $n$ resistances $R_{1}, R_{2}, \ldots, R_{n}$ in parallel is given by \[R_{1\cdots n} = \dfrac{1}{\sum_{i=1}^{n}\frac{1}{R_{i}}}\]
+	
+	First, it's trivial to show that with $n = 1$ the equality holds. Now, we will assume that the equality is satisfied for $n = k$, that is
+	\[R_{1\cdots k} = \dfrac{1}{\sum_{i=1}^{k}\frac{1}{R_{i}}}\]
+	
+	Then, we must show that equality holds for $n = k+1$. Thus, the resistance $R_{1\cdots (k+1)}$ of $(k+1)$ resistances $R_{1}, R_{2}, \ldots, R_{k+1}$ in parallel is equal to the resistance of two resistors $R_{1\cdots k}$ and $R_{k+1}$ in parallel, then \[R_{1\cdots (k+1)} = \frac{1}{\frac{1}{R_{1\cdots k}}+\frac{1}{R_{k+1}}} = \frac{1}{\sum_{i=1}^{k}\frac{1}{R_{i}}+\frac{1}{R_{k+1}}} = \frac{1}{\sum_{i=1}^{k+1}\frac{1}{R_{i}}}\]
+	where we have proved that equality holds for $n = k+1$. Finally, the resistance of $n$ resistors in parallel is given by \[\mans{R_{1\cdots n} = \dfrac{1}{\sum_{i=1}^{n}\frac{1}{R_{i}}} = \frac{1}{\frac{1}{R_{1}}+\frac{1}{R_{2}}+\ldots+\frac{1}{R_{n}}}}\]
     \ex{1.5}
     Given that $P = \dfrac{V^2}{R}$, we know that the maximum voltage we can achieve is 15V and the smallest resistance we can have across the resistor in question is $1\k\Ohm$. Therefore, the maximum amount of power dissipated can be given by \[P = \frac{V^2}{R} = \frac{(15\V)^2}{1\k\Ohm} = \mans{0.225\W}\]
     This is less than the 1/4W power rating.
