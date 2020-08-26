@@ -72,6 +72,52 @@
         \[T = \sqrt[4]{\frac{P}{A\sigma}} = \sqrt[4]{\frac{10^{10}\;\W}{7.72 \times 10^4\;{\ensuremath{\text{cm}}}^2 \times 6 \times 10^{-12}\;\frac{\W}{\text{K}^4\text{cm}^2}}} = \mans{12,121\;K} \]
         This is indeed a preposterous temperature, more than twice that at the surface of the Sun! The ``solution'' to this problem is to look at the melting point of copper, which is $\sim$1358 K at standard pressure. The copper cable will melt long before such a temperature is reached.
     \end{enumerate}
+
+	\ex{1.7}
+	A $20,000 \Ohm/\V$ meter read, on its $1 \V$ scale, puts an $20,000 \Ohm/\V \cdot 1 \V = 20,000 \Ohm = 20\k\Ohm$ resistor in series with an ideal ammeter (ampere meter). Also, a voltage source with an internal resistance is equivalent to an ideal voltage source with its internal resistance in series.
+	\begin{enumerate}
+		\item In the first question, we have the following circuit:
+		\begin{circuit}{fig:1.7.1}{A voltage source with internal resistance and a $20,000 \Ohm/\V$ meter read in its $1 \V$ scale.}
+			(0,0) to[V=$1 \V$,invert] (0,4)
+			to[R=$10 \k\Ohm$,i>^=$I$] (5,4);
+			\draw[blue] (5,4) to[R=$20 \k\Ohm$,*-,color=blue] (5,2)
+			to node[draw,circle,fill=white] {A} (5,0);
+			\draw[blue] node[draw,circle,fill=blue,inner sep=1pt] at(5,0) {};
+			\draw (5,0) to (0,0)
+		\end{circuit}
+		Then, we have that the current in the ideal ammeter and the voltage in the meter resistance are given by\footnote{When a meter only measures currents, it puts a resistance in series to measures the current through that resistance and internally converts that current into voltage to \textit{measure voltages}.}
+		\[I = \frac{1 \V}{10\k\Ohm + 20\k\Ohm} = \mans{0.0333 \m\A} \quad \text{ and } \quad V = 0.0333 \m\A \cdot 20\k\Ohm = \mans{0.666 \V}\]
+		\item In the second question, we have the following circuit:
+		\begin{circuit}{fig:1.7.2}{A $10\k\Ohm-10\k\Ohm$ voltage divider and a $20,000 \Ohm/\V$ meter read in its $1 \V$ scale.}
+			(0,0) to[V=$1 \V$,invert] (0,4)
+			to[short] (3,4)
+			to[R=$10 \k\Ohm$] (3,2)
+			to[R=$10 \k\Ohm$] (3,0);
+			\draw[blue] (3,2) to node[draw,circle,fill=white] {A} (5,2)
+			to[R=$20 \k\Ohm$,color=blue] (5,0)
+			to[short,-*,color=blue] (3,0);
+			\draw[blue] node[draw,circle,fill=blue,inner sep=1pt] at(3,2) {};
+			\draw (3,0) to (0,0)
+		\end{circuit}
+		Now, we can to obtain the Thévenin equivalent circuit of circuit in Figure \ref{fig:1.7.2} with
+		\[R_{\Th} = \frac{10\k\Ohm \cdot 10\k\Ohm}{10\k\Ohm + 10\k\Ohm} = 5\k\Ohm\]
+		and
+		\[V_{\Th} = 1\V \cdot \frac{10\k\Ohm}{10\k\Ohm + 10\k\Ohm} = 0.5\V\]
+		Then, we have the following equivalent circuit:
+		\begin{circuit}{fig:1.7.3}{Thévenin equivalent circuit of circuit in Figure \ref{fig:1.7.2}.}
+			(0,0) to[V=$V_{\Th}$,invert] (0,4)
+			to[R=$R_{\Th}$,i>^=$I$] (5,4);
+			\draw node[draw,circle,fill=blue,inner sep=1pt] at(5,4) {};
+			\draw[blue] (5,4) 
+			to node[draw,circle,fill=white] {A} (5,2)
+			to[R=$20 \k\Ohm$,-*,color=blue] (5,0);
+			\draw (5,0) to (0,0)
+		\end{circuit}
+		Finally, we have that the current in the ideal ammeter and the voltage in the meter resistance are given by
+		\[I = \frac{0.5 \V}{5\k\Ohm + 20\k\Ohm} = \mans{0.02 \m\A} \quad \text{ and } \quad V = 0.02 \m\A \cdot 20\k\Ohm = \mans{0.4 \V}\]
+	\end{enumerate}
+	
+	
     
     \ex{1.10}
     \begin{enumerate}
