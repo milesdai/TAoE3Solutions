@@ -345,6 +345,15 @@
     $V_\out$ is simply the voltage at the output of an impedance voltage divider. We know that $Z_R = R$ and $Z_C = \frac{1}{j\omega C}$. Thus we have 
     \[V_\out = \frac{Z_C}{Z_R + Z_C} V_\in = \frac{\frac{1}{j \omega C}}{R + \frac{1}{j \omega C}} V_\in = \frac{1}{1 + j \omega R C} V_\in\]
     The magnitude of this expression can be found by multiplying by the complex conjugate and taking the square root.
-    \[sqrt{V_\out V_\out^*} = \frac{1}{\sqrt{1 + \omega^2R^2C^2}}V_\in\]
+    \[\sqrt{V_\out V_\out^*} = \frac{1}{\sqrt{1 + \omega^2R^2C^2}}V_{in}\]
+    
+    \ex{1.37}
+    The Norton equivalent circuit can be found by measuring $I_{short}$ and $V_{open}$:
+    
+    \[I_{Norton} = I_{short} = \frac{10\V}{10\k\Omega} = \mans{1\m\A}\] 
+    
+    and since $V_{open} = 5\V$, we have
+    
+    \[R_{Norton} = \frac{5\V}{1\m\A} = \mans{5\k\Omega}\]
     
 \end{document}
