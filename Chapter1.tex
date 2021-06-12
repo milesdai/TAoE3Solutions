@@ -331,8 +331,16 @@
     \[\mans{t = 0.01\text{s}}\]
 
     \ex{1.19}
-    The magnetic flux produced within the coil is proportional to the number of turns. Now, because the inductance of the inductor is proportional to the amount of magnetic flux that passes through all the coils, it is proportional to the product of the magnetic flux and the number of coils. Thus the inductance is propotional to the square of the number of turns.
-    \todo{Check/clarify this answer}
+    Suppose a current \(I\) is flowing through a loop of wire with cross-sectional area \(A\).
+    This induces a magnetic field \(B\), and the flux \(\Phi\) through the loop is
+    \[\Phi = BA\]
+    Now suppose the same current \(I\) flows through a wire coiled into \(n\) loops, each with the same cross-sectional area \(A\).
+    This induces a magnetic field of \(n\) times the strength, \(B_n = nB\). Since each loop has area \(A\),
+    the total cross-sectional area of the coil can be considered \(A_n = nA\). Then the magnetic flux
+    through the coil is
+    \[\Phi_n = B_nA_n = n^2BA = n^2\Phi\]
+    Since inductance is defined as flux through a coil divided by current through the flux,
+    we can see that \(\Phi_n = n^2\Phi\) implies \(L \propto n^2\).
 
     \ex{1.20}
     We can use the formula for the full-wave rectifier ripple voltage to find the capacitance.
