@@ -118,7 +118,52 @@
 		\[I = \frac{0.5 \V}{5\k\Ohm + 20\k\Ohm} = \mans{0.02 \m\A} \quad \text{ and } \quad V = 0.02 \m\A \cdot 20\k\Ohm = \mans{0.4 \V}\]
 	\end{enumerate}
 	
-	
+	\ex{1.8}
+    \begin{enumerate}
+        \item In the first part, we have the following circuit:
+        \begin{circuit}{fig:1.8.1}{50\u A ammeter with 5k\Ohm\ internal
+            resistance (shown in blue) in parallel with shunt resistor.}
+
+            (0,0) to[isource, l=$I$, -*] (0,2)
+            (0,2) to[short] (0,3);
+            \draw[blue]
+            (0,2) to[R=5k\Ohm, i>^=$I_m$, color=blue] (4,2)
+            (4,2) to node[draw, circle, fill=white] {A} (6,2);
+            \draw
+            (0,3) to[R=$R_s$, i>^=$I_s$] (6,3)
+            (6,3) to[short, -*] (6,2)
+            (6,2) to[short] (6,0)
+            (6,0) to[short] (0,0)
+        \end{circuit}
+
+        We want to measure $I$ for 0-1 A, and the ideal ammeter measures
+        up to 50 $\mu\A$. To find what shunt resistance $R_s$ allows us to do so,
+        we set $I = 1 \A$ and $I_m = 50 \mu\A$. By KCL we know $I_s = 0.999950 \A$.
+        To determine $R_s$, we still need to find the voltage across it. We can
+        find this voltage by doing
+        \[V = I_m R_m = 50 \mu\A \cdot 5 \k\Ohm = 0.25 \V\]
+        Then we simply do
+        \[R_s = \frac{V}{I_s} = \frac{0.25 \V}{0.999950 \A} = \mans{0.25 \Ohm}\]
+
+        \item In the second part, we have the following circuit:
+        \begin{circuit}{fig:1.8.2}{50\u A ammeter with 5k\Ohm\ internal
+            resistance (shown in blue) with a series resistor.}
+
+            (0,0) to[V=$V$, invert, i^>=$I$] (0,2);
+            \draw[blue]
+            (0,2) to[R=5k\Ohm, color=blue] (2,2)
+            (2,2) to node[draw, circle, fill=white] {A} (4,2);
+            \draw
+            (4,2) to[R=$R_s$] (4,0)
+            (4,0) to[short] (0,0)
+        \end{circuit}
+
+        We want to measure $V$ for 0-10 V, and the ideal ammeter measures up to
+        50 $\mu\A$. To find the series resistance $R_s$, we set $V = 10\V$ and
+        $I = 50\mu\A$. Then we solve
+        \[\frac{V}{I} = 5\k\Ohm + R_s\]
+        \[R_s = \frac{10\V}{50\mu\A} - 5\k\Ohm = \mans{195\k\Ohm}\]
+    \end{enumerate}
     
     \ex{1.10}
     \begin{enumerate}
