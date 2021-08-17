@@ -32,7 +32,7 @@
         (0,0) to[V=$V$,invert] (0,3)
         to[short,i=$I$] (2,3)
         to[R=$R_1$,i>^=$I_{1}$] (2,0);
-        \draw (2,3) to[short] (4,3)
+        \draw(2,3) to[short] (4,3)
         to[R=$R_2$,i>^=$I_{2}$] (4,0)
         to (0,0)
     \end{circuit}
@@ -83,8 +83,8 @@
             to[R=$10 \k\Ohm$,i>^=$I$] (5,4);
             \draw[blue] (5,4) to[R=$20 \k\Ohm$,*-,color=blue] (5,2)
             to node[draw,circle,fill=white] {A} (5,0);
-            \draw[blue] node[draw,circle,fill=blue,inner sep=1pt] at(5,0) {};
-            \draw (5,0) to (0,0)
+            \draw[blue] node[draw,circle,fill=blue,inner sep=1pt] at (5,0) {};
+            \draw(5,0) to (0,0)
         \end{circuit}
         Then, we have that the current in the ideal ammeter and the voltage in the meter resistance are given by\footnote{When a meter only measures currents, it puts a resistance in series to measures the current through that resistance and internally converts that current into voltage to \textit{measure voltages}.}
         \[I = \frac{1 \V}{10\k\Ohm + 20\k\Ohm} = \mans{0.0333 \m\A} \quad \text{ and } \quad V = 0.0333 \m\A \cdot 20\k\Ohm = \mans{0.666 \V}\]
@@ -97,8 +97,8 @@
             \draw[blue] (3,2) to node[draw,circle,fill=white] {A} (5,2)
             to[R=$20 \k\Ohm$,color=blue] (5,0)
             to[short,-*,color=blue] (3,0);
-            \draw[blue] node[draw,circle,fill=blue,inner sep=1pt] at(3,2) {};
-            \draw (3,0) to (0,0)
+            \draw[blue] node[draw,circle,fill=blue,inner sep=1pt] at (3,2) {};
+            \draw(3,0) to (0,0)
         \end{circuit}
         Now, we can to obtain the Thévenin equivalent circuit of circuit in Figure \ref{fig:1.7.2} with
         \[R_{\Th} = \frac{10\k\Ohm \cdot 10\k\Ohm}{10\k\Ohm + 10\k\Ohm} = 5\k\Ohm\]
@@ -112,7 +112,7 @@
             \draw[blue] (5,4)
             to node[draw,circle,fill=white] {A} (5,2)
             to[R=$20 \k\Ohm$,-*,color=blue] (5,0);
-            \draw (5,0) to (0,0)
+            \draw(5,0) to (0,0)
         \end{circuit}
         Finally, we have that the current in the ideal ammeter and the voltage in the meter resistance are given by
         \[I = \frac{0.5 \V}{5\k\Ohm + 20\k\Ohm} = \mans{0.02 \m\A} \quad \text{ and } \quad V = 0.02 \m\A \cdot 20\k\Ohm = \mans{0.4 \V}\]
@@ -129,8 +129,7 @@
             \draw[blue]
             (0,2) to[R=5k\Ohm, i>^=$I_m$, color=blue] (4,2)
             (4,2) to node[draw, circle, fill=white] {A} (6,2);
-            \draw
-            (0,3) to[R=$R_s$, i>^=$I_s$] (6,3)
+            \draw(0,3) to[R=$R_s$, i>^=$I_s$] (6,3)
             (6,3) to[short, -*] (6,2)
             (6,2) to[short] (6,0)
             (6,0) to[short] (0,0)
@@ -172,13 +171,24 @@
         \[V_{out} = \frac{1}{2}V_{in} = \frac{30\V}{2} = \mans{15\V}\]
 
         \item 
-        To treat $R_2$ and $R_{load}$ as a single resistor, combine the two resistors which are in parallel to find that the combined (equivalent) resistance is $5\k\Ohm$. Now, we have a simple voltage divider with a $10\k\Ohm$ resistor in series with the $5\k\Ohm$ equivalent resistor. The output voltage is across this equivalent resistance. The output voltage is given by 
+        To treat $R_2$ and $R_{load}$ as a single resistor, combine the two resistors which are in parallel to find that the combined (equivalent) resistance $R_{eq}$ is $5\k\Ohm$. Now, we have a simple voltage divider with a $10\k\Ohm$ resistor in series with the $5\k\Ohm$ equivalent resistor. The output voltage is across this equivalent resistance. The output voltage is given by 
         \[V_{out} = V_{in} \frac{5\k\Ohm}{10\k\Ohm + 5\k\Ohm} = \frac{30\V}{3} = \mans{10\V} \]
-        \todo{Add a diagram to make this clearer}
+        % \todo{Add a diagram to make this clearer}
+        \begin{circuit}{fig:1.10.1}{Voltage divider with simplified equivalent resistance}
+            % \label{1.10fig1}
+            (0,2) to[V=$V_{\in}$] (0,0)
+            to[short] (2,0)
+            to[R=$R_{eq}$] (2,2)
+            to[R=$R_1$](0,2)
+            (2,0) to[short, *-o] (3,0)
+            (2,2) to[short, *-o] (3,2)
+            (3,0) to[open, v_<=$V_\out$] (3,2)
+        \end{circuit}
+
 
         \item 
         We can redraw the voltage divider circuit to make the ``port'' clearer. 
-        \begin{circuit}{fig:1.10.1}{Voltage divider with port shown.}
+        \begin{circuit}{fig:1.10.2}{Voltage divider with port shown.}
             % \label{1.10fig1}
             (0,2) to[V=$V_{\in}$] (0,0)
             to[short] (2,0)
@@ -192,7 +202,7 @@
         We can find $V_{\Th}$ by leaving the ports open (open circuit) and measuring $V_\out$, the voltage across $R_2$. This comes out to be half the input voltage when $R_1 = R_2$, so $V_\out = 15\V$. Thus $V_{\Th} = \mans{15\V}$.
         
         To find the Th\'evinen resistance, we need to find the short circuit current, $I_{SC}$. We short circuit the port and measure the current flowing through it.
-        \begin{circuit}{fig:1.10.2}{Voltage divider with short circuit on the output.}
+        \begin{circuit}{fig:1.10.3}{Voltage divider with short circuit on the output.}
             (0,2) to[V=$V_{\in}$] (0,0) 
             to[short] (2,0)
             to[R=$R_2$] (2,2)
@@ -206,7 +216,7 @@
         \[R_\Th = \frac{V_\Th}{I_{SC}} = \frac{V_\Th}{V_\in/R_1} = \frac{15\V}{30\V/10\k\Ohm} = \mans{5\k\Ohm}\]
 
         The Th\'evenin equivalent circuit takes the form shown below.
-        \begin{circuit}{fig:1.10.3}{Th\'evenin equivalent circuit.}
+        \begin{circuit}{fig:1.10.4}{Th\'evenin equivalent circuit.}
             (0,2) to[V=$V_{\Th}$] (0,0)
             to[short, -o] (3,0)
             (0,2) to[R=$R_{\Th}$, -o] (3,2)
@@ -216,7 +226,7 @@
 
         \item 
         We connect the $10\k\Ohm$ load to the port of the Th\'evenin equivalent circuit in Figure \ref{fig:1.10.3} to get the following circuit.
-        \begin{circuit}{fig:1.10.4}{Th\'evenin equivalent circuit with $10\k\Ohm$ load.}
+        \begin{circuit}{fig:1.10.5}{Th\'evenin equivalent circuit with $10\k\Ohm$ load.}
             (0,2) to[V=$V_{\Th}$] (0,0)
             to[short] (3,0)
             (0,2) to[R=$R_{\Th}$] (3,2)
@@ -228,7 +238,7 @@
 
         \item 
         To find the power dissipated in each resistor, we return to the original three-resistor circuit. 
-        \begin{circuit}{fig:1.10.5}{Original voltage divider with $10\k\Ohm$ load attached.}
+        \begin{circuit}{fig:1.10.6}{Original voltage divider with $10\k\Ohm$ load attached.}
             (0,2) to[V, l_=$V_\in$] (0,0)
                 to[short] (3,0)
                 to[R, l_=$R_\load$] (3,2)
@@ -365,9 +375,18 @@
     \end{circuit}
 
     Now we have a simple RC circuit which we can apply Equation 1.21 to. The voltage across the capacitor is given by 
-    \[V(t) = V_\text{final}(1 - e^{-t/RC}) = V_\Th (1 - e^{-t/R_\Th C} = \mans{\frac{1}{2}V_\in (1 - e^{-t/5 \times 10^{-4}})}\]
+    \[V(t) = V_\text{final}(1 - e^{-t/RC}) = V_\Th (1 - e^{-t/R_\Th C}) = \mans{\frac{1}{2}V_\in (1 - e^{-t/(5 \times 10^{-4})})}\]
+    \begin{plot}{fig:1.17.2}{V(t) sketch.}
+        [->] (0,0) -- (6,0) node[right] {$t /ms$};
+    \draw[->] (0,0) -- (0,5) node[left] {$V$};
+    \draw[smooth, domain = 0:6, color=black, thick] plot (\x,{1/2*8*(1-e^(-\x/0.5))});
+    \fill [blue] ($(0,0)$) circle (1.5pt) node at (1.4,0)[left] {\color{blue}$(0,0)$};
+    \node at (4.5,4.5)[right] {\footnotesize\color{blue}$\frac{1}{2}V_\in (1 - e^{-t/(5 \times 10^{-4})})$};
+    \draw[smooth, dashed, domain=0:4.5, color=gray] plot (\x,4);
+    \node at (0,4)[left] {\footnotesize\color{blue}$\frac{1}{2}V_\in$};
+    \fill [blue] ($(0.5,2.52)$) circle (1.5pt) node at (0.5,2.5)[right] {\color{blue}$(0.5,\frac{1}{2}V_\in \times 63\%)$};
+    \end{plot}
 
-    \todo{Add graph}
 
     \ex{1.18}
     From the capacitor equation in the previous paragraph, we have 

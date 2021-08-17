@@ -56,6 +56,22 @@
         \end{figure}
     }
 
+\newenvironment{plot}[2]% param1=label, param2=caption
+    {
+        \begin{figure}[H]
+        \caption{#2}
+        \label{#1}
+        
+        \begin{center} 
+        % \centering
+        \begin{tikzpicture}[scale=0.8, samples=200]\draw
+    }
+    {
+        ;
+        \end{tikzpicture}
+        \end{center}
+        \end{figure}
+    }
 % Set first level of list to (a) format
 \setlist[enumerate,1]{label=(\alph*)}
 
