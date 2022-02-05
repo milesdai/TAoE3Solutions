@@ -1,11 +1,19 @@
 \documentclass{article}
+
+% enable links in table of contents
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true, %set true if you want colored links
+	linktoc=all,     %set to all if you want both sections and subsections linked
+	linkcolor=blue,  %choose some color if you want links to stand out
+}
+
 \usepackage{taoesolutions}
 
-% display sections in the table of contents
-\setcounter{tocdepth}{1}
 
 \begin{document}
 \title{Solutions for Chapter 1}
+\setcounter{tocdepth}{1} % display sections in the table of contents
 \tableofcontents
 \pagebreak
 
