@@ -165,6 +165,59 @@
         \[R_s = \frac{10\V}{50\mu\A} - 5\k\Ohm = \mans{195\k\Ohm}\]
     \end{enumerate}
     
+    \ex{1.9}
+    In order to measure resistance well above the range of your multimeter, you need to get creative.  We will be using the multimeter in voltmeter mode.  Lets start by connecting our DC voltage source, voltmeter, and the high-value resistor in series.  (The reason for doing this will become clear later).
+    
+    \begin{circuit}{fig:1.9.1}{Connection of three components.}
+    	
+    	(0,2) to[V=$V_{\in}$] (0,0)
+    	(0,2) to[qvprobe=voltmeter] (4,2)
+    	(4,2) to[R=$R_L$] (4,0)
+    	(4,0) to[short] (0,0)
+    \end{circuit}
+
+	$V_{\in}$ is our test voltage, and $R_L$ is our leakage resistance. We need to revise the model for our voltmeter.
+	
+	\begin{circuit}{fig:1.9.2}{The voltmeter is now modeled as a resistor with value $R_M$.}
+		
+		(0,2) to[V=$V_{\in}$] (0,0)
+		(0,2) to[short, i>^=$I_{\in}$] (1,2)
+		(1,2) to[R=$R_M$, i>_=$I_M$] (3,2)
+		(3,2) to[short] (4,2)
+		(4,2) to[R=$R_L$, i>_=$I_L$] (4,0)
+		(4,0) to[short] (0,0)
+	\end{circuit}
+
+	The current flowing through our meter (modeled by the resistor $R_M$) is equal to the current flowing through the leakage resistor. This is also equal to the current supplied from our voltage source.
+	\[I_M = I_L = I_{\in}\]
+	
+	\begin{circuit}{fig:1.9.3}{Voltage and current labels are added.}
+		
+		(0,2) to[V=$V_{\in}$] (0,0)
+		(0,2) to[short, i>^=$I_{\in}$] (1,2)
+		(1,2) to[R=$R_M$, v_>=$V_M$] (3,2)
+		(3,2) to[short] (4,2)
+		(4,2) to[R=$R_L$, v_>=$V_L$] (4,0)
+		(4,0) to[short] (0,0)
+	\end{circuit}
+
+	Notice: this test circuit is a \textbf{voltage divider}.  When you use this technique, the voltmeter itself makes up half of the divider. The voltage across the leakage resistor cannot be measured directly, so we calculate it using Kirchhoff's Voltage Law by subtracting our voltmeter's reading from the voltage of our DC supply.
+	\[V_L = V_{\in} - V_M\]
+	The current through the voltmeter's resistance is given by Ohm's Law.
+	\[I_M = \frac{V_M}{R_M}\]
+	The current through the leakage resistor is given by Ohm's Law.
+	\[I_L = \frac{V_L}{R_L}\]
+	We already determined that $I_M$ and $I_L$ are equal, so we can set the two previous expressions equal to each other.
+	\[I_M = I_L  \Rightarrow  \frac{V_M}{R_M} = \frac{V_L}{R_L}\]
+	We will rearrange the above equation to give an expression for $R_L$.
+	\[R_L = R_M \frac{V_L}{V_M}\]
+	Now we can substitute our first expression for $V_L$ into the previous equation to eliminate $V_M$ (the final unknown term).
+	\[R_L = R_M \frac{V_{\in} - V_M}{V_M}\]
+	Rewriting the equation, the final result is
+	\[\mans{R_L = R_M \left(\frac{V_{\in}}{V_M} - 1\right)}\]
+	
+	To measure leakage current with a voltmeter, simply divide the meter's reading by the resistance of the meter.  For example, if your 10 \M\Ohm \space voltmeter measures 0.023 V, then $I_{leakage} = 23 \m\V / 10 \M\Ohm = 2.3 \n\A$.  The accuracy of such a measurement depends both on the accuracy of the voltage measurement, and the tolerance of the meter's resistance.
+    
     \ex{1.10}
     \begin{enumerate}
         \item 
