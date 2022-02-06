@@ -483,6 +483,33 @@
     \end{circuit}
     
     
+    \ex{1.23}
+    For both low-pass and high-pass filters of the first-order, the \textbf{input} impedance is calculated by the series combination of impedances of both circuit elements.  The \textbf{output} impedance is calculated as the parallel combination of the impedances of the two circuit elements.
+    \begin{circuit}{fig:1.23.1}{Low-Pass Filter Driven by a Voltage Source.}
+    	(-1,2) to[V, l_=$V_\in$] (-1,0)
+    	(-1,2) to[R, l=$R$] (2,2)
+    	to[C=$C$, *-*] (2,0)
+    	to[short] (-1,0)
+    	(2,2)  to[short, -o] (4,2)
+    	(2,0) to[short, -o] (4,0)
+    	(4,0) to[open, v_<=$V_\out$] (4,2)
+    \end{circuit}
+    The minimum input impedance of a low-pass filter occurs at high frequency when the capacitor looks like a short circuit.  This is true because this minimizes the impedance of the series-combination of impedances.
+    \[\mans{Z_{\in,\min} = R + 0 = R}\]
+    The maximum output impedance a low-pass filter occurs at low frequency when the capacitor looks like an open circuit.  This is true because this maximizes the impedance of the parallel-combination of impedances.
+    \[\mans{Z_{\out,\max} = R \parallel \infty = R}\]
+    \begin{circuit}{fig:1.23.2}{High-Pass Filter Driven by a Voltage Source.}
+    	(-1,2) to[V, l_=$V_\in$] (-1,0)
+    	(-1,2) to[C=$C$] (2,2)
+    	to[R, l_=$R$, *-*] (2,0)
+    	to[short] (-1,0)
+    	(2,2)  to[short, -o] (4,2)
+    	(2,0) to[short, -o] (4,0)
+    	(4,0) to[open, v_<=$V_\out$] (4,2)
+    \end{circuit}
+	The reasoning for the high-pass filter is the same as for the low-pass filter.  The circuit elements are swapped in their position, but the analysis is the same because: minimizing the input impedance is still a function of minimizing the series combination impedance; maximizing the output impedance is still a function of maximizing the parallel combination impedance.
+    
+    
     \ex{1.30}
     $V_\out$ is simply the voltage at the output of an impedance voltage divider. We know that $Z_R = R$ and $Z_C = \frac{1}{j\omega C}$. Thus we have 
     \[V_\out = \frac{Z_C}{Z_R + Z_C} V_\in = \frac{\frac{1}{j \omega C}}{R + \frac{1}{j \omega C}} V_\in = \frac{1}{1 + j \omega R C} V_\in\]
