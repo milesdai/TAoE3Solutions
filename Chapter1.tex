@@ -471,6 +471,18 @@
     In this case, sizing a fuse for the \textit{average} current (1 A) would too small by a factor of 2!
     
     
+    \ex{1.22}
+    \begin{circuit}{fig:1.22.1}{A symmetric 5.6 V clamping circuit.}
+    	% next macro is available in ctikzmanutils.sty
+    	(0,2.5) node[vcc](vcc){+5V}
+    	(0,-2.5) node[vee](vee){-5V}
+    	(0,0) to[D, l_=1N4148] (0,2.5)
+    	(0,-2.5) to[D, l_=1N4148] (0,0)
+    	(-4,0) node[above]{$V_\in$} to[R, l=$1\k\Ohm$, o-*] (0,0)
+    	(0,0) to[short, -o] (4,0) node[above]{$V_\out$}
+    \end{circuit}
+    
+    
     \ex{1.30}
     $V_\out$ is simply the voltage at the output of an impedance voltage divider. We know that $Z_R = R$ and $Z_C = \frac{1}{j\omega C}$. Thus we have 
     \[V_\out = \frac{Z_C}{Z_R + Z_C} V_\in = \frac{\frac{1}{j \omega C}}{R + \frac{1}{j \omega C}} V_\in = \frac{1}{1 + j \omega R C} V_\in\]
