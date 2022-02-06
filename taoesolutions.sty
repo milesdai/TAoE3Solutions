@@ -11,10 +11,15 @@
 ]{geometry}
 \usepackage[toc]{multitoc}
 
-\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO: #1}}}
-\renewcommand{\title}[1]{\begin{center}\begin{Huge}#1\end{Huge}\end{center}}
-\newcommand{\subtitle}[1]{\begin{center}\begin{Large}#1\end{Large}\end{center}}
+% Remove the "Chapter" label on each chapter
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+    {\normalfont\bfseries}{}{0pt}{\huge}
+
+% Define a consistent "Exercise" delineator
 \newcommand{\ex}[1]{\section*{Exercise #1} \addcontentsline{toc}{section}{Exercise #1}}
+
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO: #1}}}
 \newcommand{\mans}[1]{\boxed{\mathbf{#1}}}
 \newcommand{\tans}[1]{\framebox{\textbf{#1}}}
 
