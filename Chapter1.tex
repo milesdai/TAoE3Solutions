@@ -3,15 +3,15 @@
 \ex{1.1}
 \begin{enumerate}
     \item 
-    $R = 5\k + 10\k = \mans{15\k\Omega}$
+    $R = \SI{5}{\kohm} + \SI{10}{\kohm} = \mans{\SI{15}{\kohm}}$
 
     \item 
-    $R = \dfrac{R_1 R_2}{R_1 + R_2} = \dfrac{5\k \cdot 10\k}{5\k + 10\k} = \mans{3.33\k\Omega}$
+    $R = \dfrac{R_1 R_2}{R_1 + R_2} = \dfrac{5\k \cdot 10\k}{5\k + 10\k} = \mans{\SI{3.33}{\kohm}}$
 
 \end{enumerate}
 
 \ex{1.2}
-$P = IV = \left(\dfrac{V}{R}\right)V = \dfrac{(12\V)^2}{1\Ohm} = \mans{144\W}$
+$P = IV = \left(\dfrac{V}{R}\right)V = \dfrac{(\SI{12}{\V})^2}{\SI{1}{\ohm}} = \mans{\SI{144}{\W}}$
 
 \ex{1.3}
 Consider a simple series resistor circuit.
@@ -52,56 +52,58 @@ Then, we must show that equality holds for $n = k+1$. Thus, the resistance $R_{1
 where we have proved that equality holds for $n = k+1$. Finally, the resistance of $n$ resistors in parallel is given by \[\mans{R_{1\cdots n} = \dfrac{1}{\sum_{i=1}^{n}\frac{1}{R_{i}}} = \frac{1}{\frac{1}{R_{1}}+\frac{1}{R_{2}}+\ldots+\frac{1}{R_{n}}}}\]
 
 \ex{1.5}
-Given that $P = \dfrac{V^2}{R}$, we know that the maximum voltage we can achieve is 15V and the smallest resistance we can have across the resistor in question is $1\k\Ohm$. Therefore, the maximum amount of power dissipated can be given by \[P = \frac{V^2}{R} = \frac{(15\V)^2}{1\k\Ohm} = \mans{0.225\W}\]
-This is less than the 1/4W power rating.
+Given that $P = \dfrac{V^2}{R}$, we know that the maximum voltage we can achieve is \SI{15}{\V} and the smallest resistance we can have across the resistor in question is \SI{1}{\kohm}. Therefore, the maximum amount of power dissipated can be given by \[P = \frac{V^2}{R} = \frac{(\SI{15}{\V})^2}{\SI{1}{\kohm}} = \mans{\SI{0.225}{\W}}\]
+This is less than the \SI{1/4}{\W} power rating.
 
 \ex{1.6}
 \begin{enumerate}
     \item
     The total current required by New York City that will flow through the
-        cable is $I = \frac{P}{V} = \frac{10^{10}\;\W}{115\;\V} = 86.96\;\M\A$. Therefore, the total power lost per foot of cable can be calculated by:
-    \[P = I^2R = (86.96 \times 10^6\;\A)^2 \times \left(5\times10^{-8}\;\frac{\Ohm}{\ensuremath{\text{ft}}}\right) = \mans{3.78\times10^{8} \frac{\W}{\ensuremath{\text{ft}}}} \] 
+    cable is 
+    \[I = \frac{P}{V} = \frac{\SI{1e10}{\W}}{\SI{115}{\V}} = \SI{86.96}{\mega\A}\]
+    Therefore, the total power lost per foot of cable can be calculated by:
+    \[P = I^2R = \left(\SI{86.96e6}{\A}\right)^2 \times \left(\SI{5e-8}{\ohm\per ft}\right) = \mans{\SI{3.78e8}{\W\per ft}}\] 
     \item
-    The length of cable over which all $10^{10}\;\W$ will be lost is:
-    \[L = \frac{10^{10}\;\W}{3.78 \times 10^{8}\;\frac{\W}{\ensuremath{\text{ft}}}} = \mans{26.45\;ft}\]
+    The length of cable over which all $\SI{1e10}{\W}$ will be lost is:
+    \[L = \frac{\SI{1e10}{\W}}{\SI{3.78e8}{\W\per ft}} = \mans{\SI{26.45}{ft}}\]
     \item
-    To calculate the heat dissipated by the cable, we can use the Stefan-Boltzmann equation $T = \sqrt[4]{\frac{P}{A\sigma}}$, with A corresponding to the cylindrical surface area of the 26.45 foot long section of 1 foot diameter cable. Note that $\sigma$ is given in cm$^2$, so we will need to use consistent units.
-    \[A = \pi DL = \pi \times 30.48\;{\ensuremath{\text{cm}}}\;\times 806.196\;{\ensuremath{\text{cm}}} = 7.72 \times 10^4\;{\ensuremath{\text{cm}}}^2\]
+    To calculate the heat dissipated by the cable, we can use the Stefan-Boltzmann equation $T = \sqrt[4]{\frac{P}{A\sigma}}$, with A corresponding to the cylindrical surface area of the \SI{26.45}{ft} section of 1-foot diameter cable. Note that $\sigma$ is given in \si{\cm^2}, so we will need to use consistent units.
+    \[A = \pi DL = \pi \times \SI{30.48}{\cm}\times \SI{806.196}{\cm} = \SI{7.72e4}{\cm^2}\]
     Therefore,
-    \[T = \sqrt[4]{\frac{P}{A\sigma}} = \sqrt[4]{\frac{10^{10}\;\W}{7.72 \times 10^4\;{\ensuremath{\text{cm}}}^2 \times 6 \times 10^{-12}\;\frac{\W}{\text{K}^4\text{cm}^2}}} = \mans{12,121\;K} \]
-    This is indeed a preposterous temperature, more than twice that at the surface of the Sun! The solution to this problem is that power should be transmitted along long distances at high voltage. This greatly reduces $I^2R$ losses. For example, a typical high voltage line voltage is $115 \k\V$. At this voltage, the power loss per foot of cable is only 378 W per foot. Intuitively, we know that reducing current allows for lower power dissipation. We can deliver the same amount of power with a lower current by using a higher voltage.
+    \[T = \sqrt[4]{\frac{P}{A\sigma}} = \sqrt[4]{\frac{\SI{1e10}{\W}}{\SI{7.72e4}{\cm^2} \times \SI{6e-12}{\W\per\kelvin^4\per\cm^2}}} = \mans{\SI{12121}{K}} \]
+    This is indeed a preposterous temperature, more than twice that at the surface of the Sun! The solution to this problem is that power should be transmitted along long distances at high voltage. This greatly reduces $I^2R$ losses. For example, a typical high voltage line voltage is $\SI{115}{\kV}$. At this voltage, the power loss per foot of cable is only \SI{378}{\W} per foot. Intuitively, we know that reducing current allows for lower power dissipation. We can deliver the same amount of power with a lower current by using a higher voltage.
 \end{enumerate}
 
 \ex{1.7}
-A $20,000 \Ohm/\V$ meter read, on its $1 \V$ scale, puts an $20,000 \Ohm/\V \cdot 1 \V = 20,000 \Ohm = 20\k\Ohm$ resistor in series with an ideal ammeter (ampere meter). Also, a voltage source with an internal resistance is equivalent to an ideal voltage source with its internal resistance in series.
+A \SI{20000}{\ohm\per\V} meter read, on its \SI{1}{\V} scale, puts a $\SI{20000}{\ohm\per\V} \cdot \SI{1}{\V} = \SI{20000}{\ohm} = \SI{20}{\kohm}$ resistor in series with an ideal ammeter (ampere meter). Also, a voltage source with an internal resistance is equivalent to an ideal voltage source with its internal resistance in series.
 \begin{enumerate}
     \item In the first question, we have the following circuit:
-    \begin{circuit}{fig:1.7.1}{A voltage source with internal resistance and a $20,000 \Ohm/\V$ meter read in its $1 \V$ scale.}
-        (0,0) to[V=$1 \V$,invert] (0,4)
-        to[R=$10 \k\Ohm$,i>^=$I$] (5,4);
-        \draw[blue] (5,4) to[R=$20 \k\Ohm$,*-,color=blue] (5,2)
+    \begin{circuit}{fig:1.7.1}{A voltage source with internal resistance and a \SI{20000}{\ohm\per\V} meter read in its \SI{1}{\V} scale.}
+        (0,0) to[V=\SI{1}{\V},invert] (0,4)
+        to[R=\SI{10}{\kohm},i>^=$I$] (5,4);
+        \draw[blue] (5,4) to[R=\SI{20}{\kohm},*-,color=blue] (5,2)
         to node[draw,circle,fill=white] {A} (5,0);
         \draw[blue] node[draw,circle,fill=blue,inner sep=1pt] at(5,0) {};
         \draw (5,0) to (0,0)
     \end{circuit}
     Then, we have that the current in the ideal ammeter and the voltage in the meter resistance are given by\footnote{When a meter only measures currents, it puts a resistance in series to measures the current through that resistance and internally converts that current into voltage to \textit{measure voltages}.}
-    \[I = \frac{1 \V}{10\k\Ohm + 20\k\Ohm} = \mans{0.0333 \m\A} \quad \text{ and } \quad V = 0.0333 \m\A \cdot 20\k\Ohm = \mans{0.666 \V}\]
+    \[I = \frac{\SI{1}{\V}}{\SI{10}{\kohm} + \SI{20}{\kohm}} = \mans{\SI{0.0333}{\mA}} \quad \text{ and } \quad V = \SI{0.0333}{\mA} \times \SI{20}{\kohm} = \mans{\SI{0.666}{\V}}\]
     \item In the second question, we have the following circuit:
-    \begin{circuit}{fig:1.7.2}{A $10\k\Ohm-10\k\Ohm$ voltage divider and a $20,000 \Ohm/\V$ meter read in its $1 \V$ scale.}
-        (0,0) to[V=$1 \V$,invert] (0,4)
+    \begin{circuit}{fig:1.7.2}{A $\SI{10}{\kohm}-\SI{10}{\kohm}$ voltage divider and a $20000 \Ohm/\V$ meter read in its $\SI{1}{\V}$ scale.}
+        (0,0) to[V=$\SI{1}{\V}$,invert] (0,4)
         to[short] (3,4)
-        to[R=$10 \k\Ohm$] (3,2)
-        to[R=$10 \k\Ohm$] (3,0);
+        to[R=$\SI{10}{\kohm}$] (3,2)
+        to[R=$\SI{10}{\kohm}$] (3,0);
         \draw[blue] (3,2) to node[draw,circle,fill=white] {A} (5,2)
-        to[R=$20 \k\Ohm$,color=blue] (5,0)
+        to[R=$\SI{20}{\kohm}$,color=blue] (5,0)
         to[short,-*,color=blue] (3,0);
         \draw[blue] node[draw,circle,fill=blue,inner sep=1pt] at(3,2) {};
         \draw (3,0) to (0,0)
     \end{circuit}
     Now, we can to obtain the Thévenin equivalent circuit of circuit in Figure \ref{fig:1.7.2} with
-    \[R_{\Th} = \frac{10\k\Ohm \cdot 10\k\Ohm}{10\k\Ohm + 10\k\Ohm} = 5\k\Ohm\]
+    \[R_{\Th} = \frac{\SI{10}{\kohm} \cdot \SI{10}{\kohm}}{\SI{10}{\kohm} + \SI{10}{\kohm}} = \SI{5}{\kohm}\]
     and
-    \[V_{\Th} = 1\V \cdot \frac{10\k\Ohm}{10\k\Ohm + 10\k\Ohm} = 0.5\V\]
+    \[V_{\Th} = \SI{1}{\V} \cdot \frac{\SI{10}{\kohm}}{\SI{10}{\kohm} + \SI{10}{\kohm}} = \SI{0.5}{\V}\]
     Then, we have the following equivalent circuit:
     \begin{circuit}{fig:1.7.3}{Thévenin equivalent circuit of circuit in Figure \ref{fig:1.7.2}.}
         (0,0) to[V=$V_{\Th}$,invert] (0,4)
@@ -109,23 +111,23 @@ A $20,000 \Ohm/\V$ meter read, on its $1 \V$ scale, puts an $20,000 \Ohm/\V \cdo
         \draw node[draw,circle,fill=blue,inner sep=1pt] at(5,4) {};
         \draw[blue] (5,4)
         to node[draw,circle,fill=white] {A} (5,2)
-        to[R=$20 \k\Ohm$,-*,color=blue] (5,0);
+        to[R=$\SI{20}{\kohm}$,-*,color=blue] (5,0);
         \draw (5,0) to (0,0)
     \end{circuit}
     Finally, we have that the current in the ideal ammeter and the voltage in the meter resistance are given by
-    \[I = \frac{0.5 \V}{5\k\Ohm + 20\k\Ohm} = \mans{0.02 \m\A} \quad \text{ and } \quad V = 0.02 \m\A \cdot 20\k\Ohm = \mans{0.4 \V}\]
+    \[I = \frac{\SI{0.5}{\V}}{\SI{5}{\kohm} + \SI{20}{\kohm}} = \mans{\SI{0.02}{\mA}} \quad \text{ and } \quad V = \SI{0.02}{\mA} \cdot \SI{20}{\kohm} = \mans{\SI{0.4}{\V}}\]
 \end{enumerate}
 
 \ex{1.8}
 \begin{enumerate}
     \item In the first part, we have the following circuit:
-    \begin{circuit}{fig:1.8.1}{50\u A ammeter with 5k\Ohm\ internal
+    \begin{circuit}{fig:1.8.1}{\SI{50}{\uA} ammeter with \SI{5}{\kohm} internal
         resistance (shown in blue) in parallel with shunt resistor.}
 
         (0,0) to[isource, l=$I$, -*] (0,2)
         (0,2) to[short] (0,3);
         \draw[blue]
-        (0,2) to[R=5k\Ohm, i>^=$I_m$, color=blue] (4,2)
+        (0,2) to[R=\SI{5}{\kohm}, i>^=$I_m$, color=blue] (4,2)
         (4,2) to node[draw, circle, fill=white] {A} (6,2);
         \draw
         (0,3) to[R=$R_s$, i>^=$I_s$] (6,3)
@@ -135,21 +137,21 @@ A $20,000 \Ohm/\V$ meter read, on its $1 \V$ scale, puts an $20,000 \Ohm/\V \cdo
     \end{circuit}
 
     We want to measure $I$ for 0-1 A, and the ideal ammeter measures
-    up to 50 $\mu\A$. To find what shunt resistance $R_s$ allows us to do so,
-    we set $I = 1 \A$ and $I_m = 50 \mu\A$. By KCL we know $I_s = 0.999950 \A$.
+    up to \SI{50}{\uA}. To find what shunt resistance $R_s$ allows us to do so,
+    we set $I = \SI{1}{\A}$ and $I_m = \SI{50}{\uA}$. By KCL we know $I_s = \SI{0.999950}{\A}$.
     To determine $R_s$, we still need to find the voltage across it. We can
     find this voltage by doing
-    \[V = I_m R_m = 50 \mu\A \cdot 5 \k\Ohm = 0.25 \V\]
+    \[V = I_m R_m = \SI{50}{\uA} \cdot \SI{5}{\kohm} = \SI{0.25}{\V}\]
     Then we simply do
-    \[R_s = \frac{V}{I_s} = \frac{0.25 \V}{0.999950 \A} = \mans{0.25 \Ohm}\]
+    \[R_s = \frac{V}{I_s} = \frac{\SI{0.25}{\V}}{\SI{0.999950}{\A}} = \mans{\SI{0.25}{\ohm}}\]
 
     \item In the second part, we have the following circuit:
-    \begin{circuit}{fig:1.8.2}{50\u A ammeter with 5k\Ohm\ internal
+    \begin{circuit}{fig:1.8.2}{\SI{50}{\uA} ammeter with \SI{5}{\kohm} internal
         resistance (shown in blue) with a series resistor.}
 
         (0,0) to[V=$V$, invert, i^>=$I$] (0,2);
         \draw[blue]
-        (0,2) to[R=5k\Ohm, color=blue] (2,2)
+        (0,2) to[R=\SI{5}{\kohm}, color=blue] (2,2)
         (2,2) to node[draw, circle, fill=white] {A} (4,2);
         \draw
         (4,2) to[R=$R_s$] (4,0)
@@ -157,10 +159,10 @@ A $20,000 \Ohm/\V$ meter read, on its $1 \V$ scale, puts an $20,000 \Ohm/\V \cdo
     \end{circuit}
 
     We want to measure $V$ for 0-10 V, and the ideal ammeter measures up to
-    50 $\mu\A$. To find the series resistance $R_s$, we set $V = 10\V$ and
-    $I = 50\mu\A$. Then we solve
-    \[\frac{V}{I} = 5\k\Ohm + R_s\]
-    \[R_s = \frac{10\V}{50\mu\A} - 5\k\Ohm = \mans{195\k\Ohm}\]
+    \SI{50}{\uA}. To find the series resistance $R_s$, we set $V = \SI{10}{\V}$ and
+    $I = \SI{50}{\uA}$. Then we solve
+    \[\frac{V}{I} = \SI{5}{\kohm} + R_s\]
+    \[R_s = \frac{\SI{10}{\V}}{\SI{50}{\uA}} - \SI{5}{\kohm} = \mans{\SI{195}{\kohm}}\]
 \end{enumerate}
 
 
@@ -212,24 +214,24 @@ Now we can substitute our first expression for $V_L$ into the previous equation 
 Rewriting the equation, the final result is
 \[\mans{R_L = R_M \left(\frac{V_{\in}}{V_M} - 1\right)}\]
 
-To measure leakage current with a voltmeter, simply divide the meter's reading by the resistance of the meter.  For example, if your 10 \M\Ohm \space voltmeter measures 0.023 V, then $I_{leakage} = 23 \m\V / 10 \M\Ohm = 2.3 \n\A$.  The accuracy of such a measurement depends both on the accuracy of the voltage measurement, and the tolerance of the meter's resistance.
+To measure leakage current with a voltmeter, simply divide the meter's reading by the resistance of the meter.  For example, if your \SI{10}{\Mohm} voltmeter measures \SI{0.023}{\V}, then $I_{leakage} = \SI{23}{\mV} / \SI{10}{\Mohm} = \SI{2.3}{\nA}$.  The accuracy of such a measurement depends both on the accuracy of the voltage measurement, and the tolerance of the meter's resistance.
 
 \ex{1.10}
 \begin{enumerate}
     \item 
     With two equal-value resistors, the output voltage is half the input voltage.
-    \[V_{out} = \frac{1}{2}V_{in} = \frac{30\V}{2} = \mans{15\V}\]
+    \[V_\out = \frac{1}{2}V_\in = \frac{\SI{30}{\V}}{2} = \mans{\SI{15}{\V}}\]
 
     \item 
-    To treat $R_2$ and $R_{load}$ as a single resistor, combine the two resistors which are in parallel to find that the combined (equivalent) resistance is $5\k\Ohm$. Now, we have a simple voltage divider with a $10\k\Ohm$ resistor in series with the $5\k\Ohm$ equivalent resistor. The output voltage is across this equivalent resistance. The output voltage is given by 
-    \[V_{out} = V_{in} \frac{5\k\Ohm}{10\k\Ohm + 5\k\Ohm} = \frac{30\V}{3} = \mans{10\V} \]
+    To treat $R_2$ and $R_{\load}$ as a single resistor, combine the two resistors which are in parallel to find that the combined (equivalent) resistance is \SI{5}{\kohm}. Now, we have a simple voltage divider with a \SI{10}{\kohm} resistor in series with the \SI{5}{\kohm} equivalent resistor. The output voltage is across this equivalent resistance. The output voltage is given by 
+    \[V_\out = V_{\in} \frac{\SI{5}{\kohm}}{\SI{10}{\kohm} + \SI{5}{\kohm}} = \frac{\SI{30}{\V}}{3} = \mans{\SI{10}{\V}} \]
     \todo{Add a diagram to make this clearer}
 
     \item 
     We can redraw the voltage divider circuit to make the ``port'' clearer. 
     \begin{circuit}{fig:1.10.1}{Voltage divider with port shown.}
         % \label{1.10fig1}
-        (0,2) to[V=$V_{\in}$] (0,0)
+        (0,2) to[V=$V_\in$] (0,0)
         to[short] (2,0)
         to[R=$R_2$] (2,2)
         to[R=$R_1$](0,2)
@@ -238,11 +240,11 @@ To measure leakage current with a voltmeter, simply divide the meter's reading b
         (3,0) to[open, v_<=$V_\out$] (3,2)
     \end{circuit}
 
-    We can find $V_{\Th}$ by leaving the ports open (open circuit) and measuring $V_\out$, the voltage across $R_2$. This comes out to be half the input voltage when $R_1 = R_2$, so $V_\out = 15\V$. Thus $V_{\Th} = \mans{15\V}$.
+    We can find $V_\Th$ by leaving the ports open (open circuit) and measuring $V_\out$, the voltage across $R_2$. This comes out to be half the input voltage when $R_1 = R_2$, so $V_\out = \SI{15}{\V}$. Thus $V_{\Th} = \mans{\SI{15}{\V}}$.
     
     To find the Th\'evinen resistance, we need to find the short circuit current, $I_{SC}$. We short circuit the port and measure the current flowing through it.
     \begin{circuit}{fig:1.10.2}{Voltage divider with short circuit on the output.}
-        (0,2) to[V=$V_{\in}$] (0,0) 
+        (0,2) to[V=$V_\in$] (0,0) 
         to[short] (2,0)
         to[R=$R_2$] (2,2)
         to[R=$R_1$](0,2)
@@ -252,32 +254,32 @@ To measure leakage current with a voltmeter, simply divide the meter's reading b
     \end{circuit}
     
     In this circuit, no current flows through $R_2$, flowing through the short instead. Thus we have $I_{SC} = \dfrac{V_\in }{R_1}$. From this, we can find $R_\Th$ from $R_\Th = \dfrac{V_\Th}{I_{SC}}$. This gives us 
-    \[R_\Th = \frac{V_\Th}{I_{SC}} = \frac{V_\Th}{V_\in/R_1} = \frac{15\V}{30\V/10\k\Ohm} = \mans{5\k\Ohm}\]
+    \[R_\Th = \frac{V_\Th}{I_{SC}} = \frac{V_\Th}{V_\in/R_1} = \frac{\SI{15}{\V}}{\SI{30}{\V}/\SI{10}{\kohm}} = \mans{\SI{5}{\kohm}}\]
 
     The Th\'evenin equivalent circuit takes the form shown below.
     \begin{circuit}{fig:1.10.3}{Th\'evenin equivalent circuit.}
-        (0,2) to[V=$V_{\Th}$] (0,0)
+        (0,2) to[V=$V_\Th$] (0,0)
         to[short, -o] (3,0)
-        (0,2) to[R=$R_{\Th}$, -o] (3,2)
+        (0,2) to[R=$R_\Th$, -o] (3,2)
         (3,0) to[open, v_<=$V_\out$] (3,2)
     \end{circuit}
     In terms of behavior at the ports, this circuit is equivalent to the circuit in Figure \ref{fig:1.10.1}. 
 
     \item 
-    We connect the $10\k\Ohm$ load to the port of the Th\'evenin equivalent circuit in Figure \ref{fig:1.10.3} to get the following circuit.
-    \begin{circuit}{fig:1.10.4}{Th\'evenin equivalent circuit with $10\k\Ohm$ load.}
+    We connect the $\SI{10}{\kohm}$ load to the port of the Th\'evenin equivalent circuit in Figure \ref{fig:1.10.3} to get the following circuit.
+    \begin{circuit}{fig:1.10.4}{Th\'evenin equivalent circuit with $\SI{10}{\kohm}$ load.}
         (0,2) to[V=$V_{\Th}$] (0,0)
         to[short] (3,0)
         (0,2) to[R=$R_{\Th}$] (3,2)
-        (3,0) to[R=$10\k\Ohm$, v_<=$V_\out$] (3,2)
+        (3,0) to[R=$\SI{10}{\kohm}$, v_<=$V_\out$] (3,2)
     \end{circuit}
     From here, we can find $V_\out$, treating this circuit as a voltage divider.
-    \[V_\out = \frac{10\k\Ohm}{R_\Th + 10\k\Ohm} V_\Th = \frac{10\k\Ohm}{5\k\Ohm + 10\k\Ohm} \cdot 15\V = \mans{10\V}\] 
+    \[V_\out = \frac{\SI{10}{\kohm}}{R_\Th + \SI{10}{\kohm}} V_\Th = \frac{\SI{10}{\kohm}}{\SI{5}{\kohm} + \SI{10}{\kohm}} \cdot \SI{15}{\V} = \mans{\SI{10}{\V}}\] 
     This is the same answer we got in part (b).
 
     \item 
     To find the power dissipated in each resistor, we return to the original three-resistor circuit. 
-    \begin{circuit}{fig:1.10.5}{Original voltage divider with $10\k\Ohm$ load attached.}
+    \begin{circuit}{fig:1.10.5}{Original voltage divider with $\SI{10}{\kohm}$ load attached.}
         (0,2) to[V, l_=$V_\in$] (0,0)
             to[short] (3,0)
             to[R, l_=$R_\load$] (3,2)
@@ -287,11 +289,11 @@ To measure leakage current with a voltmeter, simply divide the meter's reading b
     \end{circuit}
 
     From part (d), we know that the output voltage is 10V and that this is the voltage across the load resistor. Since $P = IV = \frac{V^2}{R}$, we find that the power through $R_\load$ is 
-    \[P_\load = \frac{V^2}{R_\load} = \frac{(10\V)^2}{10\k\Ohm} = \mans{10\m\W}\]
+    \[P_\load = \frac{V^2}{R_\load} = \frac{(\SI{10}{\V})^2}{\SI{10}{\kohm}} = \mans{\SI{10}{\mW}}\]
     Similarly, we know that the power across $R_2$ is the same since the voltage across $R_2$ is the same as the voltage across $R_\load$. Thus we have
-    \[P_2 = \mans{10\m\W}\]
-    To find the power dissipated in $R_1$, we first have to find the voltage across it. From Kirchoff's loop rule, we know that the voltage around any closed loop in the circuit must be zero. We can choose the loop going through the voltage source, $R_1$, and $R_2$. The voltage supplied by the source is 30V. The voltage dropped across $R_2$ is 10V as discussed before. Thus the voltage dropped across $R_1$ must be $30\V - 10\V - 20\V$. Now we know the voltage across and the resistance of $R_1$. We use the same formula as before to find the power dissipated.
-    \[P_1 = \frac{V^2}{R_1} = \frac{(20\V)^2}{10\k\Ohm} = \mans{40\m\W}\]
+    \[P_2 = \mans{\SI{10}{\mW}}\]
+    To find the power dissipated in $R_1$, we first have to find the voltage across it. From Kirchoff's loop rule, we know that the voltage around any closed loop in the circuit must be zero. We can choose the loop going through the voltage source, $R_1$, and $R_2$. The voltage supplied by the source is 30V. The voltage dropped across $R_2$ is 10V as discussed before. Thus the voltage dropped across $R_1$ must be $\SI{30}{\V} - \SI{10}{\V} - \SI{20}{\V}$. Now we know the voltage across and the resistance of $R_1$. We use the same formula as before to find the power dissipated.
+    \[P_1 = \frac{V^2}{R_1} = \frac{(\SI{20}{\V})^2}{\SI{10}{\kohm}} = \mans{\SI{40}{\mW}}\]
 \end{enumerate}
 
 \ex{1.11}
@@ -302,8 +304,8 @@ Consider the following Th\'evenin circuit where $R_\source$ is just another name
         to[R, l_=$R_\load$] (2,2)
         to[R, l_=$R_\source$] (0,2)
 \end{circuit}
-We will first calculate the power dissipated in the load and then maximize it with calculus. We can find the power through a resistor using current and resistence since $P = IV = I(IR) = I^2R$. To find the total current flowing through the resistors, we find the equivalent resistance which is $R_\source + R_\load$. Thus the total current flowing is $I = \frac{V_\Th}{R_\source + R_\load}$. The power dissipated in $R_\load$ is thus 
-\[P_\load = I^2R_\load = \frac{V_\Th^2 R_\load}{(R_\source + R_\load)^2}\]
+We will first calculate the power dissipated in the load and then maximize it with calculus. We can find the power through a resistor using current and resistence since $P = IV = I(IR) = I^2R$. To find the total current flowing through the resistors, we find the equivalent resistance which is $R_\source + R_\load$. Thus the total current flowing is $I = \dfrac{V_\Th}{R_\source + R_\load}$. The power dissipated in $R_\load$ is thus 
+\[P_\load = I^2R_\load = \dfrac{V_\Th^2 R_\load}{(R_\source + R_\load)^2}\]
 To maximize this function, we take the derivative and set it equal to 0.
 \begin{align*}
     \frac{dP_\load}{dR_\load} &= V_\Th \frac{(R_\source + R_\load)^2 - 2R_\load(R_\source + R_\load)}{(R_\source + R_\load)^4} = 0 \\
@@ -314,40 +316,40 @@ To maximize this function, we take the derivative and set it equal to 0.
 \ex{1.12}
 \begin{enumerate}
     \item 
-    Voltage ratio: $\frac{V_2}{V_1} = 10^{db/20} = 10^{3/20} = \mans{1.413}$
+    Voltage ratio: $\frac{V_2}{V_1} = 10^{\si{\dB}/20} = 10^{3/20} = \mans{1.413}$
 
-    Power ratio: $\frac{P_2}{P_1} = 10^{db/10} = 10^{3/10} = \mans{1.995}$
+    Power ratio: $\frac{P_2}{P_1} = 10^{\si{\dB}/10} = 10^{3/10} = \mans{1.995}$
 
     \item 
-    Voltage ratio: $\frac{V_2}{V_1} = 10^{db/20} = 10^{6/20} = \mans{1.995}$
+    Voltage ratio: $\frac{V_2}{V_1} = 10^{\si{\dB}/20} = 10^{6/20} = \mans{1.995}$
 
-    Power ratio: $\frac{P_2}{P_1} = 10^{db/10} = 10^{6/10} = \mans{3.981}$
+    Power ratio: $\frac{P_2}{P_1} = 10^{\si{\dB}/10} = 10^{6/10} = \mans{3.981}$
     
     \item 
-    Voltage ratio: $\frac{V_2}{V_1} = 10^{db/20} = 10^{10/20} = \mans{3.162}$
+    Voltage ratio: $\frac{V_2}{V_1} = 10^{\si{\dB}/20} = 10^{10/20} = \mans{3.162}$
 
-    Power ratio: $\frac{P_2}{P_1} = 10^{db/10} = 10^{10/10} = \mans{10}$
+    Power ratio: $\frac{P_2}{P_1} = 10^{\si{\dB}/10} = 10^{10/10} = \mans{10}$
     
     \item 
-    Voltage ratio: $\frac{V_2}{V_1} = 10^{db/20} = 10^{20/20} = \mans{10}$
+    Voltage ratio: $\frac{V_2}{V_1} = 10^{\si{\dB}/20} = 10^{20/20} = \mans{10}$
 
-    Power ratio: $\frac{P_2}{P_1} = 10^{db/10} = 10^{20/10} = \mans{100}$
+    Power ratio: $\frac{P_2}{P_1} = 10^{\si{\dB}/10} = 10^{20/10} = \mans{100}$
 \end{enumerate}
 
 \ex{1.13}
 There are two important facts to notice from Exericse 1.12:
 \begin{enumerate}[label=\arabic*.]
     \item 
-    An increase of 3dB corresponds to doubling the power 
+    An increase of \SI{3}{\dB} corresponds to doubling the power 
     
     \item 
-    An increase of 10dB corresponds to 10 times the power.
+    An increase of \SI{10}{\dB} corresponds to 10 times the power.
 \end{enumerate}
-Using these two facts, we can fill in the table. Start from 10dB. Fill in 7dB, 4dB, and 1dB using fact 1. Then fill in 11dB using fact 2. Then fill in 8dB, 5dB, and 2dB using fact 1 and approximating 3.125 as $\pi$.
+Using these two facts, we can fill in the table. Start from \SI{10}{\dB}. Fill in \SI{7}{\dB}, \SI{4}{\dB}, and \SI{1}{\dB} using fact 1. Then fill in \SI{11}{\dB} using fact 2. Then fill in \SI{8}{\dB}, \SI{5}{\dB}, and \SI{2}{\dB} using fact 1 and approximating 3.125 as $\pi$.
 
 \begin{center}
     \begin{tabular}{c|c}
-        dB & ratio($P/P_0$) \\ \hline 
+        \si{\dB} & ratio($P/P_0$) \\ \hline 
         0 & 1\\
         1 & \tans{1.25}\\
         2 & $\mans{\pi/2}$\\
@@ -403,7 +405,7 @@ Similarly, we find that $t_2 = -RC \ln(0.1)$. Subtracting these two gives us
 \[t_2 - t_1 = -RC(\ln(0.1) - \ln(0.9)) = 2.2RC\]
 
 \ex{1.17}
-The voltage divider on the left side of the circuit can be replaced with the Th\'evenin equivalent circuit found Exercise 1.10 (c). Recall that $V_\Th = \frac{1}{2} V_\in$ and $R_\Th = 5\k\Ohm$. This gives us the following circuit.
+The voltage divider on the left side of the circuit can be replaced with the Th\'evenin equivalent circuit found Exercise 1.10 (c). Recall that $V_\Th = \frac{1}{2} V_\in$ and $R_\Th = \SI{5}{\kohm}$. This gives us the following circuit.
 \begin{circuit}{fig:1.17.1}{Th\'evenin equivalent circuit to Figure 1.36 from the textbook.}
     (0,2) to[open, v_>=$V_\Th$, o-o] (0,0) node[ground]{}
     
@@ -420,9 +422,9 @@ Now we have a simple RC circuit which we can apply Equation 1.21 to. The voltage
 
 \ex{1.18}
 From the capacitor equation in the previous paragraph, we have 
-\[V(t) = (I/C)t = (1 \m\A/1\u\F)t = 10\V\]
+\[V(t) = (I/C)t = (\SI{1}{\mA}/\SI{1}{\micro\farad}) \times t = \SI{10}{\V}\]
 This gives us
-\[\mans{t = 0.01\text{s}}\]
+\[\mans{t = \SI{0.01}{\s}}\]
 
 \ex{1.19}
 Suppose a current \(I\) is flowing through a loop of wire with cross-sectional area \(A\).
@@ -440,12 +442,12 @@ we can see that \(\Phi_n = n^2\Phi\) implies \(L \propto n^2\).
 We can use the formula for the full-wave rectifier ripple voltage to find the capacitance.
 \[\frac{I_\load}{2fC} = \Delta V \le 0.1 \V_\pp\]
 The maximum load current is 10mA and assuming a standard wall outlet frequency of 60 Hz, we have
-\[C \ge \frac{10\m\A}{2\times 60\Hz \times 0.1\V} = \mans{833 \u\F}\]
-Now we need to find the AC input voltage. The peak voltage after rectification must be 10V (per the requirements). Since each phase of the AC signal must pass through 2 diode drops, we have to add this to find out what our AC peak-to-peak voltage must be. Thus we have
-\[V_{\in, \pp} = 10\V + 2(0.6\V) = \mans{11.2\V}\]
+\[C \ge \frac{10\m\A}{2\times 60\Hz \times \SI{0.1}{\V}} = \mans{\SI{833}{\micro\farad}}\]
+Now we need to find the AC input voltage. The peak voltage after rectification must be \SI{10}{\V} (per the requirements). Since each phase of the AC signal must pass through 2 diode drops, we have to add this to find out what our AC peak-to-peak voltage must be. Thus we have
+\[V_{\in, \pp} = \SI{10}{\V} + 2(\SI{0.6}{\V}) = \mans{\SI{11.2}{\V}}\]
 
 \ex{1.30}
 $V_\out$ is simply the voltage at the output of an impedance voltage divider. We know that $Z_R = R$ and $Z_C = \frac{1}{j\omega C}$. Thus we have 
 \[V_\out = \frac{Z_C}{Z_R + Z_C} V_\in = \frac{\frac{1}{j \omega C}}{R + \frac{1}{j \omega C}} V_\in = \frac{1}{1 + j \omega R C} V_\in\]
 The magnitude of this expression can be found by multiplying by the complex conjugate and taking the square root.
-\[sqrt{V_\out V_\out^*} = \frac{1}{\sqrt{1 + \omega^2R^2C^2}}V_\in\]
+\[\sqrt{V_\out V_\out^*} = \frac{1}{\sqrt{1 + \omega^2R^2C^2}}V_\in\]
