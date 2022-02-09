@@ -462,13 +462,13 @@
 
 
     \ex{1.21}
-    In order to calculate the minimum fuse rating for a time-varying current signal, one must calculate the RMS current of the signal - \emph{not} the average current.  This is because most fuses are designed to blow at a certain average power level, and average power is related to the average of the \textit{square} of current (which is why people typically talk about ``root mean square'' values of voltage and current in relation to power).
-    \[P_{\ave} \propto \text{average}(I^2)\]
-    To calculate the average $I^2$ value for a 50\% duty cycle square wave:
-    \[ \text{average}(I^2) = \frac{I^2 + 0}{2} = \frac{I^2}{2}\]
+    In order to calculate the minimum fuse rating for a time-varying current signal, one must calculate the RMS current of the signal - \emph{not} the average current.  This is because most fuses are designed to blow at a certain average power level, and average power is related to the average of the \textit{square} of current.
+    
+    Square waves are defined by two amplitudes.  When one of those amplitudes is zero, the RMS value is given by the following equation:
+    \[ I_{\text{RMS}} = \sqrt{\frac{I^2 + 0}{2}} = \sqrt{\frac{I^2}{2}} = \frac{I}{\sqrt{2}}\]
     So in the case of a 0 to 2.0 A square wave with 50\% duty cycle, the theoretical minimum current a fuse should be rated for is:
-    \[\frac{I^2}{2} = \frac{2^2}{2} = \mans{2 A}\]
-    In this case, sizing a fuse for the \textit{average} current (1 A) would too small by a factor of 2!
+    \[\frac{I}{\sqrt{2}} = \frac{2}{\sqrt{2}} = \mans{\sqrt{2} A}\]
+    In this case, sizing a fuse for the \textit{average} current (1 A) would too small by a factor of $\sqrt{2}$!
     
     
     \ex{1.22}
