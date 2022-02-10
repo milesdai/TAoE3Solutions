@@ -517,11 +517,15 @@ The reasoning for the high-pass filter is the same as for the low-pass filter.  
     
     \item
     The impedance of 2 series capacitors is equal to the impedance of a single capacitor $C$ of value $\frac{C_1 C_2}{C_1 + C_2}$:
-    \begin{equation*}
-        \begin{aligned}
-            \mathbf{Z_{\text{series}}} = \mathbf{Z_1} + \mathbf{Z_2} =  \frac{1}{j\omega C_1} + \frac{1}{j\omega C_2} = \frac{1}{j\omega} \left( \frac{1}{C_1} + \frac{1}{C_2} \right) = \frac{1}{j\omega} \left( \frac{C_2}{C_1 C_2} + \frac{C_1}{C_2 C_1} \right) \\= \frac{1}{j\omega} \left( \frac{C_1 + C_2}{C_1 C_2} \right) = \frac{1}{j\omega} \frac{1}{\left( \frac{C_1 C_2}{C_1 + C_2} \right)} = \mans{ \frac{1}{j\omega\left( \frac{C_1 C_2}{C_1 + C_2} \right)}}
-        \end{aligned}
-    \end{equation*}
+    \begin{align*}
+        \mathbf{Z_{\text{series}}} &= \mathbf{Z_1} + \mathbf{Z_2} \\
+        &=  \frac{1}{j\omega C_1} + \frac{1}{j\omega C_2} \\
+        &= \frac{1}{j\omega} \left( \frac{1}{C_1} + \frac{1}{C_2} \right) \\
+        &= \frac{1}{j\omega} \left( \frac{C_2}{C_1 C_2} + \frac{C_1}{C_2 C_1} \right) \\
+        &= \frac{1}{j\omega} \left( \frac{C_1 + C_2}{C_1 C_2} \right) \\
+        &= \frac{1}{j\omega} \frac{1}{\left( \frac{C_1 C_2}{C_1 + C_2} \right)} \\
+        &= \mans{ \frac{1}{j\omega\left( \frac{C_1 C_2}{C_1 + C_2} \right)}}
+    \end{align*}
 \end{enumerate}
 
 \ex{1.26}
