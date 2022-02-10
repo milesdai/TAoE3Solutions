@@ -53,7 +53,7 @@ where we have proved that equality holds for $n = k+1$. Finally, the resistance 
 
 \ex{1.5}
 Given that $P = \dfrac{V^2}{R}$, we know that the maximum voltage we can achieve is \SI{15}{\V} and the smallest resistance we can have across the resistor in question is \SI{1}{\kohm}. Therefore, the maximum amount of power dissipated can be given by \[P = \frac{V^2}{R} = \frac{(\SI{15}{\V})^2}{\SI{1}{\kohm}} = \mans{\SI{0.225}{\W}}\]
-This is less than the \SI{1/4}{\W} power rating.
+This is less than the \SI{0.25}{\W} power rating.
 
 \ex{1.6}
 \begin{enumerate}
@@ -163,7 +163,6 @@ A \SI{20000}{\ohm\per\V} meter read, on its \SI{1}{\V} scale, puts a $\SI{20000}
     \[\frac{V}{I} = \SI{5}{\kohm} + R_s\]
     \[R_s = \frac{\SI{10}{\V}}{\SI{50}{\uA}} - \SI{5}{\kohm} = \mans{\SI{195}{\kohm}}\]
 \end{enumerate}
-
 
 \ex{1.9}
 In order to measure resistance well above the range of your multimeter, you need to get creative.  We will be using the multimeter in voltmeter mode.  Lets start by connecting our DC voltage source, voltmeter, and the high-value resistor in series.  (The reason for doing this will become clear later).
@@ -482,7 +481,6 @@ In this case, sizing a fuse for the \textit{average} current (1 A) would too sma
     (0,0) to[short, -o] (4,0) node[above]{$V_\out$}
 \end{circuit}
 
-
 \ex{1.23}
 For both low-pass and high-pass filters of the first-order, the \textbf{input} impedance is calculated by the series combination of impedances of both circuit elements.  The \textbf{output} impedance is calculated as the parallel combination of the impedances of the two circuit elements.
 \begin{circuit}{fig:1.23.1}{Low-Pass Filter Driven by a Voltage Source.}
@@ -509,8 +507,66 @@ The maximum output impedance a low-pass filter occurs at low frequency when the 
 \end{circuit}
 The reasoning for the high-pass filter is the same as for the low-pass filter.  The circuit elements are swapped in their position, but the analysis is the same because: minimizing the input impedance is still a function of minimizing the series combination impedance; maximizing the output impedance is still a function of maximizing the parallel combination impedance.
 
+\todoex{1.24}
+
+\ex{1.25}
+\begin{enumerate}
+    \item
+    The impedance of 2 parallel capacitors is equal to the impedance of a single capacitor $C$ of value $C_1 + C_2$:
+    \[ \mathbf{Z_\text{parallel}} = \frac{1}{ \frac{1}{\mathbf{Z_1}} + \frac{1}{\mathbf{Z_2}} } = \frac{1}{ j\omega C_1 + j\omega C_2 } = \mans{\frac{1}{j\omega (C_1 + C_2)}} \]
+    
+    \item
+    The impedance of 2 series capacitors is equal to the impedance of a single capacitor $C$ of value $\frac{C_1 C_2}{C_1 + C_2}$:
+    \begin{equation*}
+        \begin{aligned}
+            \mathbf{Z_{\text{series}}} = \mathbf{Z_1} + \mathbf{Z_2} =  \frac{1}{j\omega C_1} + \frac{1}{j\omega C_2} = \frac{1}{j\omega} \left( \frac{1}{C_1} + \frac{1}{C_2} \right) = \frac{1}{j\omega} \left( \frac{C_2}{C_1 C_2} + \frac{C_1}{C_2 C_1} \right) \\= \frac{1}{j\omega} \left( \frac{C_1 + C_2}{C_1 C_2} \right) = \frac{1}{j\omega} \frac{1}{\left( \frac{C_1 C_2}{C_1 + C_2} \right)} = \mans{ \frac{1}{j\omega\left( \frac{C_1 C_2}{C_1 + C_2} \right)}}
+        \end{aligned}
+    \end{equation*}
+\end{enumerate}
+
+\ex{1.26}
+\[ A e^{j\theta} = B e^{j\phi}C e^{j\alpha} = BC e^{j\left(\phi + \alpha\right)}\]
+Therefore, because $A$, $B$, and $C$ are all real numbers, $\theta$ must be equal to $(\phi + \alpha)$, so the exponentials on either side of the equation cancel.
+\[A e^{j\theta} =  BC e^{j\left(\phi + \alpha\right)}\]
+\[A e^{j\theta} = BC e^{j\theta}\]
+\[\mans{\textnormal{\textit{A}} = \textnormal{\textit{BC}}}\]
+
+\todoex{1.27}
+
+\todoex{1.28}
+
+\todoex{1.29}
+
 \ex{1.30}
 $V_\out$ is simply the voltage at the output of an impedance voltage divider. We know that $Z_R = R$ and $Z_C = \frac{1}{j\omega C}$. Thus we have 
 \[V_\out = \frac{Z_C}{Z_R + Z_C} V_\in = \frac{\frac{1}{j \omega C}}{R + \frac{1}{j \omega C}} V_\in = \frac{1}{1 + j \omega R C} V_\in\]
 The magnitude of this expression can be found by multiplying by the complex conjugate and taking the square root.
 \[\sqrt{V_\out V_\out^*} = \frac{1}{\sqrt{1 + \omega^2R^2C^2}}V_\in\]
+
+\todoex{1.31}
+
+\todoex{1.32}
+
+\todoex{1.33}
+
+\todoex{1.34}
+
+\todoex{1.35}
+
+\todoex{1.36}
+
+\todoex{1.37}
+
+\todoex{1.38}
+
+\todoex{1.39}
+
+\todoex{1.40}
+
+\todoex{1.41}
+
+\todoex{1.42}
+
+\todoex{1.43}
+
+\todoex{1.44} % the last exercise in Chapter 1
