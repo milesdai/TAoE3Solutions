@@ -9,19 +9,32 @@
   includefoot,
   footskip=30pt,
 ]{geometry}
+\usepackage[toc]{multitoc}
+
+% Remove the "Chapter" label on each chapter
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+    {\normalfont\bfseries}{}{0pt}{\huge}
+
+% Define a consistent "Exercise" delineator
+\newcommand{\ex}[1]{\section*{Exercise #1} \addcontentsline{toc}{section}{Exercise #1}}
 
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO: #1}}}
-\renewcommand{\title}[1]{\begin{center}\begin{Huge}#1\end{Huge}\end{center}}
-\newcommand{\subtitle}[1]{\begin{center}\begin{Large}#1\end{Large}\end{center}}
-\newcommand{\ex}[1]{\section*{Exercise #1}}
-\newcommand{\mans}[1]{\boxed{\mathbf{#1}}}
-\newcommand{\tans}[1]{\framebox{\textbf{#1}}}
+\newcommand{\todoex}[1]{\ex{#1 \todo{write solution}}}
+\newcommand{\mans}[1]{\boxed{#1}}
+\newcommand{\tans}[1]{\framebox{#1}}
 
 % Make easier use of EE order of magnitude notation
+\usepackage{siunitx}
+\sisetup{
+    group-separator = {,}, 
+    group-digits = integer
+}
 \newcommand{\M}{\ensuremath{\text{M}}} % Mega
 \renewcommand{\k}{\ensuremath{\text{k}}} % kilo
 \newcommand{\m}{\ensuremath{\text{m}}} % milli
 \renewcommand{\u}{\ensuremath{\mu}} % micro
+\newcommand{\n}{\ensuremath{\text{n}}} % nano
 
 \newcommand{\V}{\ensuremath{\text{V}}}
 \newcommand{\Ohm}{\ensuremath{\Omega}}
@@ -38,6 +51,7 @@
 \newcommand{\source}{\ensuremath{\text{source}}}
 \newcommand{\pp}{\ensuremath{\text{p-p}}}
 \newcommand{\rms}{\ensuremath{\text{rms}}}
+\newcommand{\ave}{\ensuremath{\text{ave}}} % average
 
 \newenvironment{circuit}[2]% param1=label, param2=caption
     {
