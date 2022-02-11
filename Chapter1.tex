@@ -379,7 +379,7 @@
     \begin{plot}{fig:1.17.2}{V(t) sketch.}
         [->] (0,0) -- (6,0) node[right] {$t /ms$};
     \draw[->] (0,0) -- (0,5) node[left] {$V$};
-    \draw[smooth, domain = 0:6, color=black, thick] plot (\x,{1/2*8*(1-e^(-\x/0.5))});
+    \draw[smooth, domain = 0:6, color=black, thick] plot (\x,{1/2*8* (1-e^ (-\x/0.5))});
     \fill [blue] ($(0,0)$) circle (1.5pt) node at (1.4,0)[left] {\color{blue}$(0,0)$};
     \node at (4.5,4.5)[right] {\footnotesize\color{blue}$\frac{1}{2}V_\in (1 - e^{-t/(5 \times 10^{-4})})$};
     \draw[smooth, dashed, domain=0:4.5, color=gray] plot (\x,4);
@@ -413,6 +413,19 @@
     \[C \ge \frac{10\m\A}{2\times 60\Hz \times 0.1\V} = \mans{833 \u\F}\]
     Now we need to find the AC input voltage. The peak voltage after rectification must be 10V (per the requirements). Since each phase of the AC signal must pass through 2 diode drops, we have to add this to find out what our AC peak-to-peak voltage must be. Thus we have
     \[V_{\in, \pp} = 10\V + 2(0.6\V) = \mans{11.2\V}\]
+
+    \ex{1.22}
+    Similar to the example given in Figure 1.73, we can design a voltage divider providing negative clamping voltage. Thus, the design is a combination of two diode clamps showing below.
+    \begin{circuit}{fig:1.22.1}{symmetrical clamp design to confine signals to the range -5.6 to +5.6\V.}
+        (0,2) node[label={[font=\footnotesize]above:$V_\in$}]{}
+        (0,2) to[open,  o-] 
+        (0,2) to[R=$R$] (3,2)
+            to[R=$R$, *-] (3,0) node[ground]{}
+        % (3,0) to [R=$R_\1$, *-] (3,2)
+        (3,2) to[short, -o] (5,2)
+        to[open, v^>=$V_\out$, o-o] (5,0) node[ground]{}
+        
+    \end{circuit}
 
     \ex{1.30}
     $V_\out$ is simply the voltage at the output of an impedance voltage divider. We know that $Z_R = R$ and $Z_C = \frac{1}{j\omega C}$. Thus we have 
