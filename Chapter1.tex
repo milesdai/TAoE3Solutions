@@ -573,4 +573,71 @@ The magnitude of this expression can be found by multiplying by the complex conj
 
 \todoex{1.43}
 
-\todoex{1.44} % the last exercise in Chapter 1
+\ex{1.44}
+The equivalent capacitance of the oscilloscope and cable is
+\[ C_o = \qty{100}{\pico\farad} + \qty{20}{\pico\farad} =  \qty{120}{\pico\farad}\]
+The equivalent input impedance of the oscilloscope and the total capacitance is:
+$Z_o = \left( R_o \parallel \frac{1}{j\omega C_o} \right)$
+where $R_o$ is the input resistance of the scope (\qty{1}{\mega\ohm}).
+In order to reduce the voltage by a factor of 10, let us create a voltage divider between the probe tip and the equivalent scope-and-cable input impedance.
+\begin{circuit}{fig:1.44.1}{Basic Voltage Divider}
+    (-1,0) to[open, v_<=$V_\in$] (-1,2)
+    (-1,2) to[generic=$Z_{\text{probe}}$] (2,2)
+    to[generic, l_=$Z_o$, *-*] (2,0)
+    to[short] (-1,0)
+    (2,2)  to[short, -o] (4,2)
+    (2,0) to[short, -o] (4,0)
+    (4,0) to[open, v_<=$V_\out$] (4,2)
+\end{circuit}
+In order to reduce the voltage by a factor of ten, our circuit must satisfy
+\[V_{\out} = \frac{V_{\in}}{10}\]
+We know that the output of a voltage divider is given by
+\[V_{\out} = V_{\in}\frac{Z_{\out}}{Z_{\out} + Z_{\in}}\]
+When we equate the previous two expressions, it yields
+\[\frac{V_{\in}}{10} = V_{\in}\frac{Z_o}{Z_o + Z_{\text{probe}}}\]
+We may cancel $V_{\in}$ from both sides of the equation and rearrange terms
+\[Z_o + Z_{\text{probe}} = 10 Z_o\]
+Subtract $Z_o$ from both sides to solve for the probe impedance:
+\begin{align*}
+    Z_{\text{probe}} &= 9 Z_o \\
+    &= 9 \left( R_o \parallel \frac{1}{ j\omega C_o } \right) \\
+    &= 9 R_o \parallel \frac{9}{ j\omega C_o } \\
+    &= 9 R_o \parallel \frac{1}{ j\omega \left( \frac{1}{9} C_o \right) }
+\end{align*}
+
+So our ``x10 probe'' should be the parallel combination of a resistor and a capacitor.  The resistor should be 9 times greater than the input resistance of the scope ($R_o$).  The probe's capacitor should be 9 times \textit{smaller} than $C_o$ (the total capacitance of the cable and the oscilloscope).
+\[R_{\text{probe}} = 9 R_o\]
+\[C_{\text{probe}} = \frac{1}{9} C_o\]
+\begin{circuit}{fig:1.44.2}{x10 Probe}
+    (-1,0) to[open, v_<=$V_\in$, o-] (-1,2)
+    (0,3) to[C, l=$C_{\text{probe}}$] (2,3)
+    (0,2) to[R, l_=$R_{\text{probe}}$, *-*] (2,2)
+    (0,3) to[short] (0,2)
+    (2,3) to[short] (2,2)
+    (0,2)  to[short, -o] (-1,2)
+    (3,2) to[R, l_=$R_o$, *-*] (3,0)
+    (4,0)to[C, l_=$C_o$, *-*] (4,2)
+    (2,0) to[short] (-1,0)
+    (2,2)  to[short, -o] (6,2)
+    (2,0) to[short, -o] (6,0)
+    (6,0) to[open, v_<=$V_\out$] (6,2)
+\end{circuit}
+Many x10 probes implement $C_{\text{probe}}$ as a variable capacitor that the user may tune to very near one ninth the cable-plus-oscilloscope capacitance.  This is sometimes referred to as ``probe compensation''.
+
+The input impedance of this x10 probe is
+\begin{align*}
+    Z_{\in} &= Z_{\text{probe}} + Z_o \\
+    &= 9 R_o \parallel \frac{1}{ j\omega \left( \frac{1}{9} C_o \right) } + \left( R_o \parallel \frac{1}{ j\omega C_o } \right) \\
+    &= 9 \left( R_o \parallel \frac{1}{ j\omega C_o } \right) + \left( R_o \parallel \frac{1}{ j\omega C_o } \right) \\ 
+    &= 10 \left( R_o \parallel \frac{1}{ j\omega C_o } \right) \\
+    Z_{\in} &= \mans{ 10 Z_o }
+\end{align*}
+Finally, lets take a look at how the probe and the oscilloscope (working as a voltage divider) affect the output voltage as a function of the input voltage.
+\begin{align*}
+    \frac{V_{\out}}{V_{\in}} &= \frac{Z_o}{Z_{\in}} \\
+    &= \frac{ R_o \parallel \frac{1}{ j\omega C_o } }{ 10 \left( R_o \parallel \frac{1}{ j\omega C_o } \right) } \\
+    \frac{V_{\out}}{V_{\in}} &= \frac{1}{10}
+\end{align*}
+It is remarkable! The voltage transfer function of this circuit is \textit{precisely} $\frac{1}{10}$.  This circuit contains four passive components (two of them reactive) but \textbf{the transfer function does not depend on frequency}. Truly, the ancients were wise and knew many great things.
+
+% Here ends Chapter 1.
