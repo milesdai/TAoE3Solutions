@@ -507,7 +507,31 @@ The maximum output impedance a low-pass filter occurs at low frequency when the 
 \end{circuit}
 The reasoning for the high-pass filter is the same as for the low-pass filter.  The circuit elements are swapped in their position, but the analysis is the same because: minimizing the input impedance is still a function of minimizing the series combination impedance; maximizing the output impedance is still a function of maximizing the parallel combination impedance.
 
-\todoex{1.24}
+\ex{1.24}
+As the question indicated, the bandpass filter is made of a highpass filter and lowpass filter as shown below.
+\begin{circuit}{fig:1.24.1}{Bandpass filter}
+    (0,-2.5) node[ground](gnd){}
+    (0,-2.5) to[R, l_=$R1$] (0,0)
+    (-4,0) node[above]{$V_\in$} to[C, l=$C1$, o-*] (0,0)
+    (0,0) to [R, l=$R2$, *-*] (4,0)
+    (4,-2.5) node[ground](gnd){}
+    (4,0) to [C, l=$C2$] (4,-2.5)
+    (4,0) to[short, -o] (6.5,0) node[above]{$V_\out$}
+\end{circuit}
+For highpass and lowpass filters, we have \[ f_\text{3dB} = \frac{1}{2\pi*RC}\] 
+Given breakpoints, we can determine the resistors and capacitors values to meet the design requirements.
+\begin{enumerate}
+    \item
+    Given $f_1 = \SI{100}{\Hz}$ from the question:
+    \[R_1*C_1 = \frac{1}{2\pi*100} = \SI{1.5}{\ms} \]
+    Select $R_1 = \SI{1}{\kohm}$ then:
+    \[C_1 = \frac{1.5*0.001}{1000} = \SI{1.5}{\micro\farad}\]
+    \item
+    Given $f_2 = \SI{10}{\kHz}$ from the question:
+    \[R_2*C_2 = \frac{1}{2\pi*10000} = \SI{0.15}{\ms} \]
+    Select $R_2 = \SI{1}{\kohm}$  then:
+    \[C_2 = \frac{0.15*0.001}{1000} = \SI{15}{\nano\farad}\]
+\end{enumerate}
 
 \ex{1.25}
 \begin{enumerate}
