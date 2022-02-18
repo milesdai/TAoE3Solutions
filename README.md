@@ -1,5 +1,7 @@
 # Solutions for *The Art of Electronics, 3rd ed.*
 
+![LaTeX Compile](https://github.com/milesdai/TAoE3Solutions/actions/workflows/latex-pdf.yml/badge.svg)
+
 ## Overview
 
 This is an ongoing project to write an open set of solutions to problems in *The Art of Electronics, 3rd ed.* by Paul Horowitz and Winfield Hill. 
