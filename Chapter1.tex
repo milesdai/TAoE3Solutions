@@ -575,10 +575,10 @@ The magnitude of this expression can be found by multiplying by the complex conj
 
 \ex{1.44}
 The equivalent capacitance of the oscilloscope and cable is
-\[ C_o = \qty{100}{\pico\farad} + \qty{20}{\pico\farad} =  \qty{120}{\pico\farad}\]
+\[ C_o = \SI{100}{\pico\farad} + \SI{20}{\pico\farad} =  \SI{120}{\pico\farad}\]
 The equivalent input impedance of the oscilloscope and the total capacitance is:
 $Z_o = \left( R_o \parallel \frac{1}{j\omega C_o} \right)$
-where $R_o$ is the input resistance of the scope (\qty{1}{\mega\ohm}).
+where $R_o$ is the input resistance of the scope (\SI{1}{\mega\ohm}).
 In order to reduce the voltage by a factor of 10, let us create a voltage divider between the probe tip and the equivalent scope-and-cable input impedance.
 \begin{circuit}{fig:1.44.1}{Basic Voltage Divider}
     (-1,0) to[open, v_<=$V_\in$] (-1,2)
