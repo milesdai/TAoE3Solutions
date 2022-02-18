@@ -524,13 +524,15 @@ Given breakpoints, we can determine the resistors and capacitors values to meet 
     \item
     Given $f_1 = \SI{100}{\Hz}$ from the question:
     \[R_1*C_1 = \frac{1}{2\pi*\SI{100}{\Hz}} = \SI{1.6}{\ms} \]
-    Because the signal source output impedance is \SI{100}{\ohm}, we select a value 10 times higher: $R_1 = \SI{1}{\kohm}$ then:
-    \[C_1 = \frac{\SI{1.6}{\ms}}{\SI{1}{\kohm}} = \mans{\SI{1.6}{\micro\farad}}\]
+    Because the signal source output impedance is \SI{100}{\ohm},
+    we select a value 10 times higher: $R_1 = \SI{1}{\kohm}$ then:
+    \[C_1 = \frac{\SI{1.6}{\ms}}{\SI{1}{\kohm}} = \mans{\SI{1.6}{\uF}}\]
     \item
     Given $f_2 = \SI{10}{\kHz}$ from the question:
-    \[R_2*C_2 = \frac{1}{2\pi*\SI{10}{\kilo\hertz}} = \SI{16}{\micro\second} \]
-    Because the output impedance of the high-pass filter was approximately \SI{1}{\kilo\ohm}, we select a value 10 times greater: $R_2 = \SI{10}{\kilo\ohm}$  then:
-    \[C_2 = \frac{\SI{16}{\micro\second}}{\SI{10}{\kilo\ohm}} = \mans{\SI{1.6}{\nano\farad}}\]
+    \[R_2*C_2 = \frac{1}{2\pi*\SI{10}{\kHz}} = \SI{16}{\us} \]
+    Because the output impedance of the high-pass filter was approximately \SI{1}{\kohm},
+    we select a value 10 times greater: $R_2 = \SI{10}{\kohm}$  then:
+    \[C_2 = \frac{\SI{16}{\us}}{\SI{10}{\kohm}} = \mans{\SI{1.6}{\nF}}\]
 \end{enumerate}
 
 \ex{1.25}
