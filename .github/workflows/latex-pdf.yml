@@ -1,5 +1,5 @@
 name: latex-pdf
-on: push
+on: [push, pull_request]
 jobs:
     compile-pdf:
         name: Compile pdf
