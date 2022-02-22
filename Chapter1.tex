@@ -561,7 +561,25 @@ Therefore, because $A$, $B$, and $C$ are all real numbers, $\theta$ must be equa
 \[A e^{j\theta} = BC e^{j\theta}\]
 \[\mans{\textnormal{\textit{A}} = \textnormal{\textit{BC}}}\]
 
-\todoex{1.27}
+\ex{1.27}
+\begin{equation}
+\begin{split}
+    V(t)&=V_0\mathrm{cos}\left(2\pi f t\right)\\
+    I(t)&=I_0\mathrm{cos}\left(2\pi f t + \tfrac{\pi}{2}\right)\\
+    \\
+    P(t)&=V(t)\cdot I(t)\\
+    &=V_0I_0\mathrm{cos}\left(2\pi f t\right)\mathrm{cos}\left(2\pi f t + \tfrac{\pi}{2}\right)\\
+    \footnotemark&=V_0I_0\frac{\mathrm{cos}\left(4\pi f t + \tfrac{\pi}{2}\right)+\mathrm{cos}\left(\tfrac{\pi}{2}\right)}{2}\\
+    \\
+    P_{\mathrm{av}}&=\footnotemark\frac{1}{T}\int_0^TV_0I_0\frac{\mathrm{cos}\left(4\pi f t + \tfrac{\pi}{2}\right)+\mathrm{cos}\left(\tfrac{\pi}{2}\right)}{2}\mathrm{d}t\\
+    &=\frac{V_0I_0}{2T}\left[\frac{\mathrm{sin}\left(4\pi f t+ \tfrac{\pi}{2}\right)}{4\pi f}\right]_{t=0}^{t=T}\\
+    &=\frac{V_0I_0}{8\pi}\underbrace{\left(\mathrm{sin}\left(4\pi+\tfrac{\pi}{2}\right)-\mathrm{sin}\left(\tfrac{\pi}{2}\right)\right)}_{1-1=0}=0
+\end{split}
+\end{equation}
+\addtocounter{footnote}{-1}
+\footnotetext{Using cosine multiplication rules}
+\stepcounter{footnote}
+\footnotetext{From this point it can also be seen that since we are integrating a signal over a integer amount of periods that is symmetrically along the X axis, the result will be zero as the positive portions will cancel out the negative portions}
 
 \todoex{1.28}
 
