@@ -562,24 +562,46 @@ Therefore, because $A$, $B$, and $C$ are all real numbers, $\theta$ must be equa
 \[\mans{\textnormal{\textit{A}} = \textnormal{\textit{BC}}}\]
 
 \ex{1.27}
-\begin{equation}
-\begin{split}
-    V(t)&=V_0\mathrm{cos}\left(2\pi f t\right)\\
-    I(t)&=I_0\mathrm{cos}\left(2\pi f t + \tfrac{\pi}{2}\right)\\
+We can solve this problem from two aproaches: analitically, or by inspecting the
+power waveform over a full cycle. First analytically:\bigskip
+\begin{align*}
+    V(t)&=V_0\mathrm{cos}\left(2\pi f t\right)&& \text{Define the voltage}\\
+    I(t)&=I_0\mathrm{cos}\left(2\pi f t + \tfrac{\pi}{2}\right)&&\text{and current waveforms}\\
     \\
     P(t)&=V(t)\cdot I(t)\\
-    &=V_0I_0\mathrm{cos}\left(2\pi f t\right)\mathrm{cos}\left(2\pi f t + \tfrac{\pi}{2}\right)\\
-    \footnotemark&=V_0I_0\frac{\mathrm{cos}\left(4\pi f t + \tfrac{\pi}{2}\right)+\mathrm{cos}\left(\tfrac{\pi}{2}\right)}{2}\\
+    &=V_0I_0\mathrm{cos}\left(2\pi f t\right)\mathrm{cos}\left(2\pi f t + \tfrac{\pi}{2}\right)&&\text{Using cosine multiplication rule}\\
+        &=V_0I_0\frac{\mathrm{cos}\left(4\pi f t + \tfrac{\pi}{2}\right)+\cancelto{0}{\mathrm{cos}\left(\tfrac{\pi}{2}\right)}}{2}&&\text{we express the power waveform}\\
+  & &&\text{as a sum of two cosines}\\
     \\
-    P_{\mathrm{av}}&=\footnotemark\frac{1}{T}\int_0^TV_0I_0\frac{\mathrm{cos}\left(4\pi f t + \tfrac{\pi}{2}\right)+\mathrm{cos}\left(\tfrac{\pi}{2}\right)}{2}\mathrm{d}t\\
-    &=\frac{V_0I_0}{2T}\left[\frac{\mathrm{sin}\left(4\pi f t+ \tfrac{\pi}{2}\right)}{4\pi f}\right]_{t=0}^{t=T}\\
-    &=\frac{V_0I_0}{8\pi}\underbrace{\left(\mathrm{sin}\left(4\pi+\tfrac{\pi}{2}\right)-\mathrm{sin}\left(\tfrac{\pi}{2}\right)\right)}_{1-1=0}=0
-\end{split}
-\end{equation}
-\addtocounter{footnote}{-1}
-\footnotetext{Using cosine multiplication rules}
-\stepcounter{footnote}
-\footnotetext{From this point it can also be seen that since we are integrating a signal over a integer amount of periods that is symmetrically along the X axis, the result will be zero as the positive portions will cancel out the negative portions}
+    P_{\mathrm{av}}&=\frac{1}{T}\int_0^TV_0I_0\frac{\mathrm{cos}\left(4\pi f t + \tfrac{\pi}{2}\right)}{2}\mathrm{d}t&&\text{From this point we take the integral}\\
+    &=\frac{V_0I_0}{2T}\left[\frac{\mathrm{sin}\left(4\pi f t+ \tfrac{\pi}{2}\right)}{4\pi f}\right]_{t=0}^{t=T}&& \text{and evaluate over one cycle}\\
+    &=\frac{V_0I_0}{8\pi}\underbrace{\left(\mathrm{sin}\left(4\pi+\tfrac{\pi}{2}\right)-\mathrm{sin}\left(\tfrac{\pi}{2}\right)\right)}_{1-1=0}=\mans{0}
+\end{align*}
+
+As an alternative method we can avoid the integration part by simply observing
+the power waveform over one full cycle considering $f=1, I_0=V_0=2$
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[samples=100,domain=0:2,legend pos=outer north east]
+            \addplot[mark=none, blue] {-2*sin(deg(2*pi*x))}; 
+            \addplot[mark=none, red] {2*cos(deg(2*pi*x))};
+            \addplot[mark=none, fill=red,   domain=0:0.25, fill opacity=0.2 ] {(-4*sin(deg(4*pi*x)))};
+            \addplot[mark=none, fill=green, domain=0.25:0.5, fill opacity=0.2 ] {(-4*sin(deg(4*pi*x)))};
+            \addplot[mark=none, fill=red,   domain=0.5:0.75, fill opacity=0.2 ] {(-4*sin(deg(4*pi*x)))};
+            \addplot[mark=none, fill=green, domain=0.75:1, fill opacity=0.2 ] {(-4*sin(deg(4*pi*x)))};
+            \addplot[mark=none, fill=red,   domain=1:1.25, fill opacity=0.2 ] {(-4*sin(deg(4*pi*x)))};
+            \addplot[mark=none, fill=green, domain=1.25:1.5, fill opacity=0.2 ] {(-4*sin(deg(4*pi*x)))};
+            \addplot[mark=none, fill=red,   domain=1.5:1.75, fill opacity=0.2 ] {(-4*sin(deg(4*pi*x)))};
+            \addplot[mark=none, fill=green, domain=1.75:2, fill opacity=0.2 ] {(-4*sin(deg(4*pi*x)))};
+            \legend{$I(t)$,$V(t)$,$P(t)$}
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+From the plot it is clear that the red and green areas are equal and opposite
+and thus when integrating over a integer number of cycles the average power will
+be zero.
 
 \todoex{1.28}
 
@@ -685,3 +707,8 @@ Finally, lets take a look at how the probe and the oscilloscope (working as a vo
 It is remarkable! The voltage transfer function of this circuit is \textit{precisely} $\frac{1}{10}$.  This circuit contains four passive components (two of them reactive) but \textbf{the transfer function does not depend on frequency}. Truly, the ancients were wise and knew many great things.
 
 % Here ends Chapter 1.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
