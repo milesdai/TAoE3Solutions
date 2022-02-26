@@ -620,8 +620,23 @@ Thus, we can calculate the power consumed by the resistor in the following steps
 \[V_R = V_0 * \frac{j\omega RC}{1+j\omega RC}\]
 \[\frac{V_R^2}{R} =\frac{V_0^2}{R} * \frac{(\omega RC)^2}{1 + (\omega RC)^2}\]
 We can see that it is equal to the real power delivered to the circuit. In another word, all the real power delivered to this circuit is consumed in the resistor.
-\todoex{1.29}
-
+\ex{1.29}
+\begin{enumerate}
+    \item RLC series circuit
+    
+    Since the resistor, inductor, and capacitor are in series, we can calculate the impedance of the circuit by adding individual impedance together.
+    \[Z = R + j\omega L - j \frac{1}{\omega C} \]
+    Given $C = \frac{1}{\omega^2 L}$, 
+    \[Z = R + j\omega L - j\omega L = R \]
+    Thus, this reactive circuit can be treated as a resistive circuit when calculating the power factor, which is $1$.
+    \item RLC parallel circuit
+    
+    Since all the components are in parallel, the invert of total impedance is the sum of inverts of all components' impedance
+    \[\frac{1}{Z} = \frac{1}{R} + \frac{1}{j\omega L} + j \omega C\]
+    Given $C = \frac{1}{\omega^2 L}$, 
+    \[\frac{1}{Z} = \frac{1}{R} + \frac{1}{j\omega L} - \frac{1}{j\omega L} = \frac{1}{R}\]
+    Similarly, this show that this circuit can also be treated as a resistive circuit whoes power factor is $1$.
+\end{enumerate}
 \ex{1.30}
 $V_\out$ is simply the voltage at the output of an impedance voltage divider. We know that $Z_R = R$ and $Z_C = \frac{1}{j\omega C}$. Thus we have 
 \[V_\out = \frac{Z_C}{Z_R + Z_C} V_\in = \frac{\frac{1}{j \omega C}}{R + \frac{1}{j \omega C}} V_\in = \frac{1}{1 + j \omega R C} V_\in\]
