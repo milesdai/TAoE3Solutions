@@ -574,17 +574,12 @@ Therefore, because $A$, $B$, and $C$ are all real numbers, $\theta$ must be equa
 \end{circuit}
 From discussions before this question, we know that 
 \[P = Re(VI^*)=\frac{V_0^2R}{R^2+(\frac{1}{\omega^2C^2})}=\frac{V_0^2}{R} * \frac{(\omega RC)^2}{1 + (\omega RC)^2}\]
-And, we have the following approximation from previous discussions of highpass filters (formula 1.28).
-\[\frac{V_R}{V_0} \approx \frac{R}{R + \frac{1}{\omega C}}\]
-Thus, 
-\[V_R = V_0 * \frac{\omega RC}{1+\omega RC}\]
-\[\frac{V_R^2}{R} =\frac{V_0^2}{R} * \frac{(\omega RC)^2}{(1 + \omega RC)^2}=\frac{V_0^2 * \omega^2 RC^2}{(1+\omega RC)^2}\]
-One way to show that all the average power delivered to the circuit above is consumed by the resistor is to find the ratio between the two.
-\[\frac{\frac{V_R^2}{R}}{P} = \frac{\omega^2 R^2 C^2 + 1}{(1+\omega RC)^2}\]
-Given that 
-\[\omega = 2\pi f\]
-we can calculate $\omega$ and plug in the numbers to find the ratio is $0.60$, which means $60\%$ of the power ends up in the resistor.
-
+Since R and C are connected in series, we have
+\[\frac{V_R}{V_0} = \frac{R}{R + \frac{1}{j\omega C}}\]
+Thus, we can calculate the power consumed by the resistor in the following steps.
+\[V_R = V_0 * \frac{j\omega RC}{1+j\omega RC}\]
+\[\frac{V_R^2}{R} =\frac{V_0^2}{R} * \frac{(\omega RC)^2}{1 + (\omega RC)^2}\]
+We can see that it is equal to the real power delivered to the circuit. In another word, all the real power delivered to this circuit is consumed in the resistor.
 \todoex{1.29}
 
 \ex{1.30}
