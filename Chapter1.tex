@@ -603,7 +603,16 @@ $V_\out$ is simply the voltage at the output of an impedance voltage divider. We
 The magnitude of this expression can be found by multiplying by the complex conjugate and taking the square root.
 \[\sqrt{V_\out V_\out^*} = \frac{1}{\sqrt{1 + \omega^2R^2C^2}}V_\in\]
 
-\todoex{1.31}
+\ex{1.31}
+From the frequency response of lowpass filter plotted on logarithmic axes, we know
+\[\phi = -\arctan(\frac{f}{f_c})\]
+Thus, when $f = 0.1f_\text{3dB}$, 
+\[\phi = -\arctan(0.1) \approx -5.71 ^\circ \approx -6^\circ\]
+Similarly, when $f = 10f_\text{3dB}$, 
+\[\phi = -\arctan(10) \approx -84.29 ^\circ\]
+The phase shift can also be expressed as $-(-90 - (-84.29)) \approx 5.71 ^\circ \approx 6^\circ $
+
+In summary, for single-section $RC$ filters, the phase shift is $\approx 6^\circ$ from its asymptotic value at $0.1f_\text{3dB}$ and $10f_\text{3dB}$.
 
 \todoex{1.32}
 
