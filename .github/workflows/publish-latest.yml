@@ -13,6 +13,14 @@ jobs:
               uses: actions/checkout@v2
               with:
                 path: '${{ github.workspace }}/taoe3'
+            
+            - name: Display some filesystem data
+              run: |
+                pwd
+                ls -lah
+                echo ${{ github.workspace }}
+                find . | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"
+
 
             - name: Compile pdf
               uses: xu-cheng/latex-action@v2
