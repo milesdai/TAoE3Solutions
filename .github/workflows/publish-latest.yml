@@ -2,7 +2,7 @@ name: publish-latest
 on: 
     push:
         branches:
-            - master
+            - ci-test
 jobs:
     compile-pdf:
         name: Compile pdf
@@ -25,6 +25,7 @@ jobs:
               with:
                 path: '$GITHUB_WORKSPACE/gh_pages'
                 ssh-key: "${{ secrets.COMMIT_KEY }}"
+                ref: 'gh_pages'
 
             - name: Upload to GH Pages
               run: |
