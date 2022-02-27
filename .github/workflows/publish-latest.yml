@@ -28,10 +28,10 @@ jobs:
 
             - name: Upload to GH Pages
               run: |
-                git config user.name 'github-actions[bot]'
-                git config user.email 'github-actions[bot]@users.noreply.github.com'
                 mv taoe3/main.pdf gh_pages/data/taoe3-solutions.pdf
                 cd gh_pages
+                git config user.name 'github-actions[bot]'
+                git config user.email 'github-actions[bot]@users.noreply.github.com'
                 git add data/taoe3-solutions.pdf
                 git commit -m "Updating solutions with copy from $GITHUB_SHA"
                 git push origin gh_pages
