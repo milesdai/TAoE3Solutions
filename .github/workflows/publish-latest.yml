@@ -20,13 +20,14 @@ jobs:
                 ls -lah
                 echo ${{ github.workspace }}
                 find . | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"
+                ls -lah ${{ github.workspace }}/taoe3
 
 
             - name: Compile pdf
               uses: xu-cheng/latex-action@v2
               with:
-                    working_directory: '${{ github.workspace }}/taoe3'
-                    root_file: main.tex
+                    root_file: ${{ github.workspace }}/taoe3/main.tex
+                    work_in_root_file_dir: True
 
             - name: Checkout gh_pages branch
               uses: actions/checkout@v2
