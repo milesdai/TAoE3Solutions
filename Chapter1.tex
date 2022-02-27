@@ -628,7 +628,31 @@ Given that the current is the same everywhere in series circuits, the axes also 
 By Pythagorean Theorem, 
 \[\frac{R}{hypotenuse} = \frac{R}{\sqrt{R^2 + (-j/\omega C)^2}} = \frac{R}{\sqrt{R^2 + \frac{1}{\omega^2 C^2}}}\]
 Thus, $V_\text{out} = V_\text{in} * \frac{R}{\sqrt{R^2 + \frac{1}{\omega^2 C^2}}}$
-\todoex{1.33}
+\ex{1.33}
+\begin{enumerate}
+    \item find the frequency
+    
+    For the lowpass filter, $V_\text{out}$ and $V_\text{in}$ have the following relationship.
+    \[V_\text{out} = V_\text{in} * \frac{1}{\sqrt{1+\omega ^2 R^2 C^2}}\]
+    Given $V_\text{out} = \frac{1}{2} V_\text{in}$, 
+    \[\frac{1}{\sqrt{1+\omega ^2 R^2 C^2}} = \frac{1}{2}\]
+    Thus, solving for $\omega$
+    \[\frac{1}{1+\omega^2 R^2 C^2} = \frac{1}{4}\]
+    \[1+\omega^2 R^2 C^2 = 4\]
+    \[\omega^2 R^2 C^2 = 3\]
+    \[\omega = \frac{\sqrt{3}}{RC}\]
+    Since $f = \frac{\omega}{2\pi}$,
+    \[f = \frac{\sqrt{3}}{2\pi RC}\]
+
+    \item find the phase shift 
+    
+    From previous calculation, we have $C = \frac{\sqrt{3}}{RC}$
+    From the phasor diagram for lowpass filter at $3dB$ point, we know that 
+    \[\aleph = \arctan(\frac{\frac{-j}{\omega C}}{R}) =\arctan(-\frac{1}{\sqrt{3}}) = -30^\circ\]
+    Thus, the phase shift is 
+    \[\phi = -90^\circ - (-30^\circ) = -60^\circ\] 
+\end{enumerate}
+
 
 \todoex{1.34}
 
