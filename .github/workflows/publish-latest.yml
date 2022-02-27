@@ -12,28 +12,31 @@ jobs:
             - name: Checkout repository 
               uses: actions/checkout@v2
               with:
-                path: '$GITHUB_WORKSPACE/taoe3'
+                path: '${{ github.workspace }}/taoe3'
 
             - name: Compile pdf
               uses: xu-cheng/latex-action@v2
               with:
-                    working_directory: '$GITHUB_WORKSPACE/taoe3'
+                    working_directory: '${{ github.workspace }}/taoe3'
                     root_file: main.tex
 
             - name: Checkout gh_pages branch
               uses: actions/checkout@v2
               with:
-                path: '$GITHUB_WORKSPACE/gh_pages'
+                path: '${{ github.workspace }}/gh_pages'
                 ssh-key: "${{ secrets.COMMIT_KEY }}"
                 ref: 'gh_pages'
 
             - name: Upload to GH Pages
               run: |
-                cd $GITHUB_WORKSPACE
                 pwd
                 ls -lah
-                mv $GITHUB_WORKSPACE/taoe3/main.pdf $GITHUB_WORKSPACE/gh_pages/data/taoe3-solutions.pdf
-                cd $GITHUB_WORKSPACE/gh_pages
+                cd ${{ github.workspace }}
+                find . | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"
+                pwd
+                ls -lah
+                mv ${{ github.workspace }}/taoe3/main.pdf ${{ github.workspace }}/gh_pages/data/taoe3-solutions.pdf
+                cd ${{ github.workspace }}/gh_pages
                 pwd
                 git config user.name 'github-actions[bot]'
                 git config user.email 'github-actions[bot]@users.noreply.github.com'
