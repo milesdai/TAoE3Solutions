@@ -614,8 +614,20 @@ The phase shift can also be expressed as $-(-90 - (-84.29)) \approx 5.71 ^\circ 
 
 In summary, for single-section $RC$ filters, the phase shift is $\approx 6^\circ$ from its asymptotic value at $0.1f_\text{3dB}$ and $10f_\text{3dB}$.
 
-\todoex{1.32}
-
+\ex{1.32}
+% \begin{plot}{fig:1.17.2}{Phasor diagram for highpass filter at $3dB$ point.}
+%     % node[left] {$Z$}(-1,1);
+%     \draw (-1,0) -- (4,0);
+%     \draw (0,1) -- (0,-4);
+%     \draw[->] (0,0) -- (2,0) node[right] {$R$};
+%     \draw[->] (2,0) -- (2,-2) node[left] {$\frac{-j}{\omega C}$};
+%     \draw[->] (0,0) -- (2,-2) node[left] {$R\sqrt{2}$};
+% \end{plot}
+Given that the current is the same everywhere in series circuits, the axes also shows the relationships among voltages. 
+\[\frac{V_\text{out}}{V_\text{in}} = \frac{R}{hypotenuse}\]
+By Pythagorean Theorem, 
+\[\frac{R}{hypotenuse} = \frac{R}{\sqrt{R^2 + (-j/\omega C)^2}} = \frac{R}{\sqrt{R^2 + \frac{1}{\omega^2 C^2}}}\]
+Thus, $V_\text{out} = V_\text{in} * \frac{R}{\sqrt{R^2 + \frac{1}{\omega^2 C^2}}}$
 \todoex{1.33}
 
 \todoex{1.34}
