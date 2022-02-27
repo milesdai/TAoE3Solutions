@@ -26,8 +26,8 @@ jobs:
             - name: Compile pdf
               uses: xu-cheng/latex-action@v2
               with:
-                    root_file: ${{ github.workspace }}/taoe3/main.tex
-                    work_in_root_file_dir: True
+                    working_directory: 'taoe3'
+                    root_file: 'main.tex'
 
             - name: Checkout gh_pages branch
               uses: actions/checkout@v2
