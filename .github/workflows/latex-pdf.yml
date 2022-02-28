@@ -13,6 +13,7 @@ jobs:
               uses: xu-cheng/latex-action@v2
               with:
                   root_file: main.tex
+                  latexmk_shell_escape: true
 
             - name: Upload Artifact
               uses: actions/upload-artifact@v2

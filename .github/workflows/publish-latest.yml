@@ -19,6 +19,7 @@ jobs:
         with:
           working_directory: 'taoe3'
           root_file: 'main.tex'
+          latexmk_shell_escape: true
 
       - name: Checkout gh_pages branch
         uses: actions/checkout@v2

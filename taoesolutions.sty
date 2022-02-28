@@ -2,6 +2,7 @@
 
 \usepackage{circuitikz}
 \usepackage{pgfplots}
+\usepackage{environ}
 \usepackage{amsmath}
 \usepackage{cancel}
 \usepackage{enumitem}
@@ -12,6 +13,10 @@
   footskip=30pt,
 ]{geometry}
 \usepackage[toc]{multitoc}
+
+\usetikzlibrary{external}
+\tikzexternalize[prefix=tikz-cache/]
+% \tikzexternalize[prefix=tikz-cache/, mode=list and make]
 
 % Remove the "Chapter" label on each chapter
 \usepackage{titlesec}
@@ -43,39 +48,63 @@
 \newcommand{\ave}{\ensuremath{\text{ave}}} % average
 \newcommand{\eq}{\ensuremath{\text{eq}}} % equivalent 
 
-\newenvironment{circuit}[2]% param1=label, param2=caption
-    {
-        \begin{figure}[H]
+\NewEnviron{circuit}[2]{%
+    \begin{figure}[H]
         \caption{#2}
         \label{#1}
-        
-        \begin{center} 
-        % \centering
-        \begin{circuitikz}[american]\draw
-    }
-    {
-        ;
-        \end{circuitikz}
-        \end{center}
-        \end{figure}
-    }
-
-\newenvironment{plot}[2]% param1=label, param2=caption
-    {
-        \begin{figure}[H]
-        \caption{#2}
-        \label{#1}
-        
-        \begin{center} 
-        % \centering
-        \begin{tikzpicture}[scale=0.8, samples=200]\draw
-    }
-    {
+        \begin{center}
+        \begin{tikzpicture}[american]\draw
+            \BODY
         ;
         \end{tikzpicture}
         \end{center}
-        \end{figure}
-    }
+        \end{figure}}
+
+% \newenvironment{circuit}[2]% param1=label, param2=caption
+%     {
+%         \begin{figure}[H]
+%         \caption{#2}
+%         \label{#1}
+        
+%         \begin{center} 
+%         % \centering
+%         \begin{tikzpicture}[american]\draw
+%     }
+%     {
+%         ;
+%         \end{tikzpicture}
+%         \end{center}
+%         \end{figure}
+%     }
+
+\NewEnviron{plot}[2]{%
+    \begin{figure}[H]
+        \caption{#2}
+        \label{#1}
+        \begin{center}
+        \begin{tikzpicture}[scale=0.8, samples=200]\draw
+            \BODY
+        ;
+        \end{tikzpicture}
+        \end{center}
+        \end{figure}}
+
+% \newenvironment{plot}[2]% param1=label, param2=caption
+%     {
+%         \begin{figure}[H]
+%         \caption{#2}
+%         \label{#1}
+        
+%         \begin{center} 
+%         % \centering
+%         \begin{tikzpicture}[scale=0.8, samples=200]\draw
+%     }
+%     {
+%         ;
+%         \end{tikzpicture}
+%         \end{center}
+%         \end{figure}
+%     }
 % Set first level of list to (a) format
 \setlist[enumerate,1]{label=(\alph*)}
 
