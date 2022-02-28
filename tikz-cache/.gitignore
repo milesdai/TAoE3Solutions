@@ -1,0 +1,6 @@
+# This tikz-cache folder is here to cache the tikz images.
+# It is needed by the \tikzpackage{external} library.
+# This folder is not automatically generated, so it's tracked in version control
+# to prevent new users from seeing cryptic compile errors.
+*
+!.gitignore

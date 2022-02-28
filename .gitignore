@@ -38,3 +38,7 @@
 # latexrun
 latex.out/
 
+## Tikz externalize files
+*.makefile
+*.figlist
+*.auxlock
