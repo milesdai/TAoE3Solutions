@@ -12,15 +12,21 @@
   footskip=30pt,
 ]{geometry}
 \usepackage[toc]{multitoc}
+\usepackage{xcolor}
 
 % Remove the "Chapter" label on each chapter
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
     {\normalfont\bfseries}{}{0pt}{\huge}
 
+% suppress section numbering
+\makeatletter
+\renewcommand\@seccntformat[1]{}
+\makeatother
 % Define a consistent "Exercise" delineator
-\newcommand{\ex}[1]{\section*{Exercise #1} \addcontentsline{toc}{section}{Exercise #1}}
+\newcommand{\ex}[1]{\section{Exercise #1}}
 
+\colorlet{RED}{red} % protect against upper-case RED issues...
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO: #1}}}
 \newcommand{\todoex}[1]{\ex{#1 \todo{write solution}}}
 \newcommand{\mans}[1]{\boxed{#1}}
