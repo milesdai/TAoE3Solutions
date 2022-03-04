@@ -6,6 +6,8 @@ The standard format is under review at the moment and may change, but until furt
 
 To get started with a contribution, first make sure you have a working LaTeX toolchain set up on your machine.
 
+For more instructions on how to use Github and our rebase workflow, check out [CONTRIBUTING_GITHUB.md](CONTRIBUTING_GITHUB.md)
+
 ### Requirements
 
 Compiling the document should require any standard LaTeX distribution as well as the following packages:
