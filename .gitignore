@@ -38,3 +38,5 @@
 # latexrun
 latex.out/
 
+## Editor files
+.vscode
