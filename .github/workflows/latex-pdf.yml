@@ -24,4 +24,4 @@ jobs:
         with:
           name: taoe3-solutions
           path: main.pdf
-          retention-days: 90
+          retention-days: 14
