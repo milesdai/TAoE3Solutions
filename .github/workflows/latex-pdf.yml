@@ -4,23 +4,24 @@ on:
   push:
     branches-ignore:
       - master
+
 jobs:
-    compile-pdf:
-        name: Compile pdf
-        runs-on: ubuntu-latest
+  compile-pdf:
+    name: Compile pdf
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repository 
-              uses: actions/checkout@v2
+    steps:
+      - name: Checkout repository 
+        uses: actions/checkout@v2
 
-            - name: Compile pdf
-              uses: xu-cheng/latex-action@v2
-              with:
-                  root_file: main.tex
+      - name: Compile pdf
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
 
-            - name: Upload Artifact
-              uses: actions/upload-artifact@v2
-              with:
-                  name: taoe3-solutions
-                  path: main.pdf
-                  retention-days: 90
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: taoe3-solutions
+          path: main.pdf
+          retention-days: 90
