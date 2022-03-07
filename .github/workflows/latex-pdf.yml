@@ -1,5 +1,9 @@
 name: latex-pdf
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
+    branches-ignore:
+      - master
 jobs:
     compile-pdf:
         name: Compile pdf
