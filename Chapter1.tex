@@ -669,9 +669,6 @@ By Pythagorean Theorem,
 \[\frac{R}{hypotenuse} = \frac{R}{\sqrt{R^2 + (-j/\omega C)^2}} = \frac{R}{\sqrt{R^2 + \frac{1}{\omega^2 C^2}}}\]
 Thus, $V_\text{out} = V_\text{in} * \frac{R}{\sqrt{R^2 + \frac{1}{\omega^2 C^2}}}$
 \ex{1.33}
-\begin{enumerate}
-    \item find the frequency
-    
     For the lowpass filter, $V_\text{out}$ and $V_\text{in}$ have the following relationship.
     \[V_\text{out} = V_\text{in} * \frac{1}{\sqrt{1+\omega ^2 R^2 C^2}}\]
     Given $V_\text{out} = \frac{1}{2} V_\text{in}$, 
@@ -684,19 +681,46 @@ Thus, $V_\text{out} = V_\text{in} * \frac{R}{\sqrt{R^2 + \frac{1}{\omega^2 C^2}}
     Since $f = \frac{\omega}{2\pi}$,
     \[f = \frac{\sqrt{3}}{2\pi RC}\]
 
-    \item find the phase shift 
-    
     From previous calculation, we have $C = \frac{\sqrt{3}}{RC}$
     From the phasor diagram for lowpass filter at $3dB$ point, we know that 
     \[\aleph = \arctan(\frac{\frac{-j}{\omega C}}{R}) =\arctan(-\frac{1}{\sqrt{3}}) = -30^\circ\]
     Thus, the phase shift is 
     \[\phi = -90^\circ - (-30^\circ) = -60^\circ\] 
-\end{enumerate}
-
-
-\todoex{1.34}
-
-\todoex{1.35}
+\ex{1.34}
+% \begin{plot}{fig:1.17.2}{Phasor diagram for highpass filter at $3dB$ point.}
+%     % node[left] {$Z$}(-1,1);
+%     \draw (-1,0) -- (4,0);
+%     \draw (0,1) -- (0,-4);
+%     \draw[->] (0,0) -- (2,0) node[right] {$R$};
+%     \draw[->] (2,0) -- (2,-2) node[left] {$\frac{-j}{\omega C}$};
+%     \draw[->] (0,0) -- (2,-2) node[left] {$R\sqrt{2}$};
+% \end{plot}
+    From the phasor diagram, we can see that 
+    \[\frac{V_\text{out}}{V_\text{in}} = \frac{C}{hypotenuse}= \frac{C}{\sqrt{R^2 + C^2}}\]
+    pluging in $ C = \frac{-j}{\omega C}$
+    \[\frac{V_\text{out}}{V_\text{in}} = \frac{\frac{-j}{\omega C}}{\sqrt{R^2 + \frac{1}{\omega^2 C^2}}} = \frac{-j}{\omega C} * \frac{\omega C}{\sqrt{R^2 \omega^2 C^2+1}}
+        = \frac{-j}{\sqrt{R^2 \omega^2 C^2+1}}\]
+    
+\ex{1.35}
+    Resistor, inductor, and capacitor in series forms a voltage devider, so 
+    \[\frac{V_\text{out}}{V_\text{in}} = \frac{Z_\text{LC}}{R + Z_\text{LC}}\]
+    Since the inductor and capacitor are in series and $\omega_0 = \frac{1}{\sqrt{LC}}$, which was derived from $f_0 = \frac{1}{2\pi \sqrt{LC}}$.
+    We can write $Z_\text{LC}$ as following,
+    \[Z_\text{LC} = Z_\text{L} + Z_\text{C} = j\omega L + \frac{-j}{\omega C} = j(\omega L - \frac{1}{\omega C})
+        = jL(\frac{\omega^2 - \omega_0^2}{\omega})\]
+    We can describe the response in the following conditions:
+    \begin{enumerate}
+        \item 
+        When $f=f_0$, $\omega = \omega_0$ and $Z_\text{LC} = 0$. Thus, $\frac{V_\text{out}}{V_\text{in}} = 0$. 
+        \item 
+        When $f<f_0$, $\omega < \omega_0$ and $Z_\text{C} > Z_\text{L}$, which makes the circuit more capcitive. 
+        Thus, the circuit has a similar response as capacitors.
+        %TODO: add plot 
+        \item 
+        When $f>f_0$, $\omega > \omega_0$ and $Z_\text{L} > Z_\text{C}$, which means the inductor has more impact on the general response of the whole circuit. 
+        Thus, the circuit responses more like inductors.
+    \end{enumerate}  
+    Thus, we see the response plot captured in the previous figure ($Figure 1.109$)
 
 \todoex{1.36}
 
