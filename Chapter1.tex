@@ -722,11 +722,99 @@ Thus, $V_\text{out} = V_\text{in} * \frac{R}{\sqrt{R^2 + \frac{1}{\omega^2 C^2}}
     \end{enumerate}  
     Thus, we see the response plot captured in the previous figure ($Figure 1.109$)
 
-\todoex{1.36}
-
-\todoex{1.37}
-
-\todoex{1.38}
+    \ex{1.36}
+    \begin{circuit}{fig:1.36.1}{Generalization of "three-way" Switch Wiring with Two SPDT Switches And $N-2$ DPDT Switches}
+        (-1,0) to [short](0,0) 
+        % [dashed](2.6,0.7)to[short](2.6,-0.3)
+        (0.6,0)node[spdt](S0){}
+        (S0.out 1) node[right] {}
+        to [short] (2,0.3)
+        to [short] (2,0.6)
+        (S0.out 2) node[right]{}
+        to [short](2,-0.3)
+        to [short] (2,-0.6)
+        (2.6,-0.6)node[spdt](S2){}
+        (2.6,0.6)node[spdt](S1){}
+        (S1.out 1) to [short] (4.5,0.9)
+        to [short](5.5,0.9)
+        to[short](5.5,0.6)
+        to [short,-o](6.5,0.6)
+        to [short,-o](7.2,0.3)
+        to [short](8,0.3)
+        (4.7,0.9)to [short,*-*](4.7,-0.9)
+        (S1.out 2) to [short] (4.5,0.3)
+        to [short,*-*](4.5,-0.3)
+        (S2.out 1) to [short] (4.5,-0.3)
+        to [short](5.5,-0.3)
+        to [short](5.5,0)
+        to [short,-o](6.5,0)
+        (S2.out 2) to [short] (4.7,-0.9)
+    \end{circuit}
+    
+    \ex{1.37}
+    Recall that $I_\text{Norton} = I_\text{short circuit the load}$, so we can transform the circuit as shown below.
+    \begin{circuit}{fig:1.37.1}{Circuit to find $I_\text{Norton}$}
+        (0,0) to [V,l=10V]
+        (0,-2.5) node[ground](gnd){}
+        to [short](3,-2.5)
+        (0,0) to [R,l=10k](3,0)
+        to [R,l=10k](3,-2.5)
+        (3,0) to [short,*-](4,0)
+        to [short](4,-2.5)
+        to [short,-*](3,-2.5)
+    \end{circuit}
+    Then, $I_\text{Norton} = \frac{\SI{10}{V}}{\SI{10}{\kohm}}=\SI{1}{mA}$
+    To find $R_\text{Norton}$, it's very similar to how we find $R$ in superposition where we remove all power sources. Then, the circuit is transformed as shown below.
+    \begin{circuit}{fig:1.37.2}{Circuit to find $R_\text{Norton}$}
+        (0,0) to [R,l=10k](3,0)
+        to [R,l=10k](3,-3)
+        to [short, -o](4,-3)
+        (0,0) to[short](0,-3)
+        to [short](3,-3)
+        (3,0) to[short,-o](4,0)
+        (4,-1.5) node[right]{$R_\text{Norton}$} 
+    \end{circuit}
+    Based on the circuit, $R_\text{Norton} = \frac{1}{\frac{1}{10}+\frac{1}{10}} = \SI{5}{\kohm}$
+    Thus, the Norton equivalent circuit is shown below. 
+    \begin{circuit}{fig:1.37.3}{Circuit to find $R_\text{Norton}$}
+        (0,-2.5) to [I,l=\SI{1}{mA}](0,0)
+        to [short](3,0)
+        (0,-2.5) node[ground](gnd){}
+        to [short](3,-2.5)
+        to [R,l=\SI{5}{\kohm}](3,0)
+        to [short,-o](4,0)
+        (3,-2.5) to [short,-o](4,-2.5) 
+        (4,-1.25)node[right]{$load$}
+    \end{circuit}
+    
+    When the $R_\text{load} = \SI{5}{\kohm}$, $V_\text{out} = \frac{\SI{5}{\kohm}}{2}*\SI{1}{mA}=\SI{2.5}{V}$ 
+    And, the original circuit is as shown below. 
+    \begin{circuit}{fig:1.37.4}{Original Circuit with a $\SI{5}{\kohm}$ load}
+        (0,0) to [V,l=10V]
+        (0,-2.5) node[ground](gnd){}
+        to [short](3,-2.5)
+        (0,0) to [R,l=10k](3,0)
+        to [R,l=10k](3,-2.5)
+        (3,0) to [short,*-](5,0)
+        to [R,l=$5k$](5,-2.5)
+        to [short,-*](3,-2.5)
+    \end{circuit}
+    Thus, $V_\text{out} = \frac{V_\text{in}*\frac{1}{\frac{1}{10}+\frac{1}{5}}}{10+\frac{1}{\frac{1}{10}+\frac{1}{5}}}
+                        =\SI{2.5}{V}$
+    
+    
+    Finally, we showed that the Norton equivalent gives the same output voltage as the actual circuit when loaded by a $5k$ resistor.
+    \ex{1.38}
+    Based on the circuit shown in this excercise, $V_\text{Th} = V_\text{open}=\SI{0.5}{mA}*\SI{10}{\kohm}=\SI{5}{V}$
+    
+    $I_\text{short} = \SI{0.5}{mA}$, so $R_\text{Th} = \frac{\SI{5}{V}}{\SI{0.5}{mA}}= \SI{10}{\kohm}$
+    
+    Similarly, we can find the Thévenin equivalent for the previous excercise.
+    
+    \[V_\text{Th} = \frac{\SI{10}{\kohm}}{10+10}*V_\text{in} = \SI{5}{V}\]
+    \[I_\text{short} =\frac{\SI{10}{V}}{\SI{10}{\kohm}} = \SI{1}{mA}\]
+    \[R_\text{Th} = \frac{\SI{5}{V}}{\SI{1}{mA}} = \SI{5}{\kohm}\]
+    Since the $R_\text{Th}$ is different from the previous result, we can see that these Thévenin circuits are not the same
 
 \todoex{1.39}
 
