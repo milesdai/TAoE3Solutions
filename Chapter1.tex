@@ -720,111 +720,207 @@ Thus, $V_\text{out} = V_\text{in} * \frac{R}{\sqrt{R^2 + \frac{1}{\omega^2 C^2}}
         When $f>f_0$, $\omega > \omega_0$ and $Z_\text{L} > Z_\text{C}$, which means the inductor has more impact on the general response of the whole circuit. 
         Thus, the circuit responses more like inductors.
     \end{enumerate}  
-    Thus, we see the response plot captured in the previous figure ($Figure 1.109$)
+    Thus, we see the response plot captured in Figure 1.109 from the textbook.
 
     \ex{1.36}
-    \begin{circuit}{fig:1.36.1}{Generalization of "three-way" Switch Wiring with Two SPDT Switches And $N-2$ DPDT Switches}
-        (-1,0) to [short](0,0) 
-        % [dashed](2.6,0.7)to[short](2.6,-0.3)
-        (0.6,0)node[spdt](S0){}
-        (S0.out 1) node[right] {}
-        to [short] (2,0.3)
-        to [short] (2,0.6)
-        (S0.out 2) node[right]{}
-        to [short](2,-0.3)
-        to [short] (2,-0.6)
-        (2.6,-0.6)node[spdt](S2){}
-        (2.6,0.6)node[spdt](S1){}
-        (S1.out 1) to [short] (4.5,0.9)
-        to [short](5.5,0.9)
-        to[short](5.5,0.6)
-        to [short,-o](6.5,0.6)
-        to [short,-o](7.2,0.3)
-        to [short](8,0.3)
-        (4.7,0.9)to [short,*-*](4.7,-0.9)
-        (S1.out 2) to [short] (4.5,0.3)
-        to [short,*-*](4.5,-0.3)
-        (S2.out 1) to [short] (4.5,-0.3)
-        to [short](5.5,-0.3)
-        to [short](5.5,0)
-        to [short,-o](6.5,0)
-        (S2.out 2) to [short] (4.7,-0.9)
-    \end{circuit}
-    
-    \ex{1.37}
-    Recall that $I_\text{Norton} = I_\text{short circuit the load}$, so we can transform the circuit as shown below.
-    \begin{circuit}{fig:1.37.1}{Circuit to find $I_\text{Norton}$}
-        (0,0) to [V,l=10V]
-        (0,-2.5) node[ground](gnd){}
-        to [short](3,-2.5)
-        (0,0) to [R,l=10k](3,0)
-        to [R,l=10k](3,-2.5)
-        (3,0) to [short,*-](4,0)
-        to [short](4,-2.5)
-        to [short,-*](3,-2.5)
-    \end{circuit}
-    Then, $I_\text{Norton} = \frac{\SI{10}{V}}{\SI{10}{\kohm}}=\SI{1}{mA}$
-    To find $R_\text{Norton}$, it's very similar to how we find $R$ in superposition where we remove all power sources. Then, the circuit is transformed as shown below.
-    \begin{circuit}{fig:1.37.2}{Circuit to find $R_\text{Norton}$}
-        (0,0) to [R,l=10k](3,0)
-        to [R,l=10k](3,-3)
-        to [short, -o](4,-3)
-        (0,0) to[short](0,-3)
-        to [short](3,-3)
-        (3,0) to[short,-o](4,0)
-        (4,-1.5) node[right]{$R_\text{Norton}$} 
-    \end{circuit}
-    Based on the circuit, $R_\text{Norton} = \frac{1}{\frac{1}{10}+\frac{1}{10}} = \SI{5}{\kohm}$
-    Thus, the Norton equivalent circuit is shown below. 
-    \begin{circuit}{fig:1.37.3}{Circuit to find $R_\text{Norton}$}
-        (0,-2.5) to [I,l=\SI{1}{mA}](0,0)
-        to [short](3,0)
-        (0,-2.5) node[ground](gnd){}
-        to [short](3,-2.5)
-        to [R,l=\SI{5}{\kohm}](3,0)
-        to [short,-o](4,0)
-        (3,-2.5) to [short,-o](4,-2.5) 
-        (4,-1.25)node[right]{$load$}
-    \end{circuit}
-    
-    When the $R_\text{load} = \SI{5}{\kohm}$, $V_\text{out} = \frac{\SI{5}{\kohm}}{2}*\SI{1}{mA}=\SI{2.5}{V}$ 
-    And, the original circuit is as shown below. 
-    \begin{circuit}{fig:1.37.4}{Original Circuit with a $\SI{5}{\kohm}$ load}
-        (0,0) to [V,l=10V]
-        (0,-2.5) node[ground](gnd){}
-        to [short](3,-2.5)
-        (0,0) to [R,l=10k](3,0)
-        to [R,l=10k](3,-2.5)
-        (3,0) to [short,*-](5,0)
-        to [R,l=$5k$](5,-2.5)
-        to [short,-*](3,-2.5)
-    \end{circuit}
-    Thus, $V_\text{out} = \frac{V_\text{in}*\frac{1}{\frac{1}{10}+\frac{1}{5}}}{10+\frac{1}{\frac{1}{10}+\frac{1}{5}}}
-                        =\SI{2.5}{V}$
-    
-    
-    Finally, we showed that the Norton equivalent gives the same output voltage as the actual circuit when loaded by a $5k$ resistor.
-    \ex{1.38}
-    Based on the circuit shown in this excercise, $V_\text{Th} = V_\text{open}=\SI{0.5}{mA}*\SI{10}{\kohm}=\SI{5}{V}$
-    
-    $I_\text{short} = \SI{0.5}{mA}$, so $R_\text{Th} = \frac{\SI{5}{V}}{\SI{0.5}{mA}}= \SI{10}{\kohm}$
-    
-    Similarly, we can find the Thévenin equivalent for the previous excercise.
-    
-    \[V_\text{Th} = \frac{\SI{10}{\kohm}}{10+10}*V_\text{in} = \SI{5}{V}\]
-    \[I_\text{short} =\frac{\SI{10}{V}}{\SI{10}{\kohm}} = \SI{1}{mA}\]
-    \[R_\text{Th} = \frac{\SI{5}{V}}{\SI{1}{mA}} = \SI{5}{\kohm}\]
-    Since the $R_\text{Th}$ is different from the previous result, we can see that these Thévenin circuits are not the same
+    We can see from textbook Figure 1.122 that two SPDT switches can control the lamp independently. 
+    We need to explore wirings that allow DPDT switches to switch from two states. The following wire shows how to turn DPDT switches to work as described.
+\begin{circuit}{fig:1.36.1}{Wiring a DPDT switch to switch from two states}
+    (2.6,0.7)to[short](2.6,-0.5)
+    (2.6,-0.6)node[spdt](S2){}
+    (2.6,0.6)node[spdt](S1){}
+    (S1.out 1) to [short] (4.5,0.9)
+    to [short,-o](5.5,0.9) node[right]{state 1}
+    (4.7,0.9)to [short,*-*](4.7,-0.9)
+    (S1.out 2) to [short] (4.5,0.3)
+    to [short,*-*](4.5,-0.3)
+    (S2.out 1) to [short] (4.5,-0.3)
+    to [short,-o](5.5,-0.3) node[right]{state 2}
+    (S2.out 2) to [short] (4.7,-0.9)
+\end{circuit}
 
-\todoex{1.39}
+\begin{circuit}{fig:1.36.2}{Generalization of ``three-way" Switch Wiring with Two SPDT Switches And $N-2$ DPDT Switches}
+    (-1,0) to [short](0,0) 
+    (2.6,0.7)to[short](2.6,-0.5)
+    (0.6,0)node[spdt](S0){}
+    (S0.out 1) node[right] {}
+    to [short] (2,0.3)
+    to [short] (2,0.6)
+    (S0.out 2) node[right]{}
+    to [short](2,-0.3)
+    to [short] (2,-0.6)
+    (2.6,-0.6)node[spdt](S2){}
+    (2.6,0.6)node[spdt](S1){}
+    (S1.out 1) to [short] (4.5,0.9)
+    to [short](5.5,0.9)
+    to[short](5.5,0.6)
+    to [short,-o](6.5,0.6)
+    to [short,-o](7.2,0.3)
+    to [short](8,0.3)
+    (4.7,0.9)to [short,*-*](4.7,-0.9)
+    (S1.out 2) to [short] (4.5,0.3)
+    to [short,*-*](4.5,-0.3)
+    (S2.out 1) to [short] (4.5,-0.3)
+    to [short](5.5,-0.3)
+    to [short](5.5,0)
+    to [short,-o](6.5,0)
+    (S2.out 2) to [short] (4.7,-0.9)
+\end{circuit}
 
-\todoex{1.40}
+\ex{1.37}
+Recall that $I_\text{Norton} = I_\text{short circuit the load}$, so we can transform the circuit as shown below.
+\begin{circuit}{fig:1.37.1}{Circuit to find $I_\text{Norton}$}
+    (0,0) to [V,l=10V]
+    (0,-2.5) node[ground](gnd){}
+    to [short](3,-2.5)
+    (0,0) to [R,l=10k](3,0)
+    to [R,l=10k](3,-2.5)
+    (3,0) to [short,*-](4,0)
+    to [short](4,-2.5)
+    to [short,-*](3,-2.5)
+\end{circuit}
+Then, $I_\text{Norton} = \frac{\SI{10}{V}}{\SI{10}{\kohm}}=\SI{1}{mA}$
+To find $R_\text{Norton}$, it's very similar to how we find $R$ in superposition where we remove all power sources. Then, the circuit is transformed as shown below.
+\begin{circuit}{fig:1.37.2}{Circuit to find $R_\text{Norton}$}
+    (0,0) to [R,l=10k](3,0)
+    to [R,l=10k](3,-3)
+    to [short, -o](4,-3)
+    (0,0) to[short](0,-3)
+    to [short](3,-3)
+    (3,0) to[short,-o](4,0)
+    (4,-1.5) node[right]{$R_\text{Norton}$} 
+\end{circuit}
+Based on the circuit, $R_\text{Norton} = \frac{1}{\frac{1}{10}+\frac{1}{10}} = \SI{5}{\kohm}$
+Thus, the Norton equivalent circuit is shown below. 
+\begin{circuit}{fig:1.37.3}{Circuit to find $R_\text{Norton}$}
+    (0,-2.5) to [I,l=\SI{1}{mA}](0,0)
+    to [short](3,0)
+    (0,-2.5) node[ground](gnd){}
+    to [short](3,-2.5)
+    to [R,l=\SI{5}{\kohm}](3,0)
+    to [short,-o](4,0)
+    (3,-2.5) to [short,-o](4,-2.5) 
+    (4,-1.25)node[right]{$load$}
+\end{circuit}
 
-\todoex{1.41}
+When the $R_\text{load} = \SI{5}{\kohm}$, $V_\text{out} = \frac{\SI{5}{\kohm}}{2}*\SI{1}{mA}=\SI{2.5}{V}$ 
+And, the original circuit is as shown below. 
+\begin{circuit}{fig:1.37.4}{Original Circuit with a $\SI{5}{\kohm}$ load}
+    (0,0) to [V,l=10V]
+    (0,-2.5) node[ground](gnd){}
+    to [short](3,-2.5)
+    (0,0) to [R,l=10k](3,0)
+    to [R,l=10k](3,-2.5)
+    (3,0) to [short,*-](5,0)
+    to [R,l=$5k$](5,-2.5)
+    to [short,-*](3,-2.5)
+\end{circuit}
+Thus, $V_\text{out} = \frac{V_\text{in}*\frac{1}{\frac{1}{10}+\frac{1}{5}}}{10+\frac{1}{\frac{1}{10}+\frac{1}{5}}}
+                    =\SI{2.5}{V}$
 
-\todoex{1.42}
 
-\todoex{1.43}
+Finally, we showed that the Norton equivalent gives the same output voltage as the actual circuit when loaded by a $5k$ resistor.
+\ex{1.38}
+Based on the circuit shown in this excercise, $V_\text{Th} = V_\text{open}=\SI{0.5}{mA}*\SI{10}{\kohm}=\SI{5}{V}$
+
+$I_\text{short} = \SI{0.5}{mA}$, so $R_\text{Th} = \frac{\SI{5}{V}}{\SI{0.5}{mA}}= \SI{10}{\kohm}$
+
+Similarly, we can find the Thévenin equivalent for the previous excercise.
+
+\[V_\text{Th} = \frac{\SI{10}{\kohm}}{10+10}*V_\text{in} = \SI{5}{V}\]
+\[I_\text{short} =\frac{\SI{10}{V}}{\SI{10}{\kohm}} = \SI{1}{mA}\]
+\[R_\text{Th} = \frac{\SI{5}{V}}{\SI{1}{mA}} = \SI{5}{\kohm}\]
+Since the $R_\text{Th}$ is different from the previous result, we can see that these Thévenin circuits are not the same.
+\ex{1.39}
+Based on the filter behaviors, the ``rumble filter" is essentially a high-pass filter. 
+
+Given $f_\text{3dB} = \SI{10}{\Hz}$ from the question:
+\[R*C = \frac{1}{2\pi*\SI{10}{\Hz}} \approx \SI{16}{\ms} \]
+Since the load (\SI{10}{\kohm} minimum) is in parallel with the reistor in the RC high-pass filer, we should select a relatively small resistor for the filter design 
+so that the load doesn't affect the filter's performance significantly. 
+We select a resistor: $R = \frac{\SI{10}{\kohm}}{100}=\SI{100}{\ohm}$ then:
+\[C = \frac{\SI{16}{\ms}}{\SI{100}{\ohm}} = \SI{160}{\micro\farad}\]
+The filter design is shown below.
+\begin{circuit}{fig:1.39.1}{Rumble Filter}
+    (-1,2) to[V, l_=$V_\in$] (-1,0)
+    (-1,2) to[C=$\SI{160}{\micro\farad}$] (2,2)
+    to[R, l_=$\SI{100}{\ohm}$, *-*] (2,0)
+    to[short] (-1,0)
+    (2,2)  to[short, -o] (4,2)
+    (2,0) to[short, -o] (4,0)
+    (4,0) to[open, v_<=$V_\load$] (4,2)
+\end{circuit}
+
+\ex{1.40}
+The ``scratch filter" for audio signals is essentially a low-pass filter that filter out high-frequency sounds, such as scratches.
+
+Given $f_\text{3dB} = \SI{10}{\kHz}$ from the question:
+\[R*C = \frac{1}{2\pi*\SI{10}{\kHz}} = \SI{0.016}{\ms} \]
+Similar to the high-pass filter design in the previous question, we need to pick a low impedance capacitor so that the load doesn't affect the filter's performance significantly. 
+We select a capacitor: $C =\SI{0.01}{\micro\farad}$ then:
+\[R = \frac{1}{2\pi*10000*0.01*0.000001} \approx \SI{1.6}{\kohm}\]
+\begin{circuit}{fig:1.40.1}{Scratch Filter}
+    (-1,2) to[V, l_=$V_\in$] (-1,0)
+    (-1,2) to[R, l=$\SI{1.6}{\kohm}$] (2,2)
+    to[C=$\SI{0.01}{\micro\farad}$,*-*] (2,0)
+    to[short] (-1,0)
+    (2,2)  to[short, -o] (4,2)
+    (2,0) to[short, -o] (4,0)
+    (4,0) to[open, v_<=$V_\load$] (4,2)
+\end{circuit}
+
+\ex{1.41}
+Since we need to design a filter using resitors and capcitors to produce the results as plotted, we need to think of RC circuits that we discussed before as building blocks for this problem.
+
+Based on the plot, when $\omega < \omega_0$, the filter acts like a voltage divider and $\frac{V_\text{out}}{V_\text{in}} = 0.5$
+
+When $\omega > \omega_0$, the filer looks like a high-pass filter. 
+
+We can combine voltage divider circuit and high-pass filter as shown below. 
+\begin{circuit}{fig:1.41.1}{High-emphasis filter}
+    (0,0) to[short] (0,-2)
+    to[C, l_=$C$] (3.5,-2)
+    to[short,-*](3.5,0)
+    (-1.5,0) node[above]{$V_\in$} to[short, o-*] (0,0)
+    (0,0) to [R, l=$R1$, *-*] (4,0)
+    (4,-2.5) node[ground](gnd){}
+    (4,0) to [R, l=$R2$] (4,-2.5)
+    (4,0) to[short, -o] (5.5,0) node[above]{$V_\out$}
+\end{circuit}
+when $\omega < \omega_0$, the capacitor acts as if it's open, and the circuit is a voltage devider. 
+
+Given that $\frac{V_\text{out}}{V_\text{in}} = 0.5$, $R_1 = R_2 = R$
+
+When $\omega > \omega_0$, the high frequency signals can pass the capacitor, but low frequency signals are blocked. 
+We can find the capacitor value by treating the circuit as a high-pass filter. 
+$f_\text{3dB} = \frac{1}{2\pi*RC}$ and $\omega = 2\pi*f_\text{3dB}$ so $C = \frac{R}{\omega_0}$
+
+
+\ex{1.42}
+\begin{circuit}{fig:1.42.1}{Bandpass filter}
+    (0,-2.5) node[ground](gnd){}
+    (0,-2.5) to[R, l_=$R1$] (0,0)
+    (-4,0) node[above]{$V_\in$} to[C, l=$C1$, o-*] (0,0)
+    (0,0) to [R, l=$R2$, *-*] (4,0)
+    (4,-2.5) node[ground](gnd){}
+    (4,0) to [C, l=$C2$] (4,-2.5)
+    (4,0) to[short, -o] (6.5,0) node[above]{$V_\out$}
+\end{circuit}
+The bandpass filter is made of a high-pass filter and a low-pass filter. Thus, given $f_1$ and $f_2$, we have
+\[f_1 = \frac{1}{2\pi*R_1*C_1}\]
+\[f_2 = \frac{1}{2\pi*R_2*C_2}\]
+As discussed in the session ``Driving and loading RC filters" in the book, the assumptions are small input impedance compared to the load.
+We can set $R_1 = \frac{1}{10} * R_2$, and then
+\[C_2 = \frac{1}{2\pi * f_2 R_2 }\]
+\[C_1=\frac{1}{f_1*2\pi R_1} = \frac{1}{f_1*2\pi * 0.1R_2} = \frac{5}{\pi R_2 f_1}\]
+
+\ex{1.43}
+The circuit is the diode limiter discussed before (Figure 1.78 in the textbook), and the output is the same as the plots A and B in $Figure 1.79$.
+We need to find the characters of the output signal. 
+Given that $f=\SI{60}{\Hz}$
+\[T = \frac{1}{f} = \frac{1}{60} \approx \SI{17}{ms}\]
+\[\omega = 2 \pi f = 120 \pi\]
+
 
 \ex{1.44}
 The equivalent capacitance of the oscilloscope and cable is
