@@ -20,9 +20,37 @@ Therefore
 So the minimum current gain must be
 \[\beta_\text{min} = \frac{I^{*}_\text{LED}}{I_\text{B}} \approx \frac{\SI{4.85}{\mA}}{\SI{270}{\uA}} \approx \mans{18.0}\]
 
-\todoex{2.2}
+\ex{2.2}
+Before the pulse, $V_\text{in} = V^{Q_1}_\text{B} = \SI{0}{\V}$, therefore transistor $Q_1$ is turned off, so $V^{Q_1}_\text{C} = \SI{5}{\V}$.
+Transistor $Q_2$ is turned on through $R_3$ and has $V^{Q_2}_\text{B} = \SI{0.6}{\V}$,
+$I^{Q_2}_\text{B} = \frac{\SI{4.4}{\V}}{\SI{10}{\kohm}} = \SI{0.44}{\mA}$.
+Since $R_2$ is only $\SI{10}{\kohm}$, $Q_2$ is saturated and $V_\text{out} = \SI{0}{\V}$.
+The potential difference accross the capacitor is \[\Delta V_{C_1} = V^{Q_1}_\text{C} - V^{Q_2}_\text{B} = \SI{4.4}{\V}\]
 
-\todoex{2.3}
+Right after the pulse, $Q_1$ turns on, having $V^{Q_1}_\text{B} = \SI{0.6}{\V}$ and $I^{Q_1}_\text{B} = \frac{\SI{4.4}{\V}}{\SI{10}{\kohm}} = \SI{0.44}{\mA}$.
+Since $R_2$ is only $\SI{1}{\kohm}$, $Q_1$ saturates and has $V^{Q_1}_\text{C} = \SI{0}{\V}$.
+To keep the potential difference over $C_1$ the same, $V^{Q_2}_\text{B} = \SI{-4.4}{\V}$. This causes $Q_2$ to instantaneously turn off, resulting in $V_\text{out} = \SI{5}{\V}$.
+
+While $V_\text{in}$ is high, $C_1$ starts charging through $R_3$ untill $V^{Q_2}_\text{B}=\SI{0.6}{\V}$, after which $Q_2$ turns on again.
+Before that $C_1$ charges as if $Q_2$ was not connected.
+\[V^{Q_1}_\text{B}(t) = V_\text{CC}-[V_\text{CC}-V^{Q_1}_\text{B}(0)] e^{t/R_3C_1} = \SI{5}{\V}-\SI{9.4}{\V} e^{t/R_3C_1}\]
+where $t=0$ is the start of the pulse.
+The pulse stops when $Q_2$ turns on so
+\[V^{Q_1}_\text{B}{\tau_\text{pulse}}=\SI{0.6}{\V} = \SI{5}{\V}-\SI{9.4}{V} e^{\tau_\text{pulse}/R_3C_1}\]
+Solving for $\tau_\text{pulse}$ gives
+\[\tau_\text{pulse} = \mans{0.76 R_3 C_1} = \mans{\SI{76}{\us}}\]
+
+\ex{2.3}
+During the pulse $V_\text{out}$ is high, turning $Q_3$ on: $V^{Q_3}_\text{B} = \SI{0.6}{\V}$.
+$R_4$ and $R_5$ form a voltage divider such that the output is
+\[V_\text{out} = (V_\text{CC}-V^{Q_3}_\text{B})\frac{R_5}{R_5+R_4}+V^{Q_3}_\text{B} = \SI{4.8}{\V}\]
+The output is therefore reduced by $\mans{\SI{0.2}{\V}}$. A high value $R_5$ keeps this drop low.
+
+For $Q_3$ to stay saturated it has to be able to drain a collector current of at least $\frac{V_\text{CC}}{R_2}=\SI{5}{\mA}$, such that we must have $I^{Q_3}_\text{B} \geq \frac{\SI{5}{\mA}}{\beta}$. So we have $I^{Q_3}_\text{B} = \frac{V_\text{out}-V^{Q_3}_\text{B}}{R_5} = \frac{\SI{4.8}{\V}-\SI{0.6}{\V}}{\SI{20}{\kohm}} = \SI{0.21}{\mA} \geq \frac{\SI{5}{\mA}}{\beta}$.
+The resulting minimum $\beta$ is therefore
+\[\mans{\beta_\text{min} \geq 24}\]
+In practice you probably want a larger $\beta$ to account for the additional voltage drop and hence $Q_3$ base current drop that a load will cause.
+
 
 \todoex{2.4}
 
