@@ -20,7 +20,20 @@ Therefore
 So the minimum current gain must be
 \[\beta_\text{min} = \frac{I^{*}_\text{LED}}{I_\text{B}} \approx \frac{\SI{4.85}{\mA}}{\SI{270}{\uA}} \approx \mans{18.0}\]
 
-\todoex{2.2}
+
+\ex{2.2}
+When $Q_1$ goes is brought in saturation, the base voltage of $Q_2$ equals the opposite of the voltage on the capacitor $C_1$ at $t = \SI{0}{\second}$, $V_0 = \SI{4.4}{\volt}$ and $Q_2$ is then cutoff. $V_\text{out}$ will be equal to \SI{5}{\volt} until $Q_2$ is brought in saturation again. This happens when its base voltage gets higher or equal to the $Q_2$ threshold voltage (\SI{0.6}{\volt}). As soon as $Q_1$ is brought in saturation, $C_1$ starts to discharge into the resistor $R_3$ and the equivalent circuit, valid until $Q_2$ is cutoff, is then:
+\begin{circuit}{fig:2.2.1}{Equivalent $C_1$ discharging circuit.}
+    (0,0) node[ground] {}
+    to[C, l=$C_1$,v=$V_\text{C}$] (0,2)
+    to[R, l=$R_3$] (2.5,2)
+    node[antenna] {+\SI{5}{\volt}}
+\end{circuit}
+The time evolution of the voltage across the capacitor $C_1$ is given by:
+\[V_\text{C}(t)=\left(V_0-V_\infty\right)e^{-\frac{t}{R_3C_1}}+V_\infty\]
+where $V_\infty$ is the steady-state voltage on the capacitor $C_1$ end equals \SI{-5}{\volt}. Given the considerations above, we have that $V_C(t=T_\text{pulse})=\SI{-0.6}{\volt}$. Solving for $t$ gives:
+\[T_\text{pulse}=-R_3C_1\ln\left(\frac{\SI{-0.6}{\volt}-V_\infty}{{V_0-V_\infty}}\right)=\mans{0.76R_3C_1=\SI{76}{\micro\second}}\]
+
 
 \todoex{2.3}
 
