@@ -35,7 +35,15 @@ where $V_\infty$ is the steady-state voltage on the capacitor $C_1$ end equals \
 \[T_\text{pulse}=-R_3C_1\ln\left(\frac{\SI{-0.6}{\volt}-V_\infty}{{V_0-V_\infty}}\right)=\mans{0.76R_3C_1=\SI{76}{\micro\second}}\]
 
 
-\todoex{2.3}
+\ex{2.3}
+The output voltage is now influenced by $R_5$ that goes in series with $R_4$, and by the $V_\text{BE}$ of $Q_3$ which is equal to \SI{0.6}{\volt} when the transistor is in saturation. Therefore:
+\[V_\text{out}=\frac{R_5}{R_5+R_4}\left(\SI{5}{\volt}-\SI{0.6}{\volt}\right)+\SI{0.6}{\volt}=\mans{\SI{4.79}{\volt}}\]
+
+The minimum value of $\beta$ of $Q_3$ can be obtained looking at the maximum value of the current flowing through the collector of $Q_3$, $I_\text{c}^{\text{Q}_3}$. As soon as $Q_1$ goes in saturation, the capacitor $C_1$ starts to discharge and its current is given by $C_1dV_\text{C}/dt$. With reference to the variables introduced in the previous exercise (2.2):
+\[I_\text{c}^{\text{Q}_3}(t)=\frac{\SI{5}{\volt}}{R_2}-I_{\text{C}_1}(t)=\frac{\SI{5}{\volt}}{R_2}+C_1\frac{1}{R_3C_1}\left(V_0-V_\infty\right)e^{-\frac{t}{R_3C_1}}\]
+Therefore:
+\[\beta_\text{min}=\frac{I_\text{c}^{\text{Q}_3}(t)|_\text{max}}{I_\text{b}^{\text{Q}_3}}=\frac{I_\text{c}^{\text{Q}_3}(t=\SI{0}{\second})}{I_\text{b}^{\text{Q}_3}}=\mans{27}\]
+
 
 \todoex{2.4}
 
