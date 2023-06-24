@@ -25,9 +25,9 @@ So the minimum current gain must be
 When $Q_1$ goes is brought in saturation, the base voltage of $Q_2$ equals the opposite of the voltage on the capacitor $C_1$ at $t = \SI{0}{\second}$, $V_0 = \SI{4.4}{\volt}$ and $Q_2$ is then cutoff. $V_\text{out}$ will be equal to \SI{5}{\volt} until $Q_2$ is brought in saturation again. This happens when its base voltage gets higher or equal to the $Q_2$ threshold voltage (\SI{0.6}{\volt}). As soon as $Q_1$ is brought in saturation, $C_1$ starts to discharge into the resistor $R_3$ and the equivalent circuit, valid until $Q_2$ is cutoff, is then:
 \begin{circuit}{fig:2.2.1}{Equivalent $C_1$ discharging circuit.}
     (0,0) node[ground] {}
-    to[C, l=$C_1$,v=$V_\text{C}$] (0,2)
-    to[R, l=$R_3$] (2.5,2)
-    node[antenna] {+\SI{5}{\volt}}
+    to[C, l=$C_1$,v=$V_\text{C}$] ++(0,2)
+    to[R, l=$R_3$] ++(2.5,0)
+    node[above] {+\SI{5}{\volt}} node[ocirc] {}
 \end{circuit}
 The time evolution of the voltage across the capacitor $C_1$ is given by:
 \[V_\text{C}(t)=\left(V_0-V_\infty\right)e^{-\frac{t}{R_3C_1}}+V_\infty\]
@@ -45,7 +45,36 @@ Therefore:
 \[\beta_\text{min}=\frac{I_\text{c}^{\text{Q}_3}(t)|_\text{max}}{I_\text{b}^{\text{Q}_3}}=\frac{I_\text{c}^{\text{Q}_3}(t=\SI{0}{\second})}{I_\text{b}^{\text{Q}_3}}=\mans{27}\]
 
 
-\todoex{2.4}
+\ex{2.4}
+\begin{circuit}{fig:2.4.1}{Emitter follower circuit used for computing the output resistance}
+    (0,0) node[npn] (Q) {Q}
+    (Q.B) to[short, i_<=$i_\text{b}$] ++(-1,0) -- ++(0,-.5) 
+    to[R, l=$R_\text{S}$, v=$v_\text{Rs}$] ++(0,-2)
+    node[ground] {}
+    (Q.C) to[short, i_<=$i_\text{c}$] ++(0,.5) node[ground, rotate=180] {}
+    (Q.E) to[short, i_>=$i_\text{e}$] ++(0,-.5) coordinate(RE)
+    to[R, l=$R_\text{E}$,i=$i_\text{Re}$] ++(0,-2)
+    node[ground] {}
+    (RE) -- ++(3,0)
+    to[I, l=$i_\text{out}$, invert, v_>=$v_\text{out}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
+
+Applying the KCL on the Q transistor:
+\[i_\text{e}=i_\text{b}+i_\text{c}=i_\text{b}\left(\beta+1\right)\]
+The current flowing through the emitter resistor $R_\text{E}$ is equal to:
+\[i_\text{Re}=i_\text{e}+i_\text{out}=i_\text{b}\left(\beta+1\right)+i_\text{out}\]
+Since for the emitter follower $v_\text{Rs}=v_\text{out}$:
+\[\left[i_\text{b}\left(\beta+1\right)+i_\text{out}\right]R_\text{E}=v_\text{out}\]
+Since:
+\[i_\text{b}=-\frac{v_\text{Rs}}{R_\text{S}}=-\frac{v_\text{out}}{R_\text{S}}\]
+we can write:
+\[\left[-\frac{v_\text{out}}{R_\text{S}}\left(\beta+1\right)+i_\text{out}\right]R_\text{E}=v_\text{out}\]
+Therefore:
+\[R_\text{out}=\frac{v_\text{out}}{i_\text{out}}=\frac{R_\text{E}R_\text{S}}{R_\text{S}+\left(\beta+1\right)R_\text{E}}\]
+If $R_\text{E}>>R_\text{S}$:
+\[\mans{R_\text{out}\approx\frac{R_\text{S}}{\left(\beta+1\right)}}\]
+
 
 \todoex{2.5}
 
