@@ -76,8 +76,51 @@ If $R_\text{E}>>R_\text{S}$:
 \[\mans{R_\text{out}\approx\frac{R_\text{S}}{\left(\beta+1\right)}}\]
 
 
-\todoex{2.5}
+\ex{2.5}
+\begin{circuit}{fig:2.5.1}{Small signal circuit}
+    (0,0) node[npn] (Q) {Q}
+    (Q.B) to[short, i_<=$i_\text{b}$] ++(-1,0) coordinate(RP)
+    -- ++(0,-.5) 
+    to[R, l=$R_2$, v=$v_\text{in}$] ++(0,-2)
+    node[ground] {}
+    (RP) -- ++(0,.5)
+    to[R, l=$R_1$] ++(0,2)
+    -- ++(-3,0)
+    to[sV=\SI{15}{\volt}] ++(0,-2)
+    node[ground] {}
+    (Q.C) to[short, i_<=$i_\text{c}$] ++(0,.5) node[ground, rotate=180] {}
+    (Q.E) to[short, i_>=$i_\text{e}$] ++(0,-.5) coordinate(RE)
+    to[R, l=$R_\text{L}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
 
+In order to achieve a maximum voltage change of \SI{5}{\percent} for a maximum current to the load ($R_\text{L}$) equal to \SI{25}{\milli\ampere}, we can make reference to the equivalent circuit of Figure \ref{fig:2.5.2}:
+\begin{circuit}{fig:2.5.2}{Output equivalent circuit}
+    (0,0) node[ground] {}
+    to[sV,v_<=$v_\text{out}$, invert] ++(0,2)
+    to[short, i=$i_\text{out}$] ++(.5,0)
+    to[R,l=$R_\text{out}$] ++(2,0)
+    -- ++(.5,0)
+    to[R,l=$R_\text{L}$, v=$v_\text{L}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
+obtaining:
+\[\left.\frac{v_\text{out}-v_\text{L}}{v_\text{out}}\right\rvert_{i_\text{out}=\SI{25}{\milli\ampere}}=0.05\]
+Since
+\[v_\text{out}-R_\text{out}\,i_\text{out}=v_\text{L}\]
+and for an emitter follower $v_\text{out}=v_\text{in}=\SI{5}{\volt}$
+we can write:
+\[\frac{R_\text{out}\,\SI{25}{\milli\ampere}}{\SI{5}{\volt}}=0.05\]
+obtainin the following condition on $R_\text{out}$:
+\[R_\text{out}=\frac{0.05\,\SI{5}{\volt}}{\SI{25}{\milli\ampere}}\]
+For the emitter follower configuration:
+\[R_\text{out}=\frac{R_\text{in}}{\beta+1}\]
+and we see from the circuit of Figure \ref{fig:2.5.1} that $R_\text{in}$ is given by the parallel between $R_\text{1}$ and $R_\text{2}$:
+\[R_\text{in}=\frac{R_\text{1}\,R_\text{2}}{R_\text{1}+R_\text{2}}\]
+In order to achieve $v_\text{in}=\SI{5}{\volt}$, the following condition must be verified for the values of $R_\text{1}$ and $R_\text{2}$:
+\[\frac{R_\text{2}}{R_\text{1}+R_\text{2}}=\frac{\SI{5}{\volt}}{\SI{15}{\volt}}\]
+Assuming $\beta=100$, we can finally obtain:
+\[\mans{R_\text{1}=\SI{30}{\ohm},\,R_\text{2}=\SI{15}{\ohm}}\]
 \todoex{2.6}
 
 \todoex{2.7}
