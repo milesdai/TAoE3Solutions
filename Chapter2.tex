@@ -129,9 +129,22 @@ The minimum current flowing through the $R$ resistor has to be at least equal to
 Therefore:
 \[R\leq \frac{\SI{10}{\volt}}{\SI{110}{\milli\ampere}}=\mans{\SI{91}{\ohm}}\]
 It follows that the maximum power to the zener, selecting $R=\SI{91}{\ohm}$, is equal to
-\[P_\text{max,z}=\left(\frac{\SI{20}{\volt}-\SI{10}{\volt}}{\SI{91}{\ohm}}-\SI{0}{\ampere}\right)\SI{10}{\volt}=\mans{\SI{1.65}{\watt}}\]
-\todoex{2.7}
+\[P_\text{max,z}=\left(\frac{\SI{25}{\volt}-\SI{10}{\volt}}{\SI{91}{\ohm}}-\SI{0}{\ampere}\right)\SI{10}{\volt}=\mans{\SI{1.65}{\watt}}\]
 
+
+\ex{2.7}
+With reference to figure 2.21 of the book, neglecting the current entering the ase of the transistor $Q$, in order to have at least \SI{10}{\milli\ampere} flowing through the zener, the resistor $R$ should comply with the following condition:
+\[\frac{\SI{20}{\volt}-\SI{10}{\volt}}{R}\geq\SI{10}{\milli\ampere}\]
+which results in:
+\[\mans{R\leq\SI{1}{\kilo\ohm}}\]
+In order to avoid the transistor to be saturated, we want the collector-base voltage to be always higher than zero. This translates in:
+\[R_\text{C}<R\frac{\SI{10}{\milli\ampere}}{\SI{100}{\milli\ampere}}=\SI{100}{\ohm}\]
+Selecting a conservative value of $R_\text{C}$ equal to \tans{\SI{20}{\ohm}}, we can compute the maximum power dissipated by the zener, $P_\text{max,z}$ and the transistor, $P_\text{max,Q}$ as:
+\[P_\text{max,z}=\left(\frac{\SI{25}{\volt}-\SI{10}{\volt}}{\SI{1}{\kilo\ohm}}\right)\SI{10}{\volt}=\mans{\SI{0.15}{\watt}}\]
+\[P_\text{Q}=\left(\SI{25}{\volt}-\SI{20}{\ohm}I_\text{load}\right)I_\text{load}\]
+The maximum power dissipated by the transistor is obtained for a collector current equal to \SI{625}{\milli\ampere} which is higher than the maximum load current. Therefore, in our case, the maximum power dissipated by $Q$ will be obtained for $I_\text{load,max}=\SI{100}{\milli\ampere}$:
+\[P_\text{max,Q}=\left(\SI{25}{\volt}-\SI{20}{\ohm}I_\text{load,max}\right)I_\text{load,max}=\mans{\SI{2.3}{\watt}}\]
+Comparing the results with those of the previous exercise, we notice that the power disspated by the zener diode significantly decreased but we have an additional power dissipated by the transistor which is higher than the power that the zener diode dissipated in the circuit of the previous exercise. However this power can be decreased by increasing the value of $R_\text{C}$.
 \todoex{2.8}
 
 \todoex{2.9}
