@@ -157,10 +157,36 @@ Since the imput impedance to the transistor, under the assumption of a load resi
 in order to have the \SI{3}{\decibel} point below the lowest frequency of \SI{20}{\hertz}, the capacitor $C_1$ has to be:
 \[\frac{1}{R_\text{in}C_1}\leq \SI{20}{\hertz}\]
 meaning that:
-\[\mans{C_1\geq\SI{0.17}{\micro\farad}}\] 
-\todoex{2.9}
+\[\mans{C_1\geq\SI{0.17}{\micro\farad}}\]
 
-\todoex{2.10}
+
+\ex{2.9}
+\begin{circuit}{fig:2.9.1}{Current source circuit}
+    (0,0) node[ground] {}
+    to[V,v_<=$V_\text{S}$, invert] ++(0,2)
+    -- ++(1,0)
+    to[R, l=$R$] ++(2,0)
+    to[short,i=$I_\text{load}$] ++(1,0)
+    node[ocirc] {}
+    to[open,v=$V_\text{load}$] ++(0,-2)
+    node[ocirc] {}
+    node[ground] {}
+\end{circuit}
+We want:
+\[\frac{I_\text{load}^\text{max}-I_\text{load}^\text{min}}{I_\text{load}^\text{max}}=\frac{V_\text{S}-\SI{0}{\volt}-(V_\text{S}-\SI{10}{\volt})}{V_\text{S}-\SI{0}{\volt}}=0.01\]
+from which it follows:
+\[\mans{V_\text{S}=\SI{1}{\kilo\volt}}\]
+
+
+\ex{2.10}
+With reference to Figure \ref{fig:2.9.1}, we assume that $I_\text{load}$ is equal to \SI{10}{\milli\ampere} if $V_\text{load}$ is equal to \SI{0}{\volt}, which means $R_\text{load}$ is equal to \SI{0}{\ohm}. We can therfore calculate $R$ as:
+\[R=\frac{V_\text{S}}{\SI{10}{\milli\ampere}}=\SI{100}{\kilo\ohm}\]
+In this case we have:
+\[\mans{P_\text{load}=\SI{0}{\watt},\,P_\text{R}=I_\text{load}^2R=\SI{10}{\watt}}\]
+If $V_\text{load}=\SI{10}{\volt}$, from the condition of the previous exercise, we have:
+\[I_\text{load}=(1-0.01)\SI{10}{\milli\ampere}=\SI{9.9}{\milli\ampere}\]
+Therefore:
+\[\mans{P_\text{load}=\SI{10}{\volt}I_\text{load}=\SI{0.1}{\watt},\,P_\text{R}=I_\text{load}^2R=\SI{9.8}{\watt}}\]
 
 \todoex{2.11}
 
