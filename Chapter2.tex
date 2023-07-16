@@ -188,8 +188,41 @@ If $V_\text{load}=\SI{10}{\volt}$, from the condition of the previous exercise, 
 Therefore:
 \[\mans{P_\text{load}=\SI{10}{\volt}I_\text{load}=\SI{0.1}{\watt},\,P_\text{R}=I_\text{load}^2R=\SI{9.8}{\watt}}\]
 
-\todoex{2.11}
+\ex{2.11}
+\begin{circuit}{fig:2.11.1}{Current sink}
+    (0,0) node[npn] (Q) {Q}
+    (Q.B) to[short] ++(-1,0) coordinate(RP)
+    -- ++(0,-.5) 
+    to[R, l=$R_2$] ++(0,-2)
+    node[ground] {}
+    (RP) -- ++(0,.5)
+    to[R, l=$R_1$] ++(0,2)
+    node[above]{+\SI{5}{\volt}} node[ocirc] {}
+    (Q.C) to[short] ++(0,.5)
+    to[generic, l=load] ++(0,1.5)
+    node[above] {+\SI{5}{\volt}} node[ocirc] {}
+    (Q.E) to[short] ++(0,-.5) coordinate(RE)
+    to[R, l=$R_\text{E}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
 
+In order to have an emitter current equal to \SI{5}{\milli\ampere}, the following condition has to be verified:
+\[\frac{R_2}{R_1+R_2}\SI{5}{\volt}-\SI{0.6}{\volt}=R_\text{E}\SI{5}{\milli\ampere}\]
+Furthermore, the transistor shouldn't sensibly load the voltage divider, therefore:
+\[\frac{R_1R_2}{R_1+R_2}<<R_\text{E}\beta\]
+Since we have a dc voltage of \SI{5}{\volt}, we want the voltage on $R_2$ to be lower or equal to this value:
+\[R_\text{E}\SI{5}{\milli\ampere}+\SI{0.6}{\volt}\leq\SI{5}{\volt}\]
+leading to:
+\[R_\text{E}\leq\SI{880}{\ohm}\]
+A good guess value for $R_\text{E}$ could be:
+\[\mans{R_\text{E}=\SI{200}{\ohm}}\]
+The base voltage will be given by:
+\[V_\text{B}=R_\text{E}\SI{5}{\milli\ampere}+\SI{0.6}{\volt}=\SI{1.6}{\volt}\]
+Selecting $\mans{R_1=\SI{1}{\kilo\ohm}}$ it is possible to compute  $R_2$:
+\[\mans{R_2=\SI{470}{\ohm}}\]
+The impedance seen by the input of the transistor is equal to \SI{320}{\ohm} and the input impedance of the transistor, considering $\beta=100$, is $R_\text{E}\beta=  \SI{20}{\kilo\ohm}$ with the former much lower than the latter.
+Finally, considering a maximum $V_\text{CE}$ voltage of the transistor equal to \SI{0.2}{\volt} before it saturates, we obtain the compliance voltage on the load as:
+\[\mans{V_\text{comp}=\SI{5}{\volt}-(\SI{0.2}{\volt}+R_\text{E}\SI{5}{\milli\ampere})=\SI{3.8}{\volt}}\]
 \todoex{2.12}
 
 \todoex{2.13}
