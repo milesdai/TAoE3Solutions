@@ -223,9 +223,15 @@ Selecting $\mans{R_1=\SI{1}{\kilo\ohm}}$ it is possible to compute  $R_2$:
 The impedance seen by the input of the transistor is equal to \SI{320}{\ohm} and the input impedance of the transistor, considering $\beta=100$, is $R_\text{E}\beta=  \SI{20}{\kilo\ohm}$ with the former much lower than the latter.
 Finally, considering a maximum $V_\text{CE}$ voltage of the transistor equal to \SI{0.2}{\volt} before it saturates, we obtain the compliance voltage on the load as:
 \[\mans{V_\text{comp}=\SI{5}{\volt}-(\SI{0.2}{\volt}+R_\text{E}\SI{5}{\milli\ampere})=\SI{3.8}{\volt}}\]
-\todoex{2.12}
 
-\todoex{2.13}
+\ex{2.12}
+The distortion is given by:
+\[\frac{\Delta V_\text{out}}{V_\text{drop}}\frac{V_\text{T}}{V_\text{T}+I_\text{E}R_\text{E}}\]
+therefore, if $R_\text{E}=\SI{0}{\ohm}$ we obtain a predicted distortion equal to $\mans{\frac{\Delta G}{G}=\frac{\SI{0.2}{\volt}}{\SI{5}{\volt}}=0.04}$ in case of \SI{0.1}{\volt} output amplitude and $\mans{\frac{\Delta G}{G}=\frac{\SI{2}{\volt}}{\SI{5}{\volt}}=0.4}$ in case of \SI{1}{\volt} output amplitude. If $R_\text{E}I_\text{E}=\SI{0.25}{\volt}$, $\frac{\Delta G}{G}$ equals to \tans{0.004} and \tans{0.04} for output voltage amplitudes equal to \SI{0.1}{\volt} and \SI{1}{\volt}, respectively.
+
+\ex{2.13}
+
+If the transistor is biased at half $V_\text{cc}$, we have that the collector-emitter voltage will be equal to $V_\text{CE}=V_\text{cc}-I_\text{C}R_\text{C}=V_\text{cc}-V_\text{cc}/2=V_\text{cc}/2$ where $I_\text{C}$ is the collector quiescent current and $R_\text{C}$ is the collector resistor. The collector-base voltage will be therefore $V_\text{CB}=V_\text{cc}/2-V_\text{BE}$. In this case $V_\text{BE}$ is supposed to be obtained by means of a voltage divider. If the temperature changes, approximately $V_\text{BE}$ does not change and the collecotr current will increase by \SI{9}{\percent\per\celsius}. This means that the collector current doubles for a temperature increase equal to \SI{8}{\celsius}. In this case $R_\text{C}I_\text{C}$ becomes equal to $2V_\text{cc}/2=V_\text{cc}$. As a consequence \tans{$V_\text{CB}=-V_\text{BE}<0$ and the transistor goes in saturation.}
 
 \todoex{2.14}
 
