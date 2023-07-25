@@ -233,8 +233,12 @@ therefore, if $R_\text{E}=\SI{0}{\ohm}$ we obtain a predicted distortion equal t
 
 If the transistor is biased at half $V_\text{cc}$, we have that the collector-emitter voltage will be equal to $V_\text{CE}=V_\text{cc}-I_\text{C}R_\text{C}=V_\text{cc}-V_\text{cc}/2=V_\text{cc}/2$ where $I_\text{C}$ is the collector quiescent current and $R_\text{C}$ is the collector resistor. The collector-base voltage will be therefore $V_\text{CB}=V_\text{cc}/2-V_\text{BE}$. In this case $V_\text{BE}$ is supposed to be obtained by means of a voltage divider. If the temperature changes, approximately $V_\text{BE}$ does not change and the collecotr current will increase by \SI{9}{\percent\per\celsius}. This means that the collector current doubles for a temperature increase equal to \SI{8}{\celsius}. In this case $R_\text{C}I_\text{C}$ becomes equal to $2V_\text{cc}/2=V_\text{cc}$. As a consequence \tans{$V_\text{CB}=-V_\text{BE}<0$ and the transistor goes in saturation.}
 
-\todoex{2.14}
-
+\ex{2.14}
+The bias is arranged in order to have a collector current equal to \SI{1}{\milli\ampere}. Indeed:
+\[I_\text{c}=\frac{\SI{0.775}{\volt}-\SI{0.6}{\volt}}{\SI{175}{\ohm}}=\SI{1}{\milli\ampere}\]
+The base-emitter voltage decreases by \SI{2.1}{\milli\volt\per\celsius}. Therefore, if the temperature increases by \SI{20}{\celsius}, the collecotr current will become:
+\[I_\text{c}=\frac{\SI{0.775}{\volt}-\SI{0.6}{\volt}-\SI{0.0021}{\volt\per\celsius}\,\SI{20}{\celsius}}{\SI{175}{\ohm}}=\SI{0.76}{\milli\ampere}\]
+\tans{It can be seen that the new collecotr current is about \SI{25}{\percent} lower than \SI{1}{\milli\ampere}}
 \todoex{2.15}
 
 \todoex{2.16}
