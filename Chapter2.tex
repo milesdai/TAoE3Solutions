@@ -239,10 +239,79 @@ The bias is arranged in order to have a collector current equal to \SI{1}{\milli
 The base-emitter voltage decreases by \SI{2.1}{\milli\volt\per\celsius}. Therefore, if the temperature increases by \SI{20}{\celsius}, the collecotr current will become:
 \[I_\text{c}=\frac{\SI{0.775}{\volt}-\SI{0.6}{\volt}-\SI{0.0021}{\volt\per\celsius}\,\SI{20}{\celsius}}{\SI{175}{\ohm}}=\SI{0.76}{\milli\ampere}\]
 \tans{It can be seen that the new collecotr current is about \SI{25}{\percent} lower than \SI{1}{\milli\ampere}}
-\todoex{2.15}
 
-\todoex{2.16}
+\ex{2.15}
+The voltage gain is given by:
+\[G=\frac{V_\text{out}}{V_\text{in}}=\frac{R_\text{C}}{r_\text{e}}=\frac{I_\text{C}R_\text{C}}{V_\text{T}}\]
+In order to achieve a voltage drop on $R_\text{C}$ equal to half the $V_\text{cc}$ voltage:
+\[I_\text{C}R_\text{C}=\frac{1}{2}V_\text{cc}\]
+and therefore:
+\[R_\text{C}=\frac{1}{2}\frac{V_\text{cc}}{I_\text{C}}\]
+Substituting the $R_\text{C}$ expression into the voltage gain:
+\[\mans{G=\frac{1}{2}\frac{V_\text{cc}}{V_\text{T}}=\frac{V_\text{cc}}{\SI{50}{\milli\volt}}=20V_\text{cc}}\]
 
+\ex{2.16}
+\begin{circuit}{fig:2.16.1}{Tuned common emitter amplifier}
+    (0,0) node[npn] (Q) {Q}
+    (Q.B) to[short] ++(-1,0) coordinate(RP)
+    -- ++(0,-.5) 
+    to[R, l=$R_2$] ++(0,-2)
+    node[ground] {}
+    (RP) -- ++(0,.5)
+    to[R, l=$R_1$] ++(0,2)
+    -- ++(0,0.5) coordinate(Vcc)
+    (RP) -- ++(-0.5,0)
+    to[C, l=$C_\text{in}$] ++(-0.5,0)
+    -- ++(-0.5,0)
+    node[above] {$V_\text{in}$}
+    node[ocirc] {}
+    (Q.C) to[short] ++(0,.5)
+    to[L, l=$L_\text{C}$] ++(0,1.5)
+    to[short] (Vcc -| Q.C)
+    (Q.C) to[short] ++(1.5,0)
+    to[short] ++(0,.5) coordinate(Cc)
+    to[C,l=$C_\text{C}$] ++(0,1.5)
+    to[short] (Vcc -| Cc)
+    (Q.C) to[short] ++(3,0)
+    to[short] ++(0,.5) coordinate(Rc)
+    to[R,l=$R_\text{C}$] ++(0,1.5)
+    to[short] (Vcc -| Rc)
+    (Vcc) to[short] ++(-0.5,0)
+    (Vcc) to[short, l=$\SI{15}{\volt}$] ++(5,0)
+    (Q.E) to[short] ++(0,-.5) coordinate(RE)
+    to[R, l=$R_\text{E}$] ++(0,-2)
+    node[ground] {}
+    (Q.E) to[short] ++(1.5,0)
+    to[C,l=$C_\text{E}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
+With reference to Figure \ref{fig:2.16.1}, we start by choosing the emitter resistor $R_\text{E}$. We want its value to be large enough to have a voltage drop higher than $V_\text{BE}$ in order to have a good stability of the quiescent current with the temperature. However we want the transistor to operate in the active region. Since at DC, the inductor behaves like a short circuit, we have that the collector voltage is equal to $V_\text{cc}$, therefore:
+\[R_\text{E}I_\text{E}^\text{Q}<V_\text{cc}-\SI{0.2}{\volt}\]
+and
+\[R_\text{E}<\frac{V_\text{cc}-\SI{0.2}{\volt}}{I_\text{E}^\text{Q}}=\SI{14.8}{\kilo\ohm}\]
+where $I_\text{E}^\text{Q}$ is equal to about \SI{1}{\milli\ampere}.
+We choose:
+\[\mans{R_\text{E}=\SI{1}{\kilo\ohm}}\]
+In order to achieve a quiescent current equal to \SI{1}{\milli\ampere}, the base voltage has to be equal to:
+\[V_\text{B}=\SI{0.6}{\volt}+R_\text{E}I_\text{E}^\text{Q}=\SI{1.6}{\volt}\]
+Therefore, the ratio between $R_1$ and $R_2$ has to be equal to \num{8.4}. Choosing the parallel resistance of $R_1$ and $R_2$ to be about one tenth of the transistor input resistance $\beta R_\text{E}\approx\SI{100}{\kilo\ohm}$ we choose the following values for $R_1$ and $R_2$:
+\[\mans{R_1=\SI{84}{\kilo\ohm},\quad R_2=\SI{10}{\kilo\ohm}}\]
+The value of the capacitor $C_\text{C}$ can be obtained forcing the parallel LC circuit to resonate at \SI{100}{\kilo\hertz}:
+\[\frac{1}{2\pi}\sqrt{\frac{1}{L_\text{C}C_\text{C}}}=\SI{100}{\kilo\hertz}\]
+Therefore:
+\[\mans{C_\text{C}=\SI{2.5}{\nano\farad}}\]
+The value of the capacitor $C_\text{E}$ can be selected imposing that the absolut value of the impedance of the parallel between $R_\text{E}$ and $C_\text{E}$ is lower than $r_\text{e}=\SI{25}{\ohm}$ for a quiescent current of \SI{1}{\milli\ampere}.
+Doing the math we obtain:
+\[C_\text{E}>\frac{\sqrt{\frac{R_\text{E}}{\SI{25}{\ohm}}^2-1}}{\omega R_\text{E}}=\SI{63.6}{\nano\farad}\]
+A value of $C_\text{E}$ equal to \SI{10}{\micro\farad} is conservative enough to maximise the AC gain:
+\[\mans{C_\text{E}=\SI{10}{\micro\farad}}\]
+It remains to calculate the value of the input decoupling capacitor $C_\text{in}$. Its value can be obtained by forcing the cut-off frequency $1/R_\text{in}$ to be below \SI{100}{\kilo\hertz} where
+\[R_\text{eq}=\beta r_\text{e} || R_1 || R_2\]
+where we neglected the emitter impedance which is verly low thanks to the $C_\text{E}$ effect.
+We have therefore:
+\[C_\text{in} \geq \SI{5}{\nano\farad}\]
+Even in this case a conservative value for $C_\text{in}$ can be:
+\[\mans{C_\text{in}=\SI{10}{\micro\farad}}\]
 \todoex{2.17}
 
 \todoex{2.18}
