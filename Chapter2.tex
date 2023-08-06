@@ -300,7 +300,7 @@ The value of the capacitor $C_\text{C}$ can be obtained forcing the parallel LC 
 \[\frac{1}{2\pi}\sqrt{\frac{1}{L_\text{C}C_\text{C}}}=\SI{100}{\kilo\hertz}\]
 Therefore:
 \[\mans{C_\text{C}=\SI{2.5}{\nano\farad}}\]
-The value of the capacitor $C_\text{E}$ can be selected imposing that the absolut value of the impedance of the parallel between $R_\text{E}$ and $C_\text{E}$ is lower than $r_\text{e}=\SI{25}{\ohm}$ for a quiescent current of \SI{1}{\milli\ampere}.
+The value of the capacitor $C_\text{E}$ can be selected imposing that the absolute value of the impedance of the parallel between $R_\text{E}$ and $C_\text{E}$ is lower than $r_\text{e}=\SI{25}{\ohm}$ for a quiescent current of \SI{1}{\milli\ampere}.
 Doing the math we obtain:
 \[C_\text{E}>\frac{\sqrt{\frac{R_\text{E}}{\SI{25}{\ohm}}^2-1}}{\omega R_\text{E}}=\SI{63.6}{\nano\farad}\]
 A value of $C_\text{E}$ equal to \SI{10}{\micro\farad} is conservative enough to maximise the AC gain:
@@ -312,9 +312,66 @@ We have therefore:
 \[C_\text{in} \geq \SI{5}{\nano\farad}\]
 Even in this case a conservative value for $C_\text{in}$ can be:
 \[\mans{C_\text{in}=\SI{10}{\micro\farad}}\]
-\todoex{2.17}
 
-\todoex{2.18}
+\ex{2.17}
+In the following, the pedix B, C and E refer to base, collector and emitter.
+The apix Q1, Q2 and Q3 refer to the relevant transistors.
+Supposing all the transistors share the same $\beta$, the $I_\text{P}$ currect can be expressed as:
+\[I_\text{P}=I_\text{C}^\text{Q1}+I_\text{B}^\text{Q3}=\beta I_\text{B}^\text{Q1}+\frac{I_\text{C}^\text{Q3}}{\beta}\]
+Since the base-emitter voltage of the transistor Q1 is the same of the transistor Q2, the base currents are the same. Therefore:
+\[I_\text{B}^\text{Q1}+I_\text{B}^\text{Q2}=2I_\text{B}^\text{Q1}=I_\text{E}^\text{Q3}-I_\text{C}^\text{Q1}=\frac{\beta+1}{\beta}I_\text{C}^\text{Q3}-\beta I_\text{B}^\text{Q1}\]
+and then:
+\[I_\text{B}^\text{Q1}=\frac{\beta+1}{\beta(\beta+2)}I_\text{C}^\text{Q3}\]
+Substituting this expression into the first equation, it is possible to obtain the following expression for $I\text{P}$:
+\[I_\text{P}=\left(1+\frac{2}{\beta(\beta+2)}\right)I_\text{C}^\text{Q3}\approx I_\text{C}^\text{Q3}\]
+By comparing the above expression with that that typical of a basic current mirror:
+\[I_\text{P}=\left(1+\frac{2}{\beta}\right) I_\text{C}\]
+one can see that the load current $ I_\text{C}^\text{Q3}$ is much colser to the reference current $I_\text{P}$ than for the basic current mirror. Indeed:
+\[\frac{2}{\beta(\beta+2)}<<\frac{2}{\beta}\]
+
+\ex{2.18}
+For a grounded differential amplifier, the differential gain is:
+\[G_\text{diff}=\frac{R_\text{C}}{2r_\text{e}}=\frac{R_\text{C}I_\text{C}}{2V_\text{T}}={V_\text{C}}{2V_text{T}}=\mans{20V_\text{C}}\]
+where $V_\text{C}$ is the voltage drop across the collector resistor $R_\text{C}$. Therefore, if $V_\text{C}=0.5V_\text{cc}$:
+\[\mans{G_\text{diff}=10V_\text{cc}}\]
+Following a similar argument:
+\[\text{CMRR}=\frac{R_1}{r_\text{e}}=\frac{R_1I_\text{C}}{V_\text{T}}=\frac{1}{2}{V_1}{V_\text{T}}=\mans{20V_1}\]
+where $V_1$ is the voltage drop across the $R_1$ resistor.
+\begin{circuit}{fig:2.18.1}{Tuned common emitter amplifier}
+    (0,0) node[npn] (Q1) {$Q_1$}
+    (Q1.B) node[left] {+}
+    (Q1.C) to[short] ++(0,.5)
+    to[R, l=$R_\text{C}$] ++(0,1.5)
+    to[short] ++(0,+0.5) coordinate(RC1)
+    (Q1.E) to[short] ++(0,-.5) 
+    to[R, l=$R_\text{E}$] ++(0,-2) coordinate(RE1)
+    (3,0) node[npn, xscale=-1] (Q2) {\ctikzflipx{$Q_2$}}
+    (Q2.B) node[right] {-}
+    (Q2.C) to[short] ++(0,.5)
+    to[R, l=$R_\text{C}$] ++(0,1.5)
+    to[short] ++(0,+0.5)
+    (Q2.E) to[short] ++(0,-.5) coordinate(RE2)
+    to[R, l=$R_\text{E}$] ++(0,-2)
+    --(RE1)
+    ++(1.5,0) to[short] ++(0,-0.5)
+    to[R, l=$R_1$] ++(0,-2)
+    to[short] ++(0,-0.5)
+    node[below] {\SI{-5}{\volt}}
+    (RC1) ++(-1,0) to[short] ++(5,0)
+    node[above] {\SI{+5}{\volt}}
+    (Q2.C) to[short] ++(1,0)
+    node[above] {output}
+\end{circuit}
+For the differential, single-ended amplifier in Figure \ref{fig:2.18.1}, the output impedance is equal to $R_\text{C}$. Therefore we have $\mans{R_C=\SI{10}{\kilo\ohm}}$. Since we want the voltage drop on the collector resistor to be half of the $V_\text{cc}$:
+\[\mans{I_\text{C}={\SI{2.5}{\volt}}\,{\SI{10}{\kilo\ohm}}=\SI{250}{\micro\ampere}}\]
+Neglecting the voltage drop on the emitter resistor $R_\text{E}$, we can approximate the collector current as:
+\[I_\text{C}\approx\frac{\SI{5}{\volt}-\SI{0.6}{\volt}}{2R_1}\]
+and therefore:
+\[\mans{R_1=\SI{2.8}{\kilo\ohm}}\]
+The value of $R_\text{E}$ can then be obtained from the differential gain, considering that it is given by:
+\[G_\text{diff}=25=\frac{R_\text{C}}{2\left(r_\text{e}+R_\text{E}\right)}\].
+Therefore, considering that $r_\text{e}=V_text{T}/I_text{C}=\SI{100}{\ohm}$:
+\[\mans{R_\text{E}=\SI{100}{\ohm}}\]
 
 \todoex{2.19}
 
