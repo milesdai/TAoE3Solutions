@@ -322,7 +322,7 @@ Since the base-emitter voltage of the transistor Q1 is the same of the transisto
 \[I_\text{B}^\text{Q1}+I_\text{B}^\text{Q2}=2I_\text{B}^\text{Q1}=I_\text{E}^\text{Q3}-I_\text{C}^\text{Q1}=\frac{\beta+1}{\beta}I_\text{C}^\text{Q3}-\beta I_\text{B}^\text{Q1}\]
 and then:
 \[I_\text{B}^\text{Q1}=\frac{\beta+1}{\beta(\beta+2)}I_\text{C}^\text{Q3}\]
-Substituting this expression into the first equation, it is possible to obtain the following expression for $I\text{P}$:
+Substituting this expression into the first equation, it is possible to obtain the following expression for $I_\text{P}$:
 \[I_\text{P}=\left(1+\frac{2}{\beta(\beta+2)}\right)I_\text{C}^\text{Q3}\approx I_\text{C}^\text{Q3}\]
 By comparing the above expression with that that typical of a basic current mirror:
 \[I_\text{P}=\left(1+\frac{2}{\beta}\right) I_\text{C}\]
@@ -370,10 +370,40 @@ and therefore:
 \[\mans{R_1=\SI{2.8}{\kilo\ohm}}\]
 The value of $R_\text{E}$ can then be obtained from the differential gain, considering that it is given by:
 \[G_\text{diff}=25=\frac{R_\text{C}}{2\left(r_\text{e}+R_\text{E}\right)}\].
-Therefore, considering that $r_\text{e}=V_text{T}/I_text{C}=\SI{100}{\ohm}$:
+Therefore, considering that $r_\text{e}=V_\text{T}/I_\text{C}=\SI{100}{\ohm}$:
 \[\mans{R_\text{E}=\SI{100}{\ohm}}\]
 
-\todoex{2.19}
+\ex{2.19}
+As regards the differential amplifier in Figure 2.84 of the book, the AC voltage across the $C_{\text{CB}}$ capacitor is equal to the voltage at the base of the transistor $Q_1$ without depending on the voltage gain. The voltage across the emitter resistor $R_\text{E}$ is the input to a common base amplifier which does not have Miller effect.\\
+\begin{circuit}{fig:2.19.1}{Cascode amplifier}
+    (0,0) node[npn] (Q1) {$Q_1$}
+    (Q1.B) node[below] {$V_\text{in}$}
+    (Q1.B) to[short] ++(-0.5,0)
+    to[C,l=$C_\text{cb}$] ++(0, 1.5) coordinate(Ccb)
+    to[short] (Ccb -| Q1.C)
+    (Q1.C) to[short] ++(0,1)
+    node[npn, anchor=E] (Q2) {$Q_2$}
+    (Q1.E) node[ground] {}
+    (Q2.B) node[ground] {}
+    (Q2.C) to[R, l=$R_\text{L}$,v=$v_{\text{out}}$] ++(0, 1.5)
+    node[ground, rotate=180] {}
+\end{circuit}
+As regards the cascode configuration, one can make reference to Figure \ref{fig:2.19.1}. Under the approximation that the collecotr current of the transistor $Q_1$ is equal to that of the transistor $Q_2$:
+\[i_\text{C}^{\text{Q}_1} = i_\text{C}^{\text{Q}_2} = \frac{v_\text{in}}{r_\text{e}^{\text{Q}_1}}\]
+where $r_\text{e}^{\text{Q}_1}$ is the differential resistance of the $Q_1$ transistor.
+The output voltage will be:
+\[v_\text{out}=R_\text{L}i_\text{C}^{\text{Q}_2}\]
+The base-emitter AC voltage of the $Q_2$ transistor will be:
+\[v_{\text{BE}}^{\text{Q}_2}=r_\text{e}^{\text{Q}_2}i_\text{C}^{\text{Q}_2}\]
+where $r_\text{e}^{\text{Q}_2}$ is the differential resistance of the $Q_2$ transistor.\\
+The voltage across the $C_\text{CB}$ capacitor will be:
+\[v_\text{CB}=v_\text{in}+v_{\text{BE}}^{\text{Q}_2}=v_\text{in}+\frac{v_\text{in}r_\text{e}^{\text{Q}_2}}{r_\text{e}^{\text{Q}_1}}\]
+It follows that the amplitude of the current through the $C_\text{CB}$ capacitor is:
+\[I_\text{CB}=\frac{v_\text{in}\left(1+\frac{r_\text{e}^{\text{Q}_2}}{r_\text{e}^{\text{Q}_1}}\right)}{X_\text{CB}}\]
+where $X_\text{CB}$ is the capacitive reactance associated to the $C_\text{CB}$ capacitor.
+The Miller capacitance $C_\text{CB}^\text{M}$ is therefore:
+\[\mans{C_\text{CB}^\text{M}=C_\text{CB}\left(1+\frac{r_\text{e}^{\text{Q}_2}}{r_\text{e}^{\text{Q}_1}}\right)}\]
+and does not depend on the voltage gain of the cascode amplifier.
 
 \todoex{2.20}
 
