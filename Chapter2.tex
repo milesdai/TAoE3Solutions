@@ -405,8 +405,20 @@ The Miller capacitance $C_\text{CB}^\text{M}$ is therefore:
 \[\mans{C_\text{CB}^\text{M}=C_\text{CB}\left(1+\frac{r_\text{e}^{\text{Q}_2}}{r_\text{e}^{\text{Q}_1}}\right)}\]
 and does not depend on the voltage gain of the cascode amplifier.
 
-\todoex{2.20}
-
+\ex{2.20}
+The expression for the input impedance of the inverting amplifier is straightforward by considering that it is the series between the $R_1$ resistance with the input impedance of the transresistance amplifier. Therefore, the input impedance $Z_{\text{in}}$ is:
+\[\mans{Z_\text{in}=R_1+R_\text{in}||\frac{R_2}{1+A}}\]
+The closed loop gain can also be obtained in a straightforward way starting by considering the input impedance of the operational amplifier, $R_\text{in}$, apporaching to infinity. In this case, all the current flowing in $R_1$ goes in $R_2$ making $R_1$ and $R_2$ in series. Therefore:
+\[V_\text{out}=vA\]
+where $v$ is the differential voltage of the operational amplifier and $A$ is the open loop gain.\\
+$v$ is given by:
+\[v=-[V_\text{in}-(V_\text{in}-V_\text{out})B]\]
+where $B$ is defined as:
+\[\frac{R_1}{R_1+R_2}\]
+The expression for the output voltage becomes:
+\[V_\text{out}=-A[V_\text{in}-(V_\text{in}-V_\text{out})B]\]
+and the closed loop gain is:
+\[\mans{G=\frac{V_\text{out}}{V_\text{in}}=-A\frac{1-B}{1+AB}}\]
 \todoex{2.21}
 
 \todoex{2.22}
