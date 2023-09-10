@@ -19,6 +19,12 @@ Compiling the document should require any standard LaTeX distribution as well as
 * geometry
 * siunitx (v2 for now for compatibility)
 
+Related package in Ubuntu as below
+
+```
+apt-get install texlive-latex-recommended texlive-pictures texlive-latex-extra texlive-science
+```
+
 The pdf documents should be kept up to date with each commit and are there for people who only want to view without recompiling the documents.
 
 The compilation process uses `latexmk`. See this [quick introduction](https://mg.readthedocs.io/latexmk.html) for installation instructions and a tutorial.
