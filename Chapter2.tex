@@ -419,10 +419,45 @@ The expression for the output voltage becomes:
 \[V_\text{out}=-A[V_\text{in}-(V_\text{in}-V_\text{out})B]\]
 and the closed loop gain is:
 \[\mans{G=\frac{V_\text{out}}{V_\text{in}}=-A\frac{1-B}{1+AB}}\]
-\todoex{2.21}
 
-\todoex{2.22}
+\ex{2.21}
+\[\mans{G_{\text{CL}}=\frac{-100j}{1+-100j(0.1)}=9.90-0.99j}\]
 
+\ex{2.22}
+\begin{circuit}{fig:2.22.1}{Open loop small signal circuit}
+    (0,0) node[npn] (Q1) {$Q_1$}
+    (Q1.B) -- ++(-.5,-0) coordinate(Q1B)
+    to[R,l=$R_1$] ++(0,1.5)
+    node[ground, rotate=180] {}
+    (Q1B) to[R,l=$R_2$] ++(0,-1.5)
+    node[ground] {}
+    (Q1.E) to[R,l=$R_4$] ++(0,-1.5)
+    node[ground] {}
+    (Q1.E) -- ++(1,0)
+    to[R,l=$R_5$] ++(0,-1.5)
+    node[ground] {}
+    (Q1.C) to[R,l=$R_3$] ++(0,1.5)
+    node[ground, rotate=180] {}
+    (Q1.C) -- ++(2,0)
+    node[pnp, anchor=B] (Q2) {$Q_2$}
+    (Q2.C) to[R,l=$R_4$] ++(0,-1.5)
+    to[R,l=$R_5$] ++(0,-1.5)
+    node[ground] {}
+    (Q2.E) node[ground, rotate=180] {}
+\end{circuit}
+The feedback takes the voltage from the output of Q2 transistor and returns it to the input of the Q1 transistor through a voltage divider made of the resistors $R_4$ and $R_5$. The feedback is of \textit{voltage-voltage} kind. In order to account ofr the feedback loading effect in opening the loop, the reference circuit is that of Figure \ref{fig:2.22.1}. Considering a $\beta$ of 100 for both Q1 and Q2, the open loop gain is:
+\[G^{\text{OL}}=\frac{-1}{r_\text{e}^{\text{Q}_1}+R_4||R_5}\left[R_3||r_\text{e}^{\text{Q}_2}\beta\right]\left[-\frac{R_4+R_5}{r_\text{e}^{\text{Q}_2}}\right]\approx\frac{1}{r_\text{e}^{\text{Q}_1}+R_4}\left[R_3||r_\text{e}^{\text{Q}_2}\beta\right]\left[\frac{R_5}{r_\text{e}^{\text{Q}_2}}\right]\]
+Therfore, since $r_\text{e}^{\text{Q}_1} = r_\text{e}^{\text{Q}_2}=\SI{25}{\ohm}$:
+\[\mans{G^{\text{OL}}\approx200}\]
+The feedback gain is:
+\[B=\frac{R_4}{R_4+R_5}\approx\frac{R_4}{R_5}=0.1\]
+Therfore, the loop gain is:
+\[\mans{G^{\text{OL}}B\approx20}\]
+The open loop output impedance is:
+\[\mans{Z_\text{out}^\text{OL}=R_4*R_5\approx R_5=\SI{10}{\kilo\ohm}}\]
+The closed loop parameters are therefore:
+\[\mans{G^\text{CL}=\frac{G^\text{OL}}{1+G^\text{OL}B}\approx9.5}\]
+\[\mans{Z_\text{out}^\text{CL}=\frac{Z_\text{out}^\text{OL}}{1+G^\text{OL}B}\approx\frac{Z_\text{out}^\text{OL}}{G^\text{OL}B}=500}\]
 \todoex{2.23}
 
 \todoex{2.24}
