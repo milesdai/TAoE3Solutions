@@ -454,12 +454,46 @@ The feedback gain is:
 Therfore, the loop gain is:
 \[\mans{G^{\text{OL}}B\approx20}\]
 The open loop output impedance is:
-\[\mans{Z_\text{out}^\text{OL}=R_4*R_5\approx R_5=\SI{10}{\kilo\ohm}}\]
+\[\mans{Z_\text{out}^\text{OL}=R_4+R_5\approx R_5=\SI{10}{\kilo\ohm}}\]
 The closed loop parameters are therefore:
 \[\mans{G^\text{CL}=\frac{G^\text{OL}}{1+G^\text{OL}B}\approx9.5}\]
 \[\mans{Z_\text{out}^\text{CL}=\frac{Z_\text{out}^\text{OL}}{1+G^\text{OL}B}\approx\frac{Z_\text{out}^\text{OL}}{G^\text{OL}B}=500}\]
-\todoex{2.23}
 
+\ex{2.23}
+\begin{circuit}{fig:2.23.1}{Solution}
+    (0,0) node[npn] (Q1) {$Q_1$}
+    (Q1.B) -- ++(-.5,-0)
+    to[R,l2=$R_2$ and \SI{10}{\kilo\ohm}] ++(-2.5,0) coordinate (CA)
+    % to[Do,invert,l=$D_2$] ++ (-2.5,0) 
+    -- ++(-1,0) coordinate(CB)
+    to[nos,l=$s_\text{A}$] ++(0,1.5)
+    node[above]{+\SI{12}{\volt}} node[ocirc] {}
+    % (CB) to[Do, l=$D_1$] ++(0,-1.5)
+    (CB) to[R,l2_=$R_1$ and \SI{1}{\kilo\ohm}] ++(0,-1.5)
+    node[ground] {}
+    (Q1.E) node[ground] {}
+    (Q1.C) to[generic, l=$\text{load}_\text{A}$] ++(0,1.5)
+    node[above]{+\SI{12}{\volt}} node[ocirc] {}
+    (CA) -- ++(0,-3) -- ++(5,0) -- ++(0,3)
+    to[Do,l=$D_1$] ++ (3.5,0) coordinate (CC)
+    to[nos,l=$s_\text{B}$] ++(0,1.5)
+    node[above]{+\SI{12}{\volt}} node[ocirc] {}
+    (CC) to[R,l2_=$R_1$ and \SI{1}{\kilo\ohm}] ++(0,-1.5)
+    node[ground] {}
+    (CC) -- ++(1,0) 
+    to[R,l2_=$R_2$ and \SI{10}{\kilo\ohm}] ++(1.5,0)
+    node[npn, anchor=B] (Q2) {$Q_2$}
+    (Q2.E) node[ground] {}
+    (Q2.C) to[generic, l=$\text{load}_\text{B}$] ++(0,1.5)
+    node[above]{+\SI{12}{\volt}} node[ocirc] {}
+\end{circuit}
+Let's suppose the loads are resistive with a resistance equal to \SI{150}{\ohm} and both the npn transistors have $\beta=100$.
+When $s_\text{A}$ and $s_\text{B}$ are open, both $Q1$ and $Q2$ bases are to ground and no current flows into the loads.\\
+If $s_\text{A}$ is closed, the left terminals of the $R_2$ resistors are at \SI{12}{\volt} (minus a diode voltage drop for the resistor connected at the $Q_2$ base). The base currents are therefore:
+\[I_\text{b}=\frac{\SI{12}{\volt}-\SI{0.6}{\volt}}{\SI{10}{\kilo\ohm}}=\SI{1.14}{\milli\ampere}\]
+Such a base current, with the considered $\beta$ and load resistance, causes $Q_1$ and $Q_2$ to saturate. Therefore, the load current is:
+\[I_\text{l}^{A} = I_\text{l}^{B} = \frac{\SI{12}{\volt}-\SI{0.2}{\volt}}{\SI{150}{\ohm}}=\SI{79}{\milli\ampere}\]
+When $s_\text{A}$ is open and $s_\text{B}$ is closed, $D_1$ is reverse biased and $Q_1$ is in cutoff region since no current flows into its base. However, \SI{1.14}{\milli\ampere} flows into the base of $Q_2$ which goes into saturation.
 \todoex{2.24}
 
 \todoex{2.25}
