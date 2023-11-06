@@ -494,7 +494,50 @@ If $s_\text{A}$ is closed, the left terminals of the $R_2$ resistors are at \SI{
 Such a base current, with the considered $\beta$ and load resistance, causes $Q_1$ and $Q_2$ to saturate. Therefore, the load current is:
 \[I_\text{l}^{A} = I_\text{l}^{B} = \frac{\SI{12}{\volt}-\SI{0.2}{\volt}}{\SI{150}{\ohm}}=\SI{79}{\milli\ampere}\]
 When $s_\text{A}$ is open and $s_\text{B}$ is closed, $D_1$ is reverse biased and $Q_1$ is in cutoff region since no current flows into its base. However, \SI{1.14}{\milli\ampere} flows into the base of $Q_2$ which goes into saturation.
-\todoex{2.24}
+
+\ex{2.24}
+\begin{enumerate}
+    \item
+    Under the assumption that $\beta$ is very large, the load current $I_\text{load}$ is given by:
+    \[I_\text{load}=I_\text{C}\approx I_\text{E}\left[\frac{V_\text{cc}R_2}{R_1+R_2}-\SI{0.6}{\volt}\right]\frac{1}{R_\text{E}}\]
+    where $V_\text{CC}=\SI{10}{\volt}$, $R_1=\SI{8.2}{\kilo\ohm}$, $R_1=\SI{1.6}{\kilo\ohm}$ and $R_1=\SI{1.5}{\kilo\ohm}$.
+    Therefore $\mans{I_\text{load}=\SI{0.7}{\milli\ampere}}$
+    Since for the transistor to work in active region it must hold:
+    \[V_\text{CE}=V_\text{CC}-V_\text{load}-V_\text{E}\geq\SI{0.2}{\volt}\]
+    since $V_\text{E}=I_\text{E}R_\text{E}\approx\SI{1}{\volt}$ the output compliance is given by:
+    \[\mans{V_\text{load}\leq\SI{8.8}{\volt}}\]
+    \item 
+    Removing the assumption that $\beta$ is very large, has two effects. First, the emitter current and the collector currents are no more equal:
+    \[I_\text{load}=I_\text{C}=\beta\frac{1}{\beta+1}I_\text{E}\]
+    Second, the $R_1$ and $R_2$ resistors are nomore in series since the bas current is no more negligible.
+    The full expression for the emitter current can be obtained by considering that:
+    \begin{gather*}
+        I_\text{E}=I_\text{B}+I_\text{C}\\
+        I_1=I_\text{B}+I_2
+    \end{gather*}
+    where $I_1$ and $I_2$ are the currents flowing through $R_1$ and $R_2$,respectively, and $I_\text{B}$ is the base current. Under this conditions, the emitter current is given by:
+    \[I_\text{E}=\frac{1}{R_\text{E}}\left[\frac{V_\text{CC}R_2}{R_1+R_2}-\SI{0.6}{\volt}\right]\left[1+\frac{R_2}{R_1(\beta+1)}\left(1-\frac{R_2}{R_1+R_2}\right)\right]^{-1}\]
+    It follows:
+    \begin{gather*}
+        \beta=50 \quad I_\text{E}=\SI{0.685}{\milli\ampere} \quad I_\text{load}=I_\text{C}=\SI{0.67}{\milli\ampere}\\
+        \beta=100 \quad I_\text{E}=\SI{0.688}{\milli\ampere} \quad I_\text{load}=I_\text{C}=\SI{0.68}{\milli\ampere}
+    \end{gather*}
+    \item 
+    Here we consider again that $\beta$ is very large. Being $R_1$ and $R_2$ in series, the base voltage does not change due to early effect and we can write:
+    \[\Delta I_\text{E}=-\frac{\Delta V_\text{BE}}{R_\text{E}}=\frac{0.0001\Delta V_\text{CE}}{R_\text{E}}\]
+    Furthermore:
+    \[\Delta V_\text{CE}=-\Delta V_\text{load}-\Delta I_\text{E}R_\text{E}\]
+    Solving for $\Delta I_\text{E}$:
+    \[\Delta I_\text{load}=\Delta I_{C}\approx \Delta I_\text{E}=\frac{-0.0001}{1.0001R_\text{E}}\Delta V_\text{load}\]
+    For an output voltage within the output compliance ($\Delta V_\text{load}=\SI{8.8}{\volt}$):
+    \[\mans{\Delta I_\text{load}=\SI{-66.7}{\nano\ampere}}\]
+    \item 
+    $V_\text{BE}$ varies by \SI{-2.1}{\milli\volt\per\celsius}. With respect to the load current computed at the first point (a) ($I_\text{load}=\SI{0.7}{\milli\ampere}$) it is easy to see that:
+    \[\mans{\frac{\Delta I_\text{load}}{\Delta \text{°C}}=\SI{0.2}{\percent\per\celsius}}\]
+    In order to account for the variation of $\beta$ with temperature, we have to use the expression obtained in point b. In this case we obtain:
+    \[\mans{\frac{\Delta I_\text{load}}{\Delta \text{°C}}=\SI{0.21}{\percent\per\celsius}}\]
+\end{enumerate}
+
 
 \todoex{2.25}
 
