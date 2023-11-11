@@ -538,9 +538,60 @@ When $s_\text{A}$ is open and $s_\text{B}$ is closed, $D_1$ is reverse biased an
     \[\mans{\frac{\Delta I_\text{load}}{\Delta \text{°C}}=\SI{0.21}{\percent\per\celsius}}\]
 \end{enumerate}
 
-
-\todoex{2.25}
-
+\ex{2.25}
+\begin{circuit}{fig:2.25.1}{Commonon emitter amplifier}
+    (0,0) node[npn] (Q) {Q}
+    (Q.B) to[short] ++(-1,0) coordinate(RP)
+    -- ++(0,-.5) 
+    to[R, l=$R_2$] ++(0,-2)
+    node[ground] {}
+    (RP) -- ++(0,.5)
+    to[R, l=$R_1$] ++(0,2)
+    -- ++(0,0.5) coordinate(Vcc)
+    (RP) -- ++(-0.5,0)
+    to[C, l=$C_\text{in}$] ++(-0.5,0)
+    -- ++(-0.5,0)
+    node[above] {$V_\text{in}$}
+    node[ocirc] {}
+    (Q.C) to[short] ++(0,.5)
+    to[R, l=$R_\text{C}$] ++(0,1.5)
+    to[short] (Vcc -| Q.C)
+    (Q.C) to[short] ++(0.5,0)
+    node[ocirc] {}
+    node[above] {$V_\text{out}$}
+    (Vcc) to[short] ++(-0.5,0)
+    (Vcc) to[short, l=$\SI{15}{\volt}$] ++(2.5,0)
+    (Q.E) to[short] ++(0,-.5) coordinate(RE)
+    to[R, l=$R_\text{E}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
+The gain is approximately given by:
+\[\text{G}=\frac{R_\text{C}}{R_\text{E}}=15\]
+Given a bias collector current of \SI{0.5}{\milli\ampere}, in order to have the bias collector voltage at $0.5V_\text{CC}=\SI{7.5}{\volt}$, the collector resistance has to be equal to:
+\[\mans{R_\text{C}=\frac{\SI{7.5}{\volt}}{\SI{0.5}{\milli\ampere}}=\SI{15}{\kilo\ohm}}\]
+It follows that $\mans{R_\text{E}=\SI{1}{\kilo\ohm}}$
+In order to have a bias collector current equal to \SI{0.5}{\milli\ampere}, the following condition must hold:
+\[I_\text{C}\approx I_\text{E}=\frac{V_\text{B}-\SI{0.6}{\volt}}{R_\text{E}}\]
+meaning that $V_text{B}=\SI{1.1}{\volt}$
+This defines the first out of three conditions on the value of the resistors $R_1$ and $R_2$:
+\[V_\text{CC}\frac{R_2}{R_1+R_2}=\SI{1.1}{\volt}\rightarrow R_1 = 12.64\,R_2\]
+The second condition can be obtained by considering the maximum emitter voltage:
+\[V_\text{E}^\text{MAX}=R_\text{E}I_\text{E}^\text{MAX}=\SI{1}{\kilo\ohm}\,\SI{1}{\milli\ampere}=\SI{1}{\volt}\]
+the minimum current flowig through $R_1$ is:
+\[I_{\text{R}_1}^\text{MIN}=\frac{V_\text{CC}-\SI{1.6}{\volt}}{R_1}=\frac{\SI{13.4}{\volt}}{R_1}\]
+In order to properly drive the base of the transistor, this current has to be higher than the maximum base current:
+\[\frac{\SI{13.4}{\volt}}{R_1}>\frac{\SI{1}{\milli\ampere}}{\beta}\]
+leading to the second condition:
+\[R_1<\SI{1.34}{\mega\ohm}\]
+Finally, the input impedance of the transistor should be much higher than the parallel impedance of $R_1$ and $R_2$:
+\[\frac{R_1R_2}{R_1+R_2}<<\beta R_\text{E}=\SI{100}{\kilo\ohm}\]
+Taking into account these conditions, we select the following values for $R_1$ and $R_2$:
+\[\mans{R_1=\SI{20.2}{\kilo\ohm},\,R_2=\SI{1.6}{\kilo\ohm}}\]
+The value of the input capacitor can be computed by:
+\[\frac{1}{\SI{1.5}{\kilo\ohm}\,C_\text{in}}=2\pi\SI{100}{\hertz}\]
+where \SI{1.5}{\kilo\ohm} is the value of the parallel $R_1$ and $R_2$.
+From the previous expression one can obtain the value of the input capacitance $C_\text{in}$:
+\[\mans{C_\text{in}=\SI{10.6}{\micro\farad}}\]
 \todoex{2.26}
 
 \todoex{2.27}
