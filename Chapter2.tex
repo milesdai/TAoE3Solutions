@@ -638,7 +638,42 @@ The resistance seen by the $C_\text{b}$ capacitor is equal to:
 Therefore we want the capacitive impedance of $C_\text{b}$ at \SI{100}{\hertz} to be much lower than \SI{1.5}{\kilo\ohm}.
 Choosing a $\mans{C_\text{b}=\SI{10}{\micro\farad}}$ should be enough.
 
-\todoex{2.27}
+\ex{2.27}
+\begin{circuit}{fig:2.27.1}{Differential pair and emitter follower}
+    (0,0) node[npn] (Q1) {$Q_1$}
+    (Q1.B) node[left] {$V_\text{in}^+$}
+    (Q1.C) to[short] ++(0,.5)
+    to[R, l=$R_\text{C}$] ++(0,1.5)
+    to[short] ++(0,+0.5) coordinate(RC1)
+    (3,0) node[npn, xscale=-1] (Q2) {\ctikzflipx{$Q_2$}}
+    (Q2.B) node[right] {$V_\text{in}^-$}
+    (Q2.C) to[short] ++(0,.5)
+    to[R, l=$R_\text{C}$] ++(0,1.5)
+    to[short] ++(0,+0.5)
+    (Q1.E) to[short] (Q1.E-|Q2.E)
+    ($(Q1.E)!0.5!(Q2.E)$) to[short] ++(0,-0.5)
+    to[I, l=$I_\text{E}$] ++(0,-1.5) coordinate(IE)
+    (RC1) ++(-1,0) to[short] ++(7,0)
+    node[above] {\SI{+15}{\volt}}
+    (Q2.C) to[short] ++(1,0)
+    node[npn, anchor=B] (Q3) {$Q_3$}
+    (Q3.E) to[R, l=$R_\text{EE}$] ++(0,-1.5) coordinate(REE)
+    (IE) to[short] ++(-1,0)
+    (IE) to[short] (IE-|REE)
+    to[short] ++(1,0)
+    (REE) to[short] (REE|-IE)
+    node[below] {\SI{-15}{\volt}}
+    (Q3.C) to[short] (Q3.C|-RC1)
+    (Q3.E) -- +(1,0)
+    node[above] {output}
+\end{circuit}
+At DC, when $V_\text{in}^+=V_\text{in}^-=\SI{0}{\volt}$ the current $I_\text{E}$ is splitted equally between $Q_1$ and $Q_2$. Therefore, if the emitter current of both transistors has to be equal to \SI{0.1}{\milli\ampere} we have that $\mans{I_\text{E}=\SI{0.2}{\milli\ampere}}$
+The differential gain $G_\text{d}$ has to be equal to 50:
+\[G_\text{d}=\frac{R_\text{C}}{2r_\text{E}}=50\]
+Since $R_\text{E}=\SI{25}{\milli\volt}/\SI{0.1}{\milli\ampere}=\SI{250}{\ohm}$, we have that $\mans{R_\text{C}=\SI{25}{\kilo\ohm}}$
+If we also want the bias current of transistor $Q_3$ to be equal to \SI{0.1}{\milli\ampere}:
+\[\mans{R_\text{EE}=\frac{\SI{15}{\volt}+\SI{15}{\volt}-\SI{0.6}{\volt}-R_\text{C}\,\SI{0.1}{\milli\ampere}}{\SI{0.1}{\milli\ampere}}\approx\SI{270}{\kilo\ohm}}\]
+As a final note, the differential pair is not degenerated. This led to a lower resistance $R_\text{C}$ but to a higher resistance $R_\text{EE}$ and a very small linearity region.
 
 \todoex{2.28}
 
