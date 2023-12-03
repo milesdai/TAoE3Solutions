@@ -675,8 +675,72 @@ If we also want the bias current of transistor $Q_3$ to be equal to \SI{0.1}{\mi
 \[\mans{R_\text{EE}=\frac{\SI{15}{\volt}+\SI{15}{\volt}-\SI{0.6}{\volt}-R_\text{C}\,\SI{0.1}{\milli\ampere}}{\SI{0.1}{\milli\ampere}}\approx\SI{270}{\kilo\ohm}}\]
 As a final note, the differential pair is not degenerated. This led to a lower resistance $R_\text{C}$ but to a higher resistance $R_\text{EE}$ and a very small linearity region.
 
-\todoex{2.28}
+\ex{2.28}
+\begin{enumerate}
+    \item
+    \begin{circuit}{fig:2.28.1}{Differential pair with current source emitter}
+        (0,0) node[npn] (Q1) {$Q_1$}
+        (Q1.B) node[left] {$V_\text{in}$}
+        (Q1.C) to[short] ++(0,.5)
+        to[R, l=$R_\text{C}$] ++(0,1.5)
+        to[short] ++(0,+0.5) coordinate(RC1)
+        (3,0) node[npn, xscale=-1] (Q2) {\ctikzflipx{$Q_2$}}
+        (Q2.B) node[ground] {}
+        (Q2.C) to[short] ++(0,.5)
+        to[R, l=$R_\text{C}$] ++(0,1.5)
+        to[short] ++(0,+0.5)
+        (Q1.E) to[short] (Q1.E-|Q2.E)
+        ($(Q1.E)!0.5!(Q2.E)$) to[short] ++(0,-0.5)
+        to[I, l=$I_\text{E}$] ++(0,-1.5) coordinate(IE)
+        node[below] {\SI{-15}{\volt}}
+        (RC1) ++(-1,0) to[short] ++(5,0)
+        node[above] {\SI{+15}{\volt}}
+        (Q2.C) to[short] ++(1,0)
+        node[above] {Output}
+    \end{circuit}
 
+    The quiscient current $I_\text{E}$ will be equally divided among the two transistors $Q_1$ and $Q_2$. Therefore, in order to have a collector current equal to \SI{100}{\micro\ampere}, $\mans{I_\text{E}=\SI{200}{\micro\ampere}}$.
+    The gain of the single ended input-output differential pair can be easily computed by considering that the equivalent resistance as seen from $Q_2$ emitter is equal to $r_\text{E}^{Q_2}$. Therefore, the gain will be equal to:
+    \[\mans{G=\frac{R_\text{C}}{r_\text{E}^{Q_1}+r_\text{E}^{Q_2}}=\frac{R_\text{C}}{2r_\text{E}}=20}\]
+    since:
+    \[r_\text{E}^{Q_1}=r_\text{E}^{Q_2}=r_\text{E}=\frac{\SI{25}{\milli\volt}}{\SI{100}{\micro\ampere}}=\SI{250}{\ohm}\]
+
+    \item
+    \begin{circuit}{fig:2.28.2}{Differential pair with variable current emitter}
+        (0,0) node[npn] (Q1) {$Q_1$}
+        (Q1.B) node[left] {$V_\text{in}$}
+        (Q1.C) to[short] ++(0,.5)
+        to[R, l=$R_\text{C}$] ++(0,1.5)
+        to[short] ++(0,+0.5) coordinate(RC1)
+        (3,0) node[npn, xscale=-1] (Q2) {\ctikzflipx{$Q_2$}}
+        (Q2.B) node[ground] {}
+        (Q2.C) to[short] ++(0,.5)
+        to[R, l=$R_\text{C}$] ++(0,1.5)
+        to[short] ++(0,+0.5)
+        (Q1.E) to[short] (Q1.E-|Q2.E)
+        ($(Q1.E)!0.5!(Q2.E)$) to[short] ++(0,-0.5)
+        node[npn, anchor=C] (Q3) {$Q_3$}
+        (Q3.E) node[below] {\SI{-15}{\volt}}
+        (Q3.B) to[R,l=$R_\text{B}$] ++(-2,0)
+        to[V,v_<=$V_\text{G}$, invert] ++(-2,0)
+        node[ground] {}
+        (RC1) ++(-1,0) to[short] ++(5,0)
+        node[above] {\SI{+15}{\volt}}
+        (Q2.C) to[short] ++(1,0)
+        node[above] {Output}
+    \end{circuit}
+    In the circuit of Figure \ref{fig:2.28.2}, the DC voltage $V_\text{G}$ tunes the base current into the transistor $Q_3$ changing the quiescent current into the transistors $Q_1$ and $Q_2$.
+    The value of the resistor $R_\text{B}$ can be obtained by imposing that the maximum $V_\text{G}$ voltage that doesn't saturate the transistors $Q_1$ and $Q_2$ is \SI{10}{\volt}. By virtue of the $V_\text{BE}$ of $Q_2$, the emitter of $Q_1$ and $Q_2$ is at \SI{-0.6}{\volt} with respect to ground. Therefore, the maximum collector current that doesn't cause $Q_1$ and $Q_2$ to saturate can be obtained as:
+    \[I_\text{C}^\text{max}=\frac{\SI{15}{\volt}+\SI{0.6}{\volt}-\SI{0.2}{\volt}}{R_\text{C}}=\SI{1.54}{\milli\ampere}\]
+    The $Q_3$ maximum collector current will be twice $I_\text{C}^{max}$. Therefore, we have:
+    \[\beta\frac{\SI{15}{\volt}-\SI{10}{\volt}-\SI{0.6}{\volt}}{R_\text{B}}=2I_\text{C}^\text{max}\]
+    which gives:
+    \[\mans{R_\text{B}=\SI{143}{\kilo\ohm}}\]
+    In order to compute the gain, first we have to compute the value of the quiescent collector current of $Q_1$ and $Q_2$. This will be equal to:
+    \[I_\text{C}^\text{Q}=\beta\frac{1}{2}\frac{\SI{15}{\volt}-\SI{0.6}{\volt}-V_\text{G}}{R_\text{B}}\]
+    The gain will be equal to:
+    \[\mans{G=\frac{1}{2}\frac{I_\text{C}^\text{Q}R_\text{C}}{\SI{25}{\milli\volt}}\approx 70\left(\SI{14.4}{\volt}-V_\text{G}\right)}\]
+\end{enumerate}
 \todoex{2.29}
 
 \todoex{2.30}  % the last Exercise in chapter 2.
