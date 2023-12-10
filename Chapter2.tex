@@ -741,8 +741,27 @@ As a final note, the differential pair is not degenerated. This led to a lower r
     The gain will be equal to:
     \[\mans{G=\frac{1}{2}\frac{I_\text{C}^\text{Q}R_\text{C}}{\SI{25}{\milli\volt}}\approx 70\left(\SI{14.4}{\volt}-V_\text{G}\right)}\]
 \end{enumerate}
-\todoex{2.29}
 
+\ex{2.29}
+\begin{enumerate}
+    \item
+    Since the quiescent point is equal to $0.5V_\text{CC}$, the quiescent collector current can be computed as:
+    \[I_\text{C}=\frac{1}{2}\frac{\SI{20}{\volt}}{\SI{10}{\kilo\ohm}}=\SI{1}{\milli\ampere}\]
+    Using the Ebers-Moll equation to derive the base quiescent voltage:
+    \[V_\text{BE}=V_\text{T}\ln\left(\frac{I_\text{C}}{I_\text{S}}\right)=\SI{0.69}{\volt}\]
+    it is possible to estimate the value of the variable resistor $R$ that leads to this voltage:
+    \[R = \frac{\SI{1}{\kilo\ohm}\,\SI{0.69}{\volt}}{\SI{20}{\volt}-\SI{0.69}{\volt}}=\SI{35.8}{\ohm}\]
+    The input impedance will be therefore the parralle between \SI{1}{\kilo\ohm}, \SI{35.8}{\ohm} and $\beta\,r_\text{E}$, being $r_\text{E}$ the differential resistance of the transistor:
+    \[r_\text{E}=\frac{I_\text{C}}{V_\text{T}}\approx\SI{25}{\ohm}\]
+    \tans{It follows that the input impedance $Z_\text{in}$ is approximately equal to $\SI{34}{\ohm}$}
+    \item
+    The differential gain is equal to the ration between the collector resistor and the differential resistor $R_\text{E}$. Therefore:
+    \[\mans{G=\frac{\SI{10}{\kilo\ohm}}{\SI{25}{\ohm}}}\]
+    \item
+    Since the collector quiescent current approximately changes by \SI{9}{\percent\per\celsius}, it is easily seen that its amount doubles for a temeprature change of \tans{\SI{8}{\celsius}}. This leads to a quiescent collector voltage equal to \SI{20}{\volt} causing the transistor to saturate.
+
+
+\end{enumerate}
 \todoex{2.30}  % the last Exercise in chapter 2.
 
 % Here ends Chapter 2.
