@@ -39,7 +39,7 @@
 latex.out/
 
 ## Latex output
-*.pdf
+#*.pdf
 
 ## Editor files
 .vscode

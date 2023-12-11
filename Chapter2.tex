@@ -20,62 +20,763 @@ Therefore
 So the minimum current gain must be
 \[\beta_\text{min} = \frac{I^{*}_\text{LED}}{I_\text{B}} \approx \frac{\SI{4.85}{\mA}}{\SI{270}{\uA}} \approx \mans{18.0}\]
 
-\todoex{2.2}
 
-\todoex{2.3}
+\ex{2.2}
+When $Q_1$ goes is in saturation, the base voltage of $Q_2$ equals the opposite of the voltage on the capacitor $C_1$ at $t = \SI{0}{\second}$, $V_0 = \SI{4.4}{\volt}$ and $Q_2$ is then cutoff. $V_\text{out}$ will be equal to \SI{5}{\volt} until $Q_2$ is brought in saturation again. This happens when its base voltage gets higher or equal to the $Q_2$ threshold voltage (\SI{0.6}{\volt}). As soon as $Q_1$ is brought in saturation, $C_1$ starts to discharge into the resistor $R_3$ and the equivalent circuit, valid until $Q_2$ is cutoff, is then:
+\begin{circuit}{fig:2.2.1}{Equivalent $C_1$ discharging circuit.}
+    (0,0) node[ground] {}
+    to[C, l=$C_1$,v=$V_\text{C}$] ++(0,2)
+    to[R, l=$R_3$] ++(2.5,0)
+    node[above] {+\SI{5}{\volt}} node[ocirc] {}
+\end{circuit}
+The time evolution of the voltage across the capacitor $C_1$ is given by:
+\[V_\text{C}(t)=\left(V_0-V_\infty\right)e^{-\frac{t}{R_3C_1}}+V_\infty\]
+where $V_\infty$ is the steady-state voltage on the capacitor $C_1$ end equals \SI{-5}{\volt}. Given the considerations above, we have that $V_C(t=T_\text{pulse})=\SI{-0.6}{\volt}$. Solving for $t$ gives:
+\[T_\text{pulse}=-R_3C_1\ln\left(\frac{\SI{-0.6}{\volt}-V_\infty}{{V_0-V_\infty}}\right)=\mans{0.76R_3C_1=\SI{76}{\micro\second}}\]
 
-\todoex{2.4}
 
-\todoex{2.5}
+\ex{2.3}
+The output voltage is now influenced by $R_5$ that goes in series with $R_4$, and by the $V_\text{BE}$ of $Q_3$ which is equal to \SI{0.6}{\volt} when the transistor is in saturation. Therefore:
+\[V_\text{out}=\frac{R_5}{R_5+R_4}\left(\SI{5}{\volt}-\SI{0.6}{\volt}\right)+\SI{0.6}{\volt}=\mans{\SI{4.79}{\volt}}\]
 
-\todoex{2.6}
+The minimum value of $\beta$ of $Q_3$ can be obtained looking at the maximum value of the current flowing through the collector of $Q_3$, $I_\text{c}^{\text{Q}_3}$. As soon as $Q_1$ goes in saturation, the capacitor $C_1$ starts to discharge and its current is given by $C_1dV_\text{C}/dt$. With reference to the variables introduced in the previous exercise (2.2):
+\[I_\text{c}^{\text{Q}_3}(t)=\frac{\SI{5}{\volt}}{R_2}-I_{\text{C}_1}(t)=\frac{\SI{5}{\volt}}{R_2}+C_1\frac{1}{R_3C_1}\left(V_0-V_\infty\right)e^{-\frac{t}{R_3C_1}}\]
+Therefore:
+\[\beta_\text{min}=\frac{I_\text{c}^{\text{Q}_3}(t)|_\text{max}}{I_\text{b}^{\text{Q}_3}}=\frac{I_\text{c}^{\text{Q}_3}(t=\SI{0}{\second})}{I_\text{b}^{\text{Q}_3}}=\mans{27}\]
 
-\todoex{2.7}
 
-\todoex{2.8}
+\ex{2.4}
+\begin{circuit}{fig:2.4.1}{Emitter follower circuit used for computing the output resistance}
+    (0,0) node[npn] (Q) {Q}
+    (Q.B) to[short, i_<=$i_\text{b}$] ++(-1,0) -- ++(0,-.5) 
+    to[R, l=$R_\text{S}$, v=$v_\text{Rs}$] ++(0,-2)
+    node[ground] {}
+    (Q.C) to[short, i_<=$i_\text{c}$] ++(0,.5) node[ground, rotate=180] {}
+    (Q.E) to[short, i_>=$i_\text{e}$] ++(0,-.5) coordinate(RE)
+    to[R, l=$R_\text{E}$,i=$i_\text{Re}$] ++(0,-2)
+    node[ground] {}
+    (RE) -- ++(3,0)
+    to[I, l=$i_\text{out}$, invert, v_>=$v_\text{out}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
 
-\todoex{2.9}
+Applying the KCL on the Q transistor:
+\[i_\text{e}=i_\text{b}+i_\text{c}=i_\text{b}\left(\beta+1\right)\]
+The current flowing through the emitter resistor $R_\text{E}$ is equal to:
+\[i_\text{Re}=i_\text{e}+i_\text{out}=i_\text{b}\left(\beta+1\right)+i_\text{out}\]
+Since for the emitter follower $v_\text{Rs}=v_\text{out}$:
+\[\left[i_\text{b}\left(\beta+1\right)+i_\text{out}\right]R_\text{E}=v_\text{out}\]
+Since:
+\[i_\text{b}=-\frac{v_\text{Rs}}{R_\text{S}}=-\frac{v_\text{out}}{R_\text{S}}\]
+we can write:
+\[\left[-\frac{v_\text{out}}{R_\text{S}}\left(\beta+1\right)+i_\text{out}\right]R_\text{E}=v_\text{out}\]
+Therefore:
+\[R_\text{out}=\frac{v_\text{out}}{i_\text{out}}=\frac{R_\text{E}R_\text{S}}{R_\text{S}+\left(\beta+1\right)R_\text{E}}\]
+If $R_\text{E}>>R_\text{S}/(\beta+1)$:
+\[\mans{R_\text{out}\approx\frac{R_\text{S}}{\left(\beta+1\right)}}\]
 
-\todoex{2.10}
 
-\todoex{2.11}
+\ex{2.5}
+\begin{circuit}{fig:2.5.1}{Small signal circuit}
+    (0,0) node[npn] (Q) {Q}
+    (Q.B) to[short, i_<=$i_\text{b}$] ++(-1,0) coordinate(RP)
+    -- ++(0,-.5) 
+    to[R, l=$R_2$, v=$v_\text{in}$] ++(0,-2)
+    node[ground] {}
+    (RP) -- ++(0,.5)
+    to[R, l=$R_1$] ++(0,2)
+    -- ++(-3,0)
+    to[sV=\SI{15}{\volt}] ++(0,-2)
+    node[ground] {}
+    (Q.C) to[short, i_<=$i_\text{c}$] ++(0,.5) node[ground, rotate=180] {}
+    (Q.E) to[short, i_>=$i_\text{e}$] ++(0,-.5) coordinate(RE)
+    to[R, l=$R_\text{L}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
 
-\todoex{2.12}
+In order to achieve a maximum voltage change of \SI{5}{\percent} for a maximum current to the load ($R_\text{L}$) equal to \SI{25}{\milli\ampere}, we can make reference to the equivalent circuit of Figure \ref{fig:2.5.2}:
+\begin{circuit}{fig:2.5.2}{Output equivalent circuit}
+    (0,0) node[ground] {}
+    to[sV,v_<=$v_\text{out}$, invert] ++(0,2)
+    to[short, i=$i_\text{out}$] ++(.5,0)
+    to[R,l=$R_\text{out}$] ++(2,0)
+    -- ++(.5,0)
+    to[R,l=$R_\text{L}$, v=$v_\text{L}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
+obtaining:
+\[\left.\frac{v_\text{out}-v_\text{L}}{v_\text{out}}\right\rvert_{i_\text{out}=\SI{25}{\milli\ampere}}=0.05\]
+Since
+\[v_\text{out}-R_\text{out}\,i_\text{out}=v_\text{L}\]
+and for an emitter follower $v_\text{out}=v_\text{in}=\SI{5}{\volt}$
+we can write:
+\[\frac{R_\text{out}\,\SI{25}{\milli\ampere}}{\SI{5}{\volt}}=0.05\]
+obtaining the following condition on $R_\text{out}$:
+\[R_\text{out}=\frac{0.05\,\SI{5}{\volt}}{\SI{25}{\milli\ampere}}\]
+For the emitter follower configuration:
+\[R_\text{out}=\frac{R_\text{in}}{\beta+1}\]
+and we see from the circuit of Figure \ref{fig:2.5.1} that $R_\text{in}$ is given by the parallel between $R_\text{1}$ and $R_\text{2}$:
+\[R_\text{in}=\frac{R_\text{1}\,R_\text{2}}{R_\text{1}+R_\text{2}}\]
+In order to achieve $v_\text{in}=\SI{5}{\volt}$, the following condition must be verified for the values of $R_\text{1}$ and $R_\text{2}$:
+\[\frac{R_\text{2}}{R_\text{1}+R_\text{2}}=\frac{\SI{5}{\volt}}{\SI{15}{\volt}}\]
+Assuming $\beta=100$, we can finally obtain:
+\[\mans{R_\text{1}=\SI{30}{\ohm},\,R_\text{2}=\SI{15}{\ohm}}\]
 
-\todoex{2.13}
 
-\todoex{2.14}
+\ex{2.6}
+The minimum current flowing through the $R$ resistor has to be at least equal to the maximum current to the load plus the minimum current to the zener:
+\[I_\text{min,R}=\frac{\SI{20}{\volt}-\SI{10}{\volt}}{R}\geq\SI{100}{\milli\ampere}+\SI{10}{\milli\ampere}\]
+Therefore:
+\[R\leq \frac{\SI{10}{\volt}}{\SI{110}{\milli\ampere}}=\mans{\SI{91}{\ohm}}\]
+It follows that the maximum power to the zener, selecting $R=\SI{91}{\ohm}$, is equal to
+\[P_\text{max,z}=\left(\frac{\SI{25}{\volt}-\SI{10}{\volt}}{\SI{91}{\ohm}}-\SI{0}{\ampere}\right)\SI{10}{\volt}=\mans{\SI{1.65}{\watt}}\]
 
-\todoex{2.15}
 
-\todoex{2.16}
+\ex{2.7}
+With reference to figure 2.21 of the book, neglecting the current entering the ase of the transistor $Q$, in order to have at least \SI{10}{\milli\ampere} flowing through the zener, the resistor $R$ should comply with the following condition:
+\[\frac{\SI{20}{\volt}-\SI{10}{\volt}}{R}\geq\SI{10}{\milli\ampere}\]
+which results in:
+\[\mans{R\leq\SI{1}{\kilo\ohm}}\]
+In order to avoid the transistor to be saturated, we want the collector-base voltage to be always higher than zero. This translates in:
+\[R_\text{C}<R\frac{\SI{10}{\milli\ampere}}{\SI{100}{\milli\ampere}}=\SI{100}{\ohm}\]
+Selecting a conservative value of $R_\text{C}$ equal to \tans{\SI{20}{\ohm}}, we can compute the maximum power dissipated by the zener, $P_\text{max,z}$ and the transistor, $P_\text{max,Q}$ as:
+\[P_\text{max,z}=\left(\frac{\SI{25}{\volt}-\SI{10}{\volt}}{\SI{1}{\kilo\ohm}}\right)\SI{10}{\volt}=\mans{\SI{0.15}{\watt}}\]
+\[P_\text{Q}=\left(\SI{25}{\volt}-\SI{20}{\ohm}I_\text{load}\right)I_\text{load}\]
+The maximum power dissipated by the transistor is obtained for a collector current equal to \SI{625}{\milli\ampere} which is higher than the maximum load current. Therefore, in our case, the maximum power dissipated by $Q$ will be obtained for $I_\text{load,max}=\SI{100}{\milli\ampere}$:
+\[P_\text{max,Q}=\left(\SI{25}{\volt}-\SI{20}{\ohm}I_\text{load,max}\right)I_\text{load,max}=\mans{\SI{2.3}{\watt}}\]
+Comparing the results with those of the previous exercise, we notice that the power disspated by the zener diode significantly decreased but we have an additional power dissipated by the transistor which is higher than the power that the zener diode dissipated in the circuit of the previous exercise. However this power can be decreased by increasing the value of $R_\text{C}$.
 
-\todoex{2.17}
 
-\todoex{2.18}
+\ex{2.8}
+In order to keep the emitter voltage $V_\text{E}$ in the half range of the dc supply, considering the quiescent current of \SI{5}{\milli\ampere} we have:
+\[V_\text{E}=\frac{\SI{15}{\volt}-(-\SI{15}{\volt})}{2}=\SI{15}{\volt}\]
+and the emitter resistor $R_\text{E}$:
+\[R_\text{E}=\frac{\SI{15}{\volt}}{\SI{5}{\milli\ampere}}=\mans{\SI{3}{\kilo\ohm}}\]
+Since the imput impedance to the transistor, under the assumption of a load resistance much larger than the emitter resistance, is:
+\[R_\text{in}=\beta R_\text{E}=\SI{300}{\kilo\ohm}\]
+in order to have the \SI{3}{\decibel} point below the lowest frequency of \SI{20}{\hertz}, the capacitor $C_1$ has to be:
+\[\frac{1}{R_\text{in}C_1}\leq \SI{20}{\hertz}\]
+meaning that:
+\[\mans{C_1\geq\SI{0.17}{\micro\farad}}\]
 
-\todoex{2.19}
 
-\todoex{2.20}
+\ex{2.9}
+\begin{circuit}{fig:2.9.1}{Current source circuit}
+    (0,0) node[ground] {}
+    to[V,v_<=$V_\text{S}$, invert] ++(0,2)
+    -- ++(1,0)
+    to[R, l=$R$] ++(2,0)
+    to[short,i=$I_\text{load}$] ++(1,0)
+    node[ocirc] {}
+    to[open,v=$V_\text{load}$] ++(0,-2)
+    node[ocirc] {}
+    node[ground] {}
+\end{circuit}
+We want:
+\[\frac{I_\text{load}^\text{max}-I_\text{load}^\text{min}}{I_\text{load}^\text{max}}=\frac{V_\text{S}-\SI{0}{\volt}-(V_\text{S}-\SI{10}{\volt})}{V_\text{S}-\SI{0}{\volt}}=0.01\]
+from which it follows:
+\[\mans{V_\text{S}=\SI{1}{\kilo\volt}}\]
 
-\todoex{2.21}
 
-\todoex{2.22}
+\ex{2.10}
+With reference to Figure \ref{fig:2.9.1}, we assume that $I_\text{load}$ is equal to \SI{10}{\milli\ampere} if $V_\text{load}$ is equal to \SI{0}{\volt}, which means $R_\text{load}$ is equal to \SI{0}{\ohm}. We can therfore calculate $R$ as:
+\[R=\frac{V_\text{S}}{\SI{10}{\milli\ampere}}=\SI{100}{\kilo\ohm}\]
+In this case we have:
+\[\mans{P_\text{load}=\SI{0}{\watt},\,P_\text{R}=I_\text{load}^2R=\SI{10}{\watt}}\]
+If $V_\text{load}=\SI{10}{\volt}$, from the condition of the previous exercise, we have:
+\[I_\text{load}=(1-0.01)\SI{10}{\milli\ampere}=\SI{9.9}{\milli\ampere}\]
+Therefore:
+\[\mans{P_\text{load}=\SI{10}{\volt}I_\text{load}=\SI{0.1}{\watt},\,P_\text{R}=I_\text{load}^2R=\SI{9.8}{\watt}}\]
 
-\todoex{2.23}
+\ex{2.11}
+\begin{circuit}{fig:2.11.1}{Current sink}
+    (0,0) node[npn] (Q) {Q}
+    (Q.B) to[short] ++(-1,0) coordinate(RP)
+    -- ++(0,-.5) 
+    to[R, l=$R_2$] ++(0,-2)
+    node[ground] {}
+    (RP) -- ++(0,.5)
+    to[R, l=$R_1$] ++(0,2)
+    node[above]{+\SI{5}{\volt}} node[ocirc] {}
+    (Q.C) to[short] ++(0,.5)
+    to[generic, l=load] ++(0,1.5)
+    node[above] {+\SI{5}{\volt}} node[ocirc] {}
+    (Q.E) to[short] ++(0,-.5) coordinate(RE)
+    to[R, l=$R_\text{E}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
 
-\todoex{2.24}
+In order to have an emitter current equal to \SI{5}{\milli\ampere}, the following condition has to be verified:
+\[\frac{R_2}{R_1+R_2}\SI{5}{\volt}-\SI{0.6}{\volt}=R_\text{E}\SI{5}{\milli\ampere}\]
+Furthermore, the transistor shouldn't sensibly load the voltage divider, therefore:
+\[\frac{R_1R_2}{R_1+R_2}<<R_\text{E}\beta\]
+Since we have a dc voltage of \SI{5}{\volt}, we want the voltage on $R_2$ to be lower or equal to this value:
+\[R_\text{E}\SI{5}{\milli\ampere}+\SI{0.6}{\volt}\leq\SI{5}{\volt}\]
+leading to:
+\[R_\text{E}\leq\SI{880}{\ohm}\]
+A good guess value for $R_\text{E}$ could be:
+\[\mans{R_\text{E}=\SI{200}{\ohm}}\]
+The base voltage will be given by:
+\[V_\text{B}=R_\text{E}\SI{5}{\milli\ampere}+\SI{0.6}{\volt}=\SI{1.6}{\volt}\]
+Selecting $\mans{R_1=\SI{1}{\kilo\ohm}}$ it is possible to compute  $R_2$:
+\[\mans{R_2=\SI{470}{\ohm}}\]
+The impedance seen by the input of the transistor is equal to \SI{320}{\ohm} and the input impedance of the transistor, considering $\beta=100$, is $R_\text{E}\beta=  \SI{20}{\kilo\ohm}$ with the former much lower than the latter.
+Finally, considering a maximum $V_\text{CE}$ voltage of the transistor equal to \SI{0.2}{\volt} before it saturates, we obtain the compliance voltage on the load as:
+\[\mans{V_\text{comp}=\SI{5}{\volt}-(\SI{0.2}{\volt}+R_\text{E}\SI{5}{\milli\ampere})=\SI{3.8}{\volt}}\]
 
-\todoex{2.25}
+\ex{2.12}
+The distortion is given by:
+\[\frac{\Delta V_\text{out}}{V_\text{drop}}\frac{V_\text{T}}{V_\text{T}+I_\text{E}R_\text{E}}\]
+therefore, if $R_\text{E}=\SI{0}{\ohm}$ we obtain a predicted distortion equal to $\mans{\frac{\Delta G}{G}=\frac{\SI{0.2}{\volt}}{\SI{5}{\volt}}=0.04}$ in case of \SI{0.1}{\volt} output amplitude and $\mans{\frac{\Delta G}{G}=\frac{\SI{2}{\volt}}{\SI{5}{\volt}}=0.4}$ in case of \SI{1}{\volt} output amplitude. If $R_\text{E}I_\text{E}=\SI{0.25}{\volt}$, $\frac{\Delta G}{G}$ equals to \tans{0.004} and \tans{0.04} for output voltage amplitudes equal to \SI{0.1}{\volt} and \SI{1}{\volt}, respectively.
 
-\todoex{2.26}
+\ex{2.13}
 
-\todoex{2.27}
+If the transistor is biased at half $V_\text{cc}$, we have that the collector-emitter voltage will be equal to $V_\text{CE}=V_\text{cc}-I_\text{C}R_\text{C}=V_\text{cc}-V_\text{cc}/2=V_\text{cc}/2$ where $I_\text{C}$ is the collector quiescent current and $R_\text{C}$ is the collector resistor. The collector-base voltage will be therefore $V_\text{CB}=V_\text{cc}/2-V_\text{BE}$. In this case $V_\text{BE}$ is supposed to be obtained by means of a voltage divider. If the temperature changes, approximately $V_\text{BE}$ does not change and the collecotr current will increase by \SI{9}{\percent\per\celsius}. This means that the collector current doubles for a temperature increase equal to \SI{8}{\celsius}. In this case $R_\text{C}I_\text{C}$ becomes equal to $2V_\text{cc}/2=V_\text{cc}$. As a consequence \tans{$V_\text{CB}=-V_\text{BE}<0$ and the transistor goes in saturation.}
 
-\todoex{2.28}
+\ex{2.14}
+The bias is arranged in order to have a collector current equal to \SI{1}{\milli\ampere}. Indeed:
+\[I_\text{c}=\frac{\SI{0.775}{\volt}-\SI{0.6}{\volt}}{\SI{175}{\ohm}}=\SI{1}{\milli\ampere}\]
+The base-emitter voltage decreases by \SI{2.1}{\milli\volt\per\celsius}. Therefore, if the temperature increases by \SI{20}{\celsius}, the collecotr current will become:
+\[I_\text{c}=\frac{\SI{0.775}{\volt}-\SI{0.6}{\volt}-\SI{0.0021}{\volt\per\celsius}\,\SI{20}{\celsius}}{\SI{175}{\ohm}}=\SI{0.76}{\milli\ampere}\]
+\tans{It can be seen that the new collecotr current is about \SI{25}{\percent} lower than \SI{1}{\milli\ampere}}
 
-\todoex{2.29}
+\ex{2.15}
+The voltage gain is given by:
+\[G=\frac{V_\text{out}}{V_\text{in}}=\frac{R_\text{C}}{r_\text{e}}=\frac{I_\text{C}R_\text{C}}{V_\text{T}}\]
+In order to achieve a voltage drop on $R_\text{C}$ equal to half the $V_\text{cc}$ voltage:
+\[I_\text{C}R_\text{C}=\frac{1}{2}V_\text{cc}\]
+and therefore:
+\[R_\text{C}=\frac{1}{2}\frac{V_\text{cc}}{I_\text{C}}\]
+Substituting the $R_\text{C}$ expression into the voltage gain:
+\[\mans{G=\frac{1}{2}\frac{V_\text{cc}}{V_\text{T}}=\frac{V_\text{cc}}{\SI{50}{\milli\volt}}=20V_\text{cc}}\]
 
-\todoex{2.30}  % the last Exercise in chapter 2.
+\ex{2.16}
+\begin{circuit}{fig:2.16.1}{Tuned common emitter amplifier}
+    (0,0) node[npn] (Q) {Q}
+    (Q.B) to[short] ++(-1,0) coordinate(RP)
+    -- ++(0,-.5) 
+    to[R, l=$R_2$] ++(0,-2)
+    node[ground] {}
+    (RP) -- ++(0,.5)
+    to[R, l=$R_1$] ++(0,2)
+    -- ++(0,0.5) coordinate(Vcc)
+    (RP) -- ++(-0.5,0)
+    to[C, l=$C_\text{in}$] ++(-0.5,0)
+    -- ++(-0.5,0)
+    node[above] {$V_\text{in}$}
+    node[ocirc] {}
+    (Q.C) to[short] ++(0,.5)
+    to[L, l=$L_\text{C}$] ++(0,1.5)
+    to[short] (Vcc -| Q.C)
+    (Q.C) to[short] ++(1.5,0)
+    to[short] ++(0,.5) coordinate(Cc)
+    to[C,l=$C_\text{C}$] ++(0,1.5)
+    to[short] (Vcc -| Cc)
+    (Q.C) to[short] ++(3,0)
+    to[short] ++(0,.5) coordinate(Rc)
+    to[R,l=$R_\text{C}$] ++(0,1.5)
+    to[short] (Vcc -| Rc)
+    (Vcc) to[short] ++(-0.5,0)
+    (Vcc) to[short, l=$\SI{15}{\volt}$] ++(5,0)
+    (Q.E) to[short] ++(0,-.5) coordinate(RE)
+    to[R, l=$R_\text{E}$] ++(0,-2)
+    node[ground] {}
+    (Q.E) to[short] ++(1.5,0)
+    to[C,l=$C_\text{E}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
+With reference to Figure \ref{fig:2.16.1}, we start by choosing the emitter resistor $R_\text{E}$. We want its value to be large enough to have a voltage drop higher than $V_\text{BE}$ in order to have a good stability of the quiescent current with the temperature. However we want the transistor to operate in the active region. Since at DC, the inductor behaves like a short circuit, we have that the collector voltage is equal to $V_\text{cc}$, therefore:
+\[R_\text{E}I_\text{E}^\text{Q}<V_\text{cc}-\SI{0.2}{\volt}\]
+and
+\[R_\text{E}<\frac{V_\text{cc}-\SI{0.2}{\volt}}{I_\text{E}^\text{Q}}=\SI{14.8}{\kilo\ohm}\]
+where $I_\text{E}^\text{Q}$ is equal to about \SI{1}{\milli\ampere}.
+We choose:
+\[\mans{R_\text{E}=\SI{1}{\kilo\ohm}}\]
+In order to achieve a quiescent current equal to \SI{1}{\milli\ampere}, the base voltage has to be equal to:
+\[V_\text{B}=\SI{0.6}{\volt}+R_\text{E}I_\text{E}^\text{Q}=\SI{1.6}{\volt}\]
+Therefore, the ratio between $R_1$ and $R_2$ has to be equal to \num{8.4}. Choosing the parallel resistance of $R_1$ and $R_2$ to be about one tenth of the transistor input resistance $\beta R_\text{E}\approx\SI{100}{\kilo\ohm}$ we choose the following values for $R_1$ and $R_2$:
+\[\mans{R_1=\SI{84}{\kilo\ohm},\quad R_2=\SI{10}{\kilo\ohm}}\]
+The value of the capacitor $C_\text{C}$ can be obtained forcing the parallel LC circuit to resonate at \SI{100}{\kilo\hertz}:
+\[\frac{1}{2\pi}\sqrt{\frac{1}{L_\text{C}C_\text{C}}}=\SI{100}{\kilo\hertz}\]
+Therefore:
+\[\mans{C_\text{C}=\SI{2.5}{\nano\farad}}\]
+The value of the capacitor $C_\text{E}$ can be selected imposing that the absolute value of the impedance of the parallel between $R_\text{E}$ and $C_\text{E}$ is lower than $r_\text{e}=\SI{25}{\ohm}$ for a quiescent current of \SI{1}{\milli\ampere}.
+Doing the math we obtain:
+\[C_\text{E}>\frac{\sqrt{\frac{R_\text{E}}{\SI{25}{\ohm}}^2-1}}{\omega R_\text{E}}=\SI{63.6}{\nano\farad}\]
+A value of $C_\text{E}$ equal to \SI{10}{\micro\farad} is conservative enough to maximise the AC gain:
+\[\mans{C_\text{E}=\SI{10}{\micro\farad}}\]
+It remains to calculate the value of the input decoupling capacitor $C_\text{in}$. Its value can be obtained by forcing the cut-off frequency $1/R_\text{in}$ to be below \SI{100}{\kilo\hertz} where
+\[R_\text{eq}=\beta r_\text{e} || R_1 || R_2\]
+where we neglected the emitter impedance which is verly low thanks to the $C_\text{E}$ effect.
+We have therefore:
+\[C_\text{in} \geq \SI{5}{\nano\farad}\]
+Even in this case a conservative value for $C_\text{in}$ can be:
+\[\mans{C_\text{in}=\SI{10}{\micro\farad}}\]
 
+\ex{2.17}
+In the following, the pedix B, C and E refer to base, collector and emitter.
+The apix Q1, Q2 and Q3 refer to the relevant transistors.
+Supposing all the transistors share the same $\beta$, the $I_\text{P}$ currect can be expressed as:
+\[I_\text{P}=I_\text{C}^\text{Q1}+I_\text{B}^\text{Q3}=\beta I_\text{B}^\text{Q1}+\frac{I_\text{C}^\text{Q3}}{\beta}\]
+Since the base-emitter voltage of the transistor Q1 is the same of the transistor Q2, the base currents are the same. Therefore:
+\[I_\text{B}^\text{Q1}+I_\text{B}^\text{Q2}=2I_\text{B}^\text{Q1}=I_\text{E}^\text{Q3}-I_\text{C}^\text{Q1}=\frac{\beta+1}{\beta}I_\text{C}^\text{Q3}-\beta I_\text{B}^\text{Q1}\]
+and then:
+\[I_\text{B}^\text{Q1}=\frac{\beta+1}{\beta(\beta+2)}I_\text{C}^\text{Q3}\]
+Substituting this expression into the first equation, it is possible to obtain the following expression for $I_\text{P}$:
+\[I_\text{P}=\left(1+\frac{2}{\beta(\beta+2)}\right)I_\text{C}^\text{Q3}\approx I_\text{C}^\text{Q3}\]
+By comparing the above expression with that that typical of a basic current mirror:
+\[I_\text{P}=\left(1+\frac{2}{\beta}\right) I_\text{C}\]
+one can see that the load current $ I_\text{C}^\text{Q3}$ is much colser to the reference current $I_\text{P}$ than for the basic current mirror. Indeed:
+\[\frac{2}{\beta(\beta+2)}<<\frac{2}{\beta}\]
+
+\ex{2.18}
+For a grounded differential amplifier, the differential gain is:
+\[G_\text{diff}=\frac{R_\text{C}}{2r_\text{e}}=\frac{R_\text{C}I_\text{C}}{2V_\text{T}}={V_\text{C}}{2V_text{T}}=\mans{20V_\text{C}}\]
+where $V_\text{C}$ is the voltage drop across the collector resistor $R_\text{C}$. Therefore, if $V_\text{C}=0.5V_\text{cc}$:
+\[\mans{G_\text{diff}=10V_\text{cc}}\]
+Following a similar argument:
+\[\text{CMRR}=\frac{R_1}{r_\text{e}}=\frac{R_1I_\text{C}}{V_\text{T}}=\frac{1}{2}{V_1}{V_\text{T}}=\mans{20V_1}\]
+where $V_1$ is the voltage drop across the $R_1$ resistor.
+\begin{circuit}{fig:2.18.1}{Tuned common emitter amplifier}
+    (0,0) node[npn] (Q1) {$Q_1$}
+    (Q1.B) node[left] {+}
+    (Q1.C) to[short] ++(0,.5)
+    to[R, l=$R_\text{C}$] ++(0,1.5)
+    to[short] ++(0,+0.5) coordinate(RC1)
+    (Q1.E) to[short] ++(0,-.5) 
+    to[R, l=$R_\text{E}$] ++(0,-2) coordinate(RE1)
+    (3,0) node[npn, xscale=-1] (Q2) {\ctikzflipx{$Q_2$}}
+    (Q2.B) node[right] {-}
+    (Q2.C) to[short] ++(0,.5)
+    to[R, l=$R_\text{C}$] ++(0,1.5)
+    to[short] ++(0,+0.5)
+    (Q2.E) to[short] ++(0,-.5) coordinate(RE2)
+    to[R, l=$R_\text{E}$] ++(0,-2)
+    --(RE1)
+    ++(1.5,0) to[short] ++(0,-0.5)
+    to[R, l=$R_1$] ++(0,-2)
+    to[short] ++(0,-0.5)
+    node[below] {\SI{-5}{\volt}}
+    (RC1) ++(-1,0) to[short] ++(5,0)
+    node[above] {\SI{+5}{\volt}}
+    (Q2.C) to[short] ++(1,0)
+    node[above] {output}
+\end{circuit}
+For the differential, single-ended amplifier in Figure \ref{fig:2.18.1}, the output impedance is equal to $R_\text{C}$. Therefore we have $\mans{R_C=\SI{10}{\kilo\ohm}}$. Since we want the voltage drop on the collector resistor to be half of the $V_\text{cc}$:
+\[\mans{I_\text{C}={\SI{2.5}{\volt}}\,{\SI{10}{\kilo\ohm}}=\SI{250}{\micro\ampere}}\]
+Neglecting the voltage drop on the emitter resistor $R_\text{E}$, we can approximate the collector current as:
+\[I_\text{C}\approx\frac{\SI{5}{\volt}-\SI{0.6}{\volt}}{2R_1}\]
+and therefore:
+\[\mans{R_1=\SI{2.8}{\kilo\ohm}}\]
+The value of $R_\text{E}$ can then be obtained from the differential gain, considering that it is given by:
+\[G_\text{diff}=25=\frac{R_\text{C}}{2\left(r_\text{e}+R_\text{E}\right)}\].
+Therefore, considering that $r_\text{e}=V_\text{T}/I_\text{C}=\SI{100}{\ohm}$:
+\[\mans{R_\text{E}=\SI{100}{\ohm}}\]
+
+\ex{2.19}
+As regards the differential amplifier in Figure 2.84 of the book, the AC voltage across the $C_{\text{CB}}$ capacitor is equal to the voltage at the base of the transistor $Q_1$ without depending on the voltage gain. The voltage across the emitter resistor $R_\text{E}$ is the input to a common base amplifier which does not have Miller effect.\\
+\begin{circuit}{fig:2.19.1}{Cascode amplifier}
+    (0,0) node[npn] (Q1) {$Q_1$}
+    (Q1.B) node[below] {$V_\text{in}$}
+    (Q1.B) to[short] ++(-0.5,0)
+    to[C,l=$C_\text{cb}$] ++(0, 1.5) coordinate(Ccb)
+    to[short] (Ccb -| Q1.C)
+    (Q1.C) to[short] ++(0,1)
+    node[npn, anchor=E] (Q2) {$Q_2$}
+    (Q1.E) node[ground] {}
+    (Q2.B) node[ground] {}
+    (Q2.C) to[R, l=$R_\text{L}$,v=$v_{\text{out}}$] ++(0, 1.5)
+    node[ground, rotate=180] {}
+\end{circuit}
+As regards the cascode configuration, one can make reference to Figure \ref{fig:2.19.1}. Under the approximation that the collecotr current of the transistor $Q_1$ is equal to that of the transistor $Q_2$:
+\[i_\text{C}^{\text{Q}_1} = i_\text{C}^{\text{Q}_2} = \frac{v_\text{in}}{r_\text{e}^{\text{Q}_1}}\]
+where $r_\text{e}^{\text{Q}_1}$ is the differential resistance of the $Q_1$ transistor.
+The output voltage will be:
+\[v_\text{out}=R_\text{L}i_\text{C}^{\text{Q}_2}\]
+The base-emitter AC voltage of the $Q_2$ transistor will be:
+\[v_{\text{BE}}^{\text{Q}_2}=r_\text{e}^{\text{Q}_2}i_\text{C}^{\text{Q}_2}\]
+where $r_\text{e}^{\text{Q}_2}$ is the differential resistance of the $Q_2$ transistor.\\
+The voltage across the $C_\text{CB}$ capacitor will be:
+\[v_\text{CB}=v_\text{in}+v_{\text{BE}}^{\text{Q}_2}=v_\text{in}+\frac{v_\text{in}r_\text{e}^{\text{Q}_2}}{r_\text{e}^{\text{Q}_1}}\]
+It follows that the amplitude of the current through the $C_\text{CB}$ capacitor is:
+\[I_\text{CB}=\frac{v_\text{in}\left(1+\frac{r_\text{e}^{\text{Q}_2}}{r_\text{e}^{\text{Q}_1}}\right)}{X_\text{CB}}\]
+where $X_\text{CB}$ is the capacitive reactance associated to the $C_\text{CB}$ capacitor.
+The Miller capacitance $C_\text{CB}^\text{M}$ is therefore:
+\[\mans{C_\text{CB}^\text{M}=C_\text{CB}\left(1+\frac{r_\text{e}^{\text{Q}_2}}{r_\text{e}^{\text{Q}_1}}\right)}\]
+and does not depend on the voltage gain of the cascode amplifier.
+
+\ex{2.20}
+The expression for the input impedance of the inverting amplifier is straightforward by considering that it is the series between the $R_1$ resistance with the input impedance of the transresistance amplifier. Therefore, the input impedance $Z_{\text{in}}$ is:
+\[\mans{Z_\text{in}=R_1+R_\text{in}||\frac{R_2}{1+A}}\]
+The closed loop gain can also be obtained in a straightforward way starting by considering the input impedance of the operational amplifier, $R_\text{in}$, apporaching to infinity. In this case, all the current flowing in $R_1$ goes in $R_2$ making $R_1$ and $R_2$ in series. Therefore:
+\[V_\text{out}=vA\]
+where $v$ is the differential voltage of the operational amplifier and $A$ is the open loop gain.\\
+$v$ is given by:
+\[v=-[V_\text{in}-(V_\text{in}-V_\text{out})B]\]
+where $B$ is defined as:
+\[\frac{R_1}{R_1+R_2}\]
+The expression for the output voltage becomes:
+\[V_\text{out}=-A[V_\text{in}-(V_\text{in}-V_\text{out})B]\]
+and the closed loop gain is:
+\[\mans{G=\frac{V_\text{out}}{V_\text{in}}=-A\frac{1-B}{1+AB}}\]
+
+\ex{2.21}
+\[\mans{G_{\text{CL}}=\frac{-100j}{1+-100j(0.1)}=9.90-0.99j}\]
+
+\ex{2.22}
+\begin{circuit}{fig:2.22.1}{Open loop small signal circuit}
+    (0,0) node[npn] (Q1) {$Q_1$}
+    (Q1.B) -- ++(-.5,-0) coordinate(Q1B)
+    to[R,l=$R_1$] ++(0,1.5)
+    node[ground, rotate=180] {}
+    (Q1B) to[R,l=$R_2$] ++(0,-1.5)
+    node[ground] {}
+    (Q1.E) to[R,l=$R_4$] ++(0,-1.5)
+    node[ground] {}
+    (Q1.E) -- ++(1,0)
+    to[R,l=$R_5$] ++(0,-1.5)
+    node[ground] {}
+    (Q1.C) to[R,l=$R_3$] ++(0,1.5)
+    node[ground, rotate=180] {}
+    (Q1.C) -- ++(2,0)
+    node[pnp, anchor=B] (Q2) {$Q_2$}
+    (Q2.C) to[R,l=$R_4$] ++(0,-1.5)
+    to[R,l=$R_5$] ++(0,-1.5)
+    node[ground] {}
+    (Q2.E) node[ground, rotate=180] {}
+\end{circuit}
+The feedback takes the voltage from the output of Q2 transistor and returns it to the input of the Q1 transistor through a voltage divider made of the resistors $R_4$ and $R_5$. The feedback is of \textit{voltage-voltage} kind. In order to account ofr the feedback loading effect in opening the loop, the reference circuit is that of Figure \ref{fig:2.22.1}. Considering a $\beta$ of 100 for both Q1 and Q2, the open loop gain is:
+\[G^{\text{OL}}=\frac{-1}{r_\text{e}^{\text{Q}_1}+R_4||R_5}\left[R_3||r_\text{e}^{\text{Q}_2}\beta\right]\left[-\frac{R_4+R_5}{r_\text{e}^{\text{Q}_2}}\right]\approx\frac{1}{r_\text{e}^{\text{Q}_1}+R_4}\left[R_3||r_\text{e}^{\text{Q}_2}\beta\right]\left[\frac{R_5}{r_\text{e}^{\text{Q}_2}}\right]\]
+Therfore, since $r_\text{e}^{\text{Q}_1} = r_\text{e}^{\text{Q}_2}=\SI{25}{\ohm}$:
+\[\mans{G^{\text{OL}}\approx200}\]
+The feedback gain is:
+\[B=\frac{R_4}{R_4+R_5}\approx\frac{R_4}{R_5}=0.1\]
+Therfore, the loop gain is:
+\[\mans{G^{\text{OL}}B\approx20}\]
+The open loop output impedance is:
+\[\mans{Z_\text{out}^\text{OL}=R_4+R_5\approx R_5=\SI{10}{\kilo\ohm}}\]
+The closed loop parameters are therefore:
+\[\mans{G^\text{CL}=\frac{G^\text{OL}}{1+G^\text{OL}B}\approx9.5}\]
+\[\mans{Z_\text{out}^\text{CL}=\frac{Z_\text{out}^\text{OL}}{1+G^\text{OL}B}\approx\frac{Z_\text{out}^\text{OL}}{G^\text{OL}B}=500}\]
+
+\ex{2.23}
+\begin{circuit}{fig:2.23.1}{Solution}
+    (0,0) node[npn] (Q1) {$Q_1$}
+    (Q1.B) -- ++(-.5,-0)
+    to[R,l2=$R_2$ and \SI{10}{\kilo\ohm}] ++(-2.5,0) coordinate (CA)
+    % to[Do,invert,l=$D_2$] ++ (-2.5,0) 
+    -- ++(-1,0) coordinate(CB)
+    to[nos,l=$s_\text{A}$] ++(0,1.5)
+    node[above]{+\SI{12}{\volt}} node[ocirc] {}
+    % (CB) to[Do, l=$D_1$] ++(0,-1.5)
+    (CB) to[R,l2_=$R_1$ and \SI{1}{\kilo\ohm}] ++(0,-1.5)
+    node[ground] {}
+    (Q1.E) node[ground] {}
+    (Q1.C) to[generic, l=$\text{load}_\text{A}$] ++(0,1.5)
+    node[above]{+\SI{12}{\volt}} node[ocirc] {}
+    (CA) -- ++(0,-3) -- ++(5,0) -- ++(0,3)
+    to[Do,l=$D_1$] ++ (3.5,0) coordinate (CC)
+    to[nos,l=$s_\text{B}$] ++(0,1.5)
+    node[above]{+\SI{12}{\volt}} node[ocirc] {}
+    (CC) to[R,l2_=$R_1$ and \SI{1}{\kilo\ohm}] ++(0,-1.5)
+    node[ground] {}
+    (CC) -- ++(1,0) 
+    to[R,l2_=$R_2$ and \SI{10}{\kilo\ohm}] ++(1.5,0)
+    node[npn, anchor=B] (Q2) {$Q_2$}
+    (Q2.E) node[ground] {}
+    (Q2.C) to[generic, l=$\text{load}_\text{B}$] ++(0,1.5)
+    node[above]{+\SI{12}{\volt}} node[ocirc] {}
+\end{circuit}
+Let's suppose the loads are resistive with a resistance equal to \SI{150}{\ohm} and both the npn transistors have $\beta=100$.
+When $s_\text{A}$ and $s_\text{B}$ are open, both $Q1$ and $Q2$ bases are to ground and no current flows into the loads.\\
+If $s_\text{A}$ is closed, the left terminals of the $R_2$ resistors are at \SI{12}{\volt} (minus a diode voltage drop for the resistor connected at the $Q_2$ base). The base currents are therefore:
+\[I_\text{b}=\frac{\SI{12}{\volt}-\SI{0.6}{\volt}}{\SI{10}{\kilo\ohm}}=\SI{1.14}{\milli\ampere}\]
+Such a base current, with the considered $\beta$ and load resistance, causes $Q_1$ and $Q_2$ to saturate. Therefore, the load current is:
+\[I_\text{l}^{A} = I_\text{l}^{B} = \frac{\SI{12}{\volt}-\SI{0.2}{\volt}}{\SI{150}{\ohm}}=\SI{79}{\milli\ampere}\]
+When $s_\text{A}$ is open and $s_\text{B}$ is closed, $D_1$ is reverse biased and $Q_1$ is in cutoff region since no current flows into its base. However, \SI{1.14}{\milli\ampere} flows into the base of $Q_2$ which goes into saturation.
+
+\ex{2.24}
+\begin{enumerate}
+    \item
+    Under the assumption that $\beta$ is very large, the load current $I_\text{load}$ is given by:
+    \[I_\text{load}=I_\text{C}\approx I_\text{E}\left[\frac{V_\text{cc}R_2}{R_1+R_2}-\SI{0.6}{\volt}\right]\frac{1}{R_\text{E}}\]
+    where $V_\text{CC}=\SI{10}{\volt}$, $R_1=\SI{8.2}{\kilo\ohm}$, $R_1=\SI{1.6}{\kilo\ohm}$ and $R_1=\SI{1.5}{\kilo\ohm}$.
+    Therefore $\mans{I_\text{load}=\SI{0.7}{\milli\ampere}}$
+    Since for the transistor to work in active region it must hold:
+    \[V_\text{CE}=V_\text{CC}-V_\text{load}-V_\text{E}\geq\SI{0.2}{\volt}\]
+    since $V_\text{E}=I_\text{E}R_\text{E}\approx\SI{1}{\volt}$ the output compliance is given by:
+    \[\mans{V_\text{load}\leq\SI{8.8}{\volt}}\]
+    \item 
+    Removing the assumption that $\beta$ is very large, has two effects. First, the emitter current and the collector currents are no more equal:
+    \[I_\text{load}=I_\text{C}=\beta\frac{1}{\beta+1}I_\text{E}\]
+    Second, the $R_1$ and $R_2$ resistors are nomore in series since the bas current is no more negligible.
+    The full expression for the emitter current can be obtained by considering that:
+    \begin{gather*}
+        I_\text{E}=I_\text{B}+I_\text{C}\\
+        I_1=I_\text{B}+I_2
+    \end{gather*}
+    where $I_1$ and $I_2$ are the currents flowing through $R_1$ and $R_2$,respectively, and $I_\text{B}$ is the base current. Under this conditions, the emitter current is given by:
+    \[I_\text{E}=\frac{1}{R_\text{E}}\left[\frac{V_\text{CC}R_2}{R_1+R_2}-\SI{0.6}{\volt}\right]\left[1+\frac{R_2}{R_1(\beta+1)}\left(1-\frac{R_2}{R_1+R_2}\right)\right]^{-1}\]
+    It follows:
+    \begin{gather*}
+        \beta=50 \quad I_\text{E}=\SI{0.685}{\milli\ampere} \quad I_\text{load}=I_\text{C}=\SI{0.67}{\milli\ampere}\\
+        \beta=100 \quad I_\text{E}=\SI{0.688}{\milli\ampere} \quad I_\text{load}=I_\text{C}=\SI{0.68}{\milli\ampere}
+    \end{gather*}
+    \item 
+    Here we consider again that $\beta$ is very large. Being $R_1$ and $R_2$ in series, the base voltage does not change due to early effect and we can write:
+    \[\Delta I_\text{E}=-\frac{\Delta V_\text{BE}}{R_\text{E}}=\frac{0.0001\Delta V_\text{CE}}{R_\text{E}}\]
+    Furthermore:
+    \[\Delta V_\text{CE}=-\Delta V_\text{load}-\Delta I_\text{E}R_\text{E}\]
+    Solving for $\Delta I_\text{E}$:
+    \[\Delta I_\text{load}=\Delta I_{C}\approx \Delta I_\text{E}=\frac{-0.0001}{1.0001R_\text{E}}\Delta V_\text{load}\]
+    For an output voltage within the output compliance ($\Delta V_\text{load}=\SI{8.8}{\volt}$):
+    \[\mans{\Delta I_\text{load}=\SI{-66.7}{\nano\ampere}}\]
+    \item 
+    $V_\text{BE}$ varies by \SI{-2.1}{\milli\volt\per\celsius}. With respect to the load current computed at the first point (a) ($I_\text{load}=\SI{0.7}{\milli\ampere}$) it is easy to see that:
+    \[\mans{\frac{\Delta I_\text{load}}{\Delta \text{°C}}=\SI{0.2}{\percent\per\celsius}}\]
+    In order to account for the variation of $\beta$ with temperature, we have to use the expression obtained in point b. In this case we obtain:
+    \[\mans{\frac{\Delta I_\text{load}}{\Delta \text{°C}}=\SI{0.21}{\percent\per\celsius}}\]
+\end{enumerate}
+
+\ex{2.25}
+\begin{circuit}{fig:2.25.1}{Common emitter amplifier}
+    (0,0) node[npn] (Q) {Q}
+    (Q.B) to[short] ++(-1,0) coordinate(RP)
+    -- ++(0,-.5) 
+    to[R, l=$R_2$] ++(0,-2)
+    node[ground] {}
+    (RP) -- ++(0,.5)
+    to[R, l=$R_1$] ++(0,2)
+    -- ++(0,0.5) coordinate(Vcc)
+    (RP) -- ++(-0.5,0)
+    to[C, l=$C_\text{in}$] ++(-0.5,0)
+    -- ++(-0.5,0)
+    node[above] {$V_\text{in}$}
+    node[ocirc] {}
+    (Q.C) to[short] ++(0,.5)
+    to[R, l=$R_\text{C}$] ++(0,1.5)
+    to[short] (Vcc -| Q.C)
+    (Q.C) to[short] ++(0.5,0)
+    node[ocirc] {}
+    node[above] {$V_\text{out}$}
+    (Vcc) to[short] ++(-0.5,0)
+    (Vcc) to[short, l=$\SI{15}{\volt}$] ++(2.5,0)
+    (Q.E) to[short] ++(0,-.5) coordinate(RE)
+    to[R, l=$R_\text{E}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
+The gain is approximately given by:
+\[\text{G}=\frac{R_\text{C}}{R_\text{E}}=15\]
+Given a bias collector current of \SI{0.5}{\milli\ampere}, in order to have the bias collector voltage at $0.5V_\text{CC}=\SI{7.5}{\volt}$, the collector resistance has to be equal to:
+\[\mans{R_\text{C}=\frac{\SI{7.5}{\volt}}{\SI{0.5}{\milli\ampere}}=\SI{15}{\kilo\ohm}}\]
+It follows that $\mans{R_\text{E}=\SI{1}{\kilo\ohm}}$
+In order to have a bias collector current equal to \SI{0.5}{\milli\ampere}, the following condition must hold:
+\[I_\text{C}\approx I_\text{E}=\frac{V_\text{B}-\SI{0.6}{\volt}}{R_\text{E}}\]
+meaning that $V_\text{B}=\SI{1.1}{\volt}$
+This defines the first out of three conditions on the value of the resistors $R_1$ and $R_2$:
+\[V_\text{CC}\frac{R_2}{R_1+R_2}=\SI{1.1}{\volt}\rightarrow R_1 = 12.64\,R_2\]
+The second condition can be obtained by considering the maximum emitter voltage:
+\[V_\text{E}^\text{MAX}=R_\text{E}I_\text{E}^\text{MAX}=\SI{1}{\kilo\ohm}\,\SI{1}{\milli\ampere}=\SI{1}{\volt}\]
+the minimum current flowig through $R_1$ is:
+\[I_{\text{R}_1}^\text{MIN}=\frac{V_\text{CC}-\SI{1.6}{\volt}}{R_1}=\frac{\SI{13.4}{\volt}}{R_1}\]
+In order to properly drive the base of the transistor, this current has to be higher than the maximum base current:
+\[\frac{\SI{13.4}{\volt}}{R_1}>\frac{\SI{1}{\milli\ampere}}{\beta}\]
+leading to the second condition:
+\[R_1<\SI{1.34}{\mega\ohm}\]
+Finally, the input impedance of the transistor should be much higher than the parallel impedance of $R_1$ and $R_2$:
+\[\frac{R_1R_2}{R_1+R_2}<<\beta R_\text{E}=\SI{100}{\kilo\ohm}\]
+Taking into account these conditions, we select the following values for $R_1$ and $R_2$:
+\[\mans{R_1=\SI{20.2}{\kilo\ohm},\,R_2=\SI{1.6}{\kilo\ohm}}\]
+To be sure the \SI{3}{\decibel} point is below the frequency of interest (\SI{100}{\hertz}), the value of the input capacitor can be computed by:
+\[\frac{1}{\SI{1.5}{\kilo\ohm}\,C_\text{in}}<2\pi\SI{100}{\hertz}\]
+where \SI{1.5}{\kilo\ohm} is the value of the parallel $R_1$ and $R_2$.
+From the previous expression one can obtain the value of the input capacitance $C_\text{in}$:
+\[\mans{C_\text{in}>\SI{1.06}{\micro\farad}}\]
+
+\ex{2.26}
+\begin{circuit}{fig:2.26.1}{Bootstrapped common emitter amplifier}
+    (0,0) node[npn] (Q) {Q}
+    (Q.B) to[short] ++(-2,0) coordinate(RP)
+    (Q.B) -- ++(-1,0)
+    to[R,l=$R_3$] ++(0,-2) coordinate(R3)
+    to[short] (RP|-R3)
+    node[circ] {}
+    (R3) to[C,l=$C_\text{b}$] (R3-|Q.E)
+    (RP) -- ++(0,-3)
+    to[R, l=$R_2$] ++(0,-2)
+    node[ground] {}
+    (RP) -- ++(0,.5)
+    to[R, l=$R_1$] ++(0,2)
+    -- ++(0,0.5) coordinate(Vcc)
+    (RP) -- ++(-0.5,0)
+    to[C, l=$C_\text{in}$] ++(-0.5,0)
+    -- ++(-0.5,0)
+    node[above] {$V_\text{in}$}
+    node[ocirc] {}
+    (Q.C) to[short] ++(0,.5)
+    to[R, l=$R_\text{C}$] ++(0,1.5)
+    to[short] (Vcc -| Q.C)
+    (Q.C) to[short] ++(0.5,0)
+    node[ocirc] {}
+    node[above] {$V_\text{out}$}
+    (Vcc) to[short] ++(-0.5,0)
+    (Vcc) to[short, l=$\SI{15}{\volt}$] ++(3,0)
+    (Q.E) to[short] ++(0,-2) coordinate(RE)
+    to[R, l=$R_\text{E}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
+
+From a small signal perspective, the equivalent $R_3$ resistance is given by:
+\[R_\text{eq}=\frac{R_3}{1-A}\]
+where $A$ is the voltage gain of the emitter follower and it is given by:
+\[\frac{R_\text{E}g_\text{m}}{1+R_\text{E}g_\text{m}}=0.95\]
+since $g_\text{m}=\frac{\SI{0.5}{\milli\ampere}}{\SI{25}{\milli\volt}}=\SI{0.02}{\siemens}$
+Therefore $R_\text{eq}\approx 20R_3$.\\
+We can choose $\mans{R_3=\SI{4.7}{\kilo\ohm}}$ to obtain a $R_\text{eq}=\SI{94}{\kilo\ohm}$
+The resistance seen by the $C_\text{b}$ capacitor is equal to:
+\[R_1||R_2||(R_\text{eq}+\SI{100}{\kilo\ohm})\approx \SI{1.5}{\kilo\ohm}\]
+Therefore we want the capacitive impedance of $C_\text{b}$ at \SI{100}{\hertz} to be much lower than \SI{1.5}{\kilo\ohm}.
+Choosing a $\mans{C_\text{b}=\SI{10}{\micro\farad}}$ should be enough.
+
+\ex{2.27}
+\begin{circuit}{fig:2.27.1}{Differential pair and emitter follower}
+    (0,0) node[npn] (Q1) {$Q_1$}
+    (Q1.B) node[left] {$V_\text{in}^+$}
+    (Q1.C) to[short] ++(0,.5)
+    to[R, l=$R_\text{C}$] ++(0,1.5)
+    to[short] ++(0,+0.5) coordinate(RC1)
+    (3,0) node[npn, xscale=-1] (Q2) {\ctikzflipx{$Q_2$}}
+    (Q2.B) node[right] {$V_\text{in}^-$}
+    (Q2.C) to[short] ++(0,.5)
+    to[R, l=$R_\text{C}$] ++(0,1.5)
+    to[short] ++(0,+0.5)
+    (Q1.E) to[short] (Q1.E-|Q2.E)
+    ($(Q1.E)!0.5!(Q2.E)$) to[short] ++(0,-0.5)
+    to[I, l=$I_\text{E}$] ++(0,-1.5) coordinate(IE)
+    (RC1) ++(-1,0) to[short] ++(7,0)
+    node[above] {\SI{+15}{\volt}}
+    (Q2.C) to[short] ++(1,0)
+    node[npn, anchor=B] (Q3) {$Q_3$}
+    (Q3.E) to[R, l=$R_\text{EE}$] ++(0,-1.5) coordinate(REE)
+    (IE) to[short] ++(-1,0)
+    (IE) to[short] (IE-|REE)
+    to[short] ++(1,0)
+    (REE) to[short] (REE|-IE)
+    node[below] {\SI{-15}{\volt}}
+    (Q3.C) to[short] (Q3.C|-RC1)
+    (Q3.E) -- +(1,0)
+    node[above] {output}
+\end{circuit}
+At DC, when $V_\text{in}^+=V_\text{in}^-=\SI{0}{\volt}$ the current $I_\text{E}$ is splitted equally between $Q_1$ and $Q_2$. Therefore, if the emitter current of both transistors has to be equal to \SI{0.1}{\milli\ampere} we have that $\mans{I_\text{E}=\SI{0.2}{\milli\ampere}}$
+The differential gain $G_\text{d}$ has to be equal to 50:
+\[G_\text{d}=\frac{R_\text{C}}{2r_\text{E}}=50\]
+Since $R_\text{E}=\SI{25}{\milli\volt}/\SI{0.1}{\milli\ampere}=\SI{250}{\ohm}$, we have that $\mans{R_\text{C}=\SI{25}{\kilo\ohm}}$
+If we also want the bias current of transistor $Q_3$ to be equal to \SI{0.1}{\milli\ampere}:
+\[\mans{R_\text{EE}=\frac{\SI{15}{\volt}+\SI{15}{\volt}-\SI{0.6}{\volt}-R_\text{C}\,\SI{0.1}{\milli\ampere}}{\SI{0.1}{\milli\ampere}}\approx\SI{270}{\kilo\ohm}}\]
+As a final note, the differential pair is not degenerated. This led to a lower resistance $R_\text{C}$ but to a higher resistance $R_\text{EE}$ and a very small linearity region.
+
+\ex{2.28}
+\begin{enumerate}
+    \item
+    \begin{circuit}{fig:2.28.1}{Differential pair with current source emitter}
+        (0,0) node[npn] (Q1) {$Q_1$}
+        (Q1.B) node[left] {$V_\text{in}$}
+        (Q1.C) to[short] ++(0,.5)
+        to[R, l=$R_\text{C}$] ++(0,1.5)
+        to[short] ++(0,+0.5) coordinate(RC1)
+        (3,0) node[npn, xscale=-1] (Q2) {\ctikzflipx{$Q_2$}}
+        (Q2.B) node[ground] {}
+        (Q2.C) to[short] ++(0,.5)
+        to[R, l=$R_\text{C}$] ++(0,1.5)
+        to[short] ++(0,+0.5)
+        (Q1.E) to[short] (Q1.E-|Q2.E)
+        ($(Q1.E)!0.5!(Q2.E)$) to[short] ++(0,-0.5)
+        to[I, l=$I_\text{E}$] ++(0,-1.5) coordinate(IE)
+        node[below] {\SI{-15}{\volt}}
+        (RC1) ++(-1,0) to[short] ++(5,0)
+        node[above] {\SI{+15}{\volt}}
+        (Q2.C) to[short] ++(1,0)
+        node[above] {Output}
+    \end{circuit}
+
+    The quiscient current $I_\text{E}$ will be equally divided among the two transistors $Q_1$ and $Q_2$. Therefore, in order to have a collector current equal to \SI{100}{\micro\ampere}, $\mans{I_\text{E}=\SI{200}{\micro\ampere}}$.
+    The gain of the single ended input-output differential pair can be easily computed by considering that the equivalent resistance as seen from $Q_2$ emitter is equal to $r_\text{E}^{Q_2}$. Therefore, the gain will be equal to:
+    \[\mans{G=\frac{R_\text{C}}{r_\text{E}^{Q_1}+r_\text{E}^{Q_2}}=\frac{R_\text{C}}{2r_\text{E}}=20}\]
+    since:
+    \[r_\text{E}^{Q_1}=r_\text{E}^{Q_2}=r_\text{E}=\frac{\SI{25}{\milli\volt}}{\SI{100}{\micro\ampere}}=\SI{250}{\ohm}\]
+
+    \item
+    \begin{circuit}{fig:2.28.2}{Differential pair with variable current emitter}
+        (0,0) node[npn] (Q1) {$Q_1$}
+        (Q1.B) node[left] {$V_\text{in}$}
+        (Q1.C) to[short] ++(0,.5)
+        to[R, l=$R_\text{C}$] ++(0,1.5)
+        to[short] ++(0,+0.5) coordinate(RC1)
+        (3,0) node[npn, xscale=-1] (Q2) {\ctikzflipx{$Q_2$}}
+        (Q2.B) node[ground] {}
+        (Q2.C) to[short] ++(0,.5)
+        to[R, l=$R_\text{C}$] ++(0,1.5)
+        to[short] ++(0,+0.5)
+        (Q1.E) to[short] (Q1.E-|Q2.E)
+        ($(Q1.E)!0.5!(Q2.E)$) to[short] ++(0,-0.5)
+        node[npn, anchor=C] (Q3) {$Q_3$}
+        (Q3.E) node[below] {\SI{-15}{\volt}}
+        (Q3.B) to[R,l=$R_\text{B}$] ++(-2,0)
+        to[V,v_<=$V_\text{G}$, invert] ++(-2,0)
+        node[ground] {}
+        (RC1) ++(-1,0) to[short] ++(5,0)
+        node[above] {\SI{+15}{\volt}}
+        (Q2.C) to[short] ++(1,0)
+        node[above] {Output}
+    \end{circuit}
+    In the circuit of Figure \ref{fig:2.28.2}, the DC voltage $V_\text{G}$ tunes the base current into the transistor $Q_3$ changing the quiescent current into the transistors $Q_1$ and $Q_2$.
+    The value of the resistor $R_\text{B}$ can be obtained by imposing that the maximum $V_\text{G}$ voltage that doesn't saturate the transistors $Q_1$ and $Q_2$ is \SI{10}{\volt}. By virtue of the $V_\text{BE}$ of $Q_2$, the emitter of $Q_1$ and $Q_2$ is at \SI{-0.6}{\volt} with respect to ground. Therefore, the maximum collector current that doesn't cause $Q_1$ and $Q_2$ to saturate can be obtained as:
+    \[I_\text{C}^\text{max}=\frac{\SI{15}{\volt}+\SI{0.6}{\volt}-\SI{0.2}{\volt}}{R_\text{C}}=\SI{1.54}{\milli\ampere}\]
+    The $Q_3$ maximum collector current will be twice $I_\text{C}^{max}$. Therefore, we have:
+    \[\beta\frac{\SI{15}{\volt}-\SI{10}{\volt}-\SI{0.6}{\volt}}{R_\text{B}}=2I_\text{C}^\text{max}\]
+    which gives:
+    \[\mans{R_\text{B}=\SI{143}{\kilo\ohm}}\]
+    In order to compute the gain, first we have to compute the value of the quiescent collector current of $Q_1$ and $Q_2$. This will be equal to:
+    \[I_\text{C}^\text{Q}=\beta\frac{1}{2}\frac{\SI{15}{\volt}-\SI{0.6}{\volt}-V_\text{G}}{R_\text{B}}\]
+    The gain will be equal to:
+    \[\mans{G=\frac{1}{2}\frac{I_\text{C}^\text{Q}R_\text{C}}{\SI{25}{\milli\volt}}\approx 70\left(\SI{14.4}{\volt}-V_\text{G}\right)}\]
+\end{enumerate}
+
+\ex{2.29}
+\begin{enumerate}
+    \item
+    Since the quiescent point is equal to $0.5V_\text{CC}$, the quiescent collector current can be computed as:
+    \[I_\text{C}=\frac{1}{2}\frac{\SI{20}{\volt}}{\SI{10}{\kilo\ohm}}=\SI{1}{\milli\ampere}\]
+    Using the Ebers-Moll equation to derive the base quiescent voltage:
+    \[V_\text{BE}=V_\text{T}\ln\left(\frac{I_\text{C}}{I_\text{S}}\right)=\SI{0.69}{\volt}\]
+    with a saturation current $I_\text{S}$ equal to \SI{1e-15}{\ampere}, it is possible to estimate the value of the variable resistor $R$ that leads to this voltage:
+    \[R = \frac{\SI{1}{\kilo\ohm}\,\SI{0.69}{\volt}}{\SI{20}{\volt}-\SI{0.69}{\volt}}=\SI{35.8}{\ohm}\]
+    The input impedance will be therefore the parralle between \SI{1}{\kilo\ohm}, \SI{35.8}{\ohm} and $\beta\,r_\text{E}$, being $r_\text{E}$ the differential resistance of the transistor:
+    \[r_\text{E}=\frac{I_\text{C}}{V_\text{T}}\approx\SI{25}{\ohm}\]
+    \tans{It follows that the input impedance $Z_\text{in}$ is approximately equal to $\SI{34}{\ohm}$}
+    \item
+    The differential gain is equal to the ratio between the collector resistor and the differential resistor $R_\text{E}$. Therefore:
+    \[\mans{G=\frac{\SI{10}{\kilo\ohm}}{\SI{25}{\ohm}}}\]
+    \item
+    Since the collector quiescent current approximately changes by \SI{9}{\percent\per\celsius}, it is easily seen that its amount doubles for a temeprature change of \tans{\SI{8}{\celsius}}. This leads to a quiescent collector voltage equal to \SI{20}{\volt} causing the transistor to saturate.
+\end{enumerate}
+
+\ex{2.30}  % the last Exercise in chapter 2.
+The bias base current into $Q_1$ ($I_B^{Q_1}$) is the sum of the input bias current (from \textit{input 1}: $I^{I1}$) and the collector current from the $Q_4$ transistor of the current mirror made of $Q_4$ and $Q_3$ ($I_C^{Q_4}$):
+\[I_B^{Q_1}=I^{I1}+I_C^{Q_4}\]
+Therrefore:
+\[I^{I1}=I_B^{Q_1}-I_C^{Q_4}\]
+Since $Q_1$ and $Q_2$ are beta matched, their base currents are the same since sharing the same collector current. The current mirror copies the base current of $Q_2$ on $Q_4$ and therefore $I_C^{Q_4}=I_B^{Q_1}$.
+It follows that:
+\[\mans{I^{I1}=I_B^{Q_1}-I_C^{Q_4}=\SI{0}{\ampere}}\]
+In order for the circuit to operate correctly, all transistors have to work in active operation region. For this to be verified, the collector-base voltage has to be higher than zero for all transistors. Here the collector-base voltage of the transistor $Q_1$ is the critical one.
+\[V_\text{CB}^{Q_1}=-\SI{0.6}{\volt}-V_\text{CB}^{Q_4}\]
+\[V_\text{CE}^{Q_4}=V_\text{E}+\SI{0.6}{\volt}-V_\text{M}\]
+where $V_M$ is the bias voltage applied to the emitters of the current mirror.
+\[V_\text{CB}^{Q_4}=V_\text{CE}^{Q_4}+\SI{0.6}{\volt}=V_\text{E}+\SI{1.2}{\volt}-V_\text{M}\]
+By replacing the expression for $V_\text{CB}^{Q_4}$ into that of $V_\text{CB}^{Q_1}$ one finds:
+\[V_\text{CB}^{Q_1}=V_\text{M}-V_\text{E}-\SI{1.8}{\volt}\]
+If we want this to be higher than zero:
+\[V_\text{M}>V_\text{E}+\SI{1.8}{\volt}\]
+\tans{$V_\text{M}=V_\text{E}+\SI{2}{\volt}$ is a quite safe value}
 % Here ends Chapter 2.
